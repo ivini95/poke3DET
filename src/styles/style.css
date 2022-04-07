@@ -1,0 +1,206 @@
+:root {
+  --color1:#232323 ;
+  --color2:#DEDEDE;
+  --color3:#FCE728;
+  --color4:#DB0A2D;
+  --color5:#28ABFD;
+}
+
+
+body {
+  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  font-family: 'VT323', monospace;
+  
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("../assets/pokeBackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  right: 0;
+  filter: blur(3px);
+  
+}
+
+.container {
+  background-color:var(--color4);
+  width: 25rem;
+  height:35rem;
+  border: 0.2rem solid var(--color1);
+  border-radius: 5px;
+  color: var(--color1);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1.5fr 0.5fr 1fr 1fr 1fr 0.5fr;
+  grid-template-areas: 
+    "lifeMana pokeImg pokeImg totalP"
+    "name name name name"
+    "force force ability ability"
+    "resistence resistence armor armor"
+    "firePower firePower firePower firePower"
+    "reset reset save save"
+  ;
+  justify-items: center;
+  align-items: center;
+}
+
+.imagePokeContainer {
+
+  grid-area: pokeImg;
+}
+
+.imagePoke {
+  width: 120px;
+  background-color: var(--color2);
+  border: 0.2rem solid var(--color1);
+  border-radius: 5px;
+}
+
+.button {
+  display: relative;
+  width: 3rem;
+  height: 2rem;
+  background-color: var(--color1);
+  color: var(--color2);
+  border: none;
+  border-radius: 5px;
+}
+
+.buttonSave{
+  width: 6rem;
+  background-color:var(--color3);
+  color: var(--color1);
+}
+
+.buttonReset{
+  width: 6rem;
+  background-color:var(--color3);
+  color: var(--color1);
+} 
+
+.number {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--color2);
+  border-radius: 5px;
+  border: 1px solid var(--color1);
+}
+
+.pokeStatus{
+  width: 10rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.pokeStatus > h1{
+
+  margin: 0;
+}
+
+.previousButton{
+  
+}
+
+.lifeMana {
+  display: flex;
+  flex-direction: column;
+  grid-area: lifeMana;
+  width: 5rem;
+  
+}
+
+.mana {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.life {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mana > h2 {
+  margin: 0;
+}
+
+.life > h2 {
+  margin: 0;
+}
+
+.totalPoints {
+  display: flex;
+  flex-direction: column;
+  grid-area: totalP;
+  width: 5rem;
+  align-items: center;
+}
+
+.totalPoints > h1{
+ margin: 0;
+}
+
+.nameContent{
+  width: 10rem;
+  text-align: center;
+  margin: 0;
+  background-color: var(--color2);
+}
+
+.nameChange {
+  grid-area: name;
+  display: flex;
+  align-items: center;
+}
+
+.force{
+  grid-area: force;
+  
+}
+.ability{
+  grid-area: ability;
+  
+}
+
+.resistence{
+  grid-area: resistence;
+} 
+.armor {
+  grid-area: armor;
+}
+.firePower{
+  grid-area: firePower;
+  
+}
+.reset{
+  grid-area: reset;
+
+} 
+.save{
+  grid-area: save;
+}
+
+.containerButtonChar {
+  display: flex;
+  justify-content: center;
+}
