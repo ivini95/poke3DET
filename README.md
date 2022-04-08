@@ -2,20 +2,21 @@
 
 ### Junção de RPG3d&t e Pokemon.
 
-A finalidade do projeto é para estudo e exercicio das tecnologias aprendidas durante os curto do programadorBr(Igor Oliveira)!
+Projeto para estudo das tecnologias a seguir!
 
-## Tecnologias Usadas
+## :computer: Tecnologias Usadas
 
-- Hhtml
+- Html
 - Css
 - JavaScript
 - React
 - yarn
 
-## Conhecimentos aplicados durante o desenvolvimento
+## :open_book: Conhecimentos aplicados durante o desenvolvimento
 
 - Html (Semantic, forms)
 - Css (Box Model, Display, FlexBox, Grid)
 - JavaScript (Sintaxe, DOM, Fecth Api, Hosting, Scope)
-- React()
+- React(Hooks, ContextApi)
 
+:hourglass_flowing_sand: Em Andamento...
