@@ -12,7 +12,7 @@ Projeto para estudo das tecnologias a seguir!
 - React
 - yarn
 
-## :open_book: Conhecimentos aplicados durante o desenvolvimento
+## :open_book: Conhecimentos aplicados
 
 - Html (Semantic, forms)
 - Css (Box Model, Display, FlexBox, Grid)
