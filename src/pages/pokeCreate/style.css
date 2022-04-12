@@ -1,0 +1,45 @@
+.containerPoke {
+  background-color:var(--color4);
+  width: 21.5rem;
+  height:35rem;
+  border: 0.2rem solid var(--color1);
+  color: var(--color1);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1.5fr 0.5fr 1fr 1fr 1fr 0.5fr;
+  grid-template-areas: 
+    "lifeMana pokeImg pokeImg totalP"
+    "name name name name"
+    "force force ability ability"
+    "resistence resistence armor armor"
+    "firePower firePower firePower firePower"
+    "reset reset save save"
+  ;
+  justify-items: center;
+  align-items: center;
+}
+
+
+.force{
+  grid-area: force;
+}
+.ability{
+  grid-area: ability;
+}
+.resistence{
+  grid-area: resistence;
+} 
+.armor {
+  grid-area: armor;
+}
+.firePower{
+  grid-area: firePower;
+}
+.reset{
+  grid-area: reset;
+} 
+.save{
+  grid-area: save;
+}
+
+

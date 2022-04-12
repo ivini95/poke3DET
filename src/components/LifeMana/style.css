@@ -1,0 +1,7 @@
+.lifeMana {
+  display: flex;
+  flex-direction: column;
+  grid-area: lifeMana;
+  width: 5rem;
+  margin-left: 1.2rem;
+}
