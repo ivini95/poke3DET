@@ -1,0 +1,13 @@
+.totalPoints {
+  display: flex;
+  flex-direction: column;
+  grid-area: totalP;
+  width: 5rem;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.2rem;
+}
+
+.totalPoints > h1{
+ margin: 0;
+}

@@ -1,5 +1,7 @@
 import { useState, useContext } from "react"
 import {ContextCharPoke } from "../../contexts/ContextCharPoke"
+import './style.css'
+
 
 function ButtonChar(props){
 
@@ -16,8 +18,9 @@ function ButtonChar(props){
     if (total > 0 && char < 5) {
       setChar( char + 1)
       setTotal( total - 1)
-      if ( typeChar == 'Resistencia') {
+      if ( typeChar == 'Resistência') {
         setManaLife(manaLife + 5)
+        console.log('teste');
       }
 
     }
@@ -29,6 +32,9 @@ function ButtonChar(props){
     if (total < 12 && char >= 1) {
       setChar( char - 1)
       setTotal( total + 1)
+      if ( typeChar == 'Resistência') {
+        setManaLife(manaLife - 5)
+      }
     }
     
   }

@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
-import {ContextCharPoke } from "../contexts/ContextCharPoke"
-
+import {ContextCharPoke } from "../../contexts/ContextCharPoke"
+import './style.css'
 
 function ManaPoints() {
 

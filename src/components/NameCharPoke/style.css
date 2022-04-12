@@ -1,0 +1,17 @@
+.nameContent{
+  box-sizing: border-box;
+  width: 14.6rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 90%;
+  margin: 0;
+  background-color: var(--color2);
+  border: 1px solid var(--color1);
+  
+}
+
+.nameChange {
+  grid-area: name;
+  display: flex;
+  align-items: center;
+}

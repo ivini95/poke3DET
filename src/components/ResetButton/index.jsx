@@ -1,3 +1,6 @@
+import './style.css'
+
+
 function ResetButton(){
   return (
     <div className="reset">

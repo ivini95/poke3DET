@@ -1,5 +1,6 @@
 import { useState, useContext,useEffect  } from "react"
-import {ContextCharPoke } from "../contexts/ContextCharPoke"
+import {ContextCharPoke } from "../../contexts/ContextCharPoke"
+import './style.css'
 
 function TotalPoints(props){
 

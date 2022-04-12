@@ -1,0 +1,9 @@
+.mana {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mana > h2 {
+  margin: 0;
+}

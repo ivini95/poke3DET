@@ -1,0 +1,9 @@
+.life {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.life > h2 {
+  margin: 0;
+}
