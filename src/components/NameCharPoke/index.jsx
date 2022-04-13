@@ -9,19 +9,8 @@ function NameCharPoke(){
   const [pokeName, setPokeName] = useState('bulbasaur')
   
 
-/*   useEffect(()=>{
-    setTimeout(() => {
-      setPokeName(pokemons[count].name)
-      
-    }, 1);
-  },[pokeName])
- */
-
   useEffect(()=>{
-    setTimeout(() => {
-      setPokeName(pokemons[count].name)
-      
-    }, 1);
+    setPokeName(pokemons[count].name)
   },[count])
   
 
