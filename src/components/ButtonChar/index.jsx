@@ -16,11 +16,10 @@ function ButtonChar(props){
   function moreChar(){
 
     if (total > 0 && char < 5) {
-      setChar( char + 1)
-      setTotal( total - 1)
+      setChar((prevState)=> prevState + 1)
+      setTotal( (prevState)=> prevState - 1)
       if ( typeChar == 'Resistência') {
-        setManaLife(manaLife + 5)
-        console.log('teste');
+        setManaLife((prevState)=> prevState + 5)
       }
 
     }
@@ -30,10 +29,10 @@ function ButtonChar(props){
   function lessChar(){
 
     if (total < 12 && char >= 1) {
-      setChar( char - 1)
-      setTotal( total + 1)
+      setChar((prevState)=> prevState - 1)
+      setTotal((prevState)=> prevState + 1)
       if ( typeChar == 'Resistência') {
-        setManaLife(manaLife - 5)
+        setManaLife((prevState)=> prevState - 5)
       }
     }
     
