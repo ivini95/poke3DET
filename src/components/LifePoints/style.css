@@ -4,6 +4,11 @@
   align-items: center;
 }
 
-.life > h2 {
+.life  h2 {
   margin: 0;
+  margin-left: 1.5rem;
+}
+
+.life  div {
+  margin-left: 1.5rem;
 }

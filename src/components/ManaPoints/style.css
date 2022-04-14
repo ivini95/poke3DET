@@ -4,6 +4,11 @@
   align-items: center;
 }
 
-.mana > h2 {
+.mana  h2 {
   margin: 0;
+  margin-left: 1.5rem;
+}
+
+.mana  div {
+  margin-left: 1.5rem;
 }

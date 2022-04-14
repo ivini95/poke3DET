@@ -19,7 +19,7 @@ function ContainerPoke() {
             <ApiProviderChar>
             <ImgCharPoke></ImgCharPoke>
             <NameCharPoke></NameCharPoke>
-            </ApiProviderChar>
+            
             <LifeMana></LifeMana>
             <TotalPoints></TotalPoints>
             <ButtonChar className={"force pokeStatus"} typeChar={'Força'} value={0}></ButtonChar>
@@ -27,9 +27,10 @@ function ContainerPoke() {
             <ButtonChar className={"resistence pokeStatus"} typeChar={'Resistência'} value={0}></ButtonChar>
             <ButtonChar className={"armor pokeStatus"} typeChar={'Armadura'} value={0}></ButtonChar>
             <ButtonChar className={"firePower pokeStatus"} typeChar={'Poder de fogo'} value={0}></ButtonChar>
-            <ResetButton></ResetButton>
+            <ResetButton teste={'teste'}></ResetButton>
             <SaveButton></SaveButton>
-          </CharProvider>
+            </ApiProviderChar>
+        </CharProvider>
     </div>
   )
 }

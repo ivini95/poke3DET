@@ -14,6 +14,8 @@ export function ApiProviderChar(props){
 
   const [pokemonSelected, setPokemonSelected] = useState([])
 
+  const [resetChar, setResetChar] = useState(0)
+
   useEffect(()=>{
     
     fetch(url).then(res=> res.json())
@@ -34,7 +36,7 @@ export function ApiProviderChar(props){
   
 
   return(
-    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke ]}>
+    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar ]}>
       {props.children}
     </ApiContextCharPoke.Provider>
   )

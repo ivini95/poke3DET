@@ -9,7 +9,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/createpoke" element={<ContainerPoke/>}/>
+          <Route path="/" element={<ContainerPoke/>}/>
         </Routes>
       </BrowserRouter>
       

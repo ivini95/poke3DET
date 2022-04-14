@@ -5,9 +5,14 @@
   width: 5rem;
   align-items: center;
   justify-content: center;
-  margin-right: 1.2rem;
+  
 }
 
-.totalPoints > h1{
+.totalPoints  h1 {
  margin: 0;
+ margin-right: 1.5rem;
+}
+
+.totalPoints div {
+  margin-right: 1.5rem;
 }

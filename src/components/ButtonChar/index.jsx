@@ -1,4 +1,5 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
+import { ApiContextCharPoke } from "../../contexts/ApiContextCharPoke"
 import {ContextCharPoke } from "../../contexts/ContextCharPoke"
 import './style.css'
 
@@ -12,6 +13,12 @@ function ButtonChar(props){
   const [char, setChar] = useState(props.value)
 
   const [className, setClassName] = useState(props.className)
+  
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar ] = useContext(ApiContextCharPoke)
+
+  useEffect(()=>{
+    setChar(0)
+  },[resetChar])
 
   function moreChar(){
 
