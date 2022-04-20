@@ -1,0 +1,17 @@
+:root {
+  --color1:#232323 ;
+  --color2:#DEDEDE;
+  --color3:#FCE728;
+  --color4:#DB0A2D;
+  --color5:#28ABFD;
+}
+
+.battleContainer {
+  box-sizing: border-box;
+  background-color:var(--color4);
+  width: 21.5rem;
+  height:39rem;
+  border: 0.2rem solid var(--color1);
+  color: var(--color1);
+
+}

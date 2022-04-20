@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react"
-import {ApiContextCharPoke } from "../../contexts/ApiContextCharPoke"
+import {ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
 import './style.css'
 
 function NameCharPoke(){
@@ -7,6 +7,8 @@ function NameCharPoke(){
   const [pokemons, setPokemons, count, setCount] = useContext(ApiContextCharPoke)
 
   const [pokeName, setPokeName] = useState('bulbasaur')
+
+  const [active, setActive] = useState(0)
   
 
   useEffect(()=>{
@@ -15,7 +17,7 @@ function NameCharPoke(){
   
 
   function nextPokeName(){
-    if (count < 19) {
+    if (count < pokemons.length - 1) {
       setCount(count + 1)
     }
   }
@@ -28,7 +30,7 @@ function NameCharPoke(){
 
   return(
     <div className="nameChange">
-      <button className="button previousButton" onClick={previousPokeName}>◄</button>
+      <button className="button previousButton" onClick={previousPokeName} >◄</button>
       <h1 className="nameContent">{pokeName}</h1> 
       <button className="button nextButton" onClick={nextPokeName}>►</button>
     </div>

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import {ApiContextCharPoke } from "../../contexts/ApiContextCharPoke"
-import { ContextCharPoke } from '../../contexts/ContextCharPoke'
+import {ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
+import { ContextCharPoke } from '../../../contexts/ContextCharPoke'
 import './style.css'
 
 function ResetButton(){
@@ -17,8 +17,6 @@ function ResetButton(){
     setResetChar(resetChar + 1)
    }
    
-   console.log(resetChar);
-
   return (
     <div className="reset">
       <button className="button buttonReset" type="submit" onClick={resetCharPoke}>Resetar</button>

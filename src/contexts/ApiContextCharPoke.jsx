@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20'
+const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800'
 
 export const ApiContextCharPoke = createContext()
 

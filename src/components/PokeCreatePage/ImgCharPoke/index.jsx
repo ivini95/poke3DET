@@ -1,5 +1,5 @@
 import { useContext, useEffect  } from "react"
-import { ApiContextCharPoke } from "../../contexts/ApiContextCharPoke"
+import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
 import './style.css'
 
 function ImgCharPoke(){

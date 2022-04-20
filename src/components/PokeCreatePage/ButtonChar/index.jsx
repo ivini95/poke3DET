@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react"
-import { ApiContextCharPoke } from "../../contexts/ApiContextCharPoke"
-import {ContextCharPoke } from "../../contexts/ContextCharPoke"
+import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
+import {ContextCharPoke } from "../../../contexts/ContextCharPoke"
 import './style.css'
 
 
