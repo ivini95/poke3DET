@@ -3,8 +3,8 @@ import './style.css'
 import {db} from '../../../dataBase/firerebase.js'
 import {collection, getDocs, addDoc}  from "firebase/firestore";
 
-
 function SaveButton(){
+
 
   let navigate = useNavigate()
 
@@ -19,7 +19,7 @@ function SaveButton(){
           'firePower': 0},
         life: 0,
         mana: 0,
-        totalPoints: 12
+        totalPoints: total
       });
       console.log("PokeCreate");
     navigate('/battle')
@@ -27,7 +27,7 @@ function SaveButton(){
 
   return (
     <div className="save">
-      <button className="button buttonSave" type="submit" onClick={save}>Salvar</button>
+      <button className="button buttonSave" type="submit"  /* onClick={save} */ >Salvar</button>
     </div>
   )
 }

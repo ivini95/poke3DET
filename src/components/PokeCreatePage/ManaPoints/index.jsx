@@ -1,10 +1,10 @@
-import { useState, useContext } from "react"
-import {ContextCharPoke } from "../../../contexts/ContextCharPoke"
+import {useContext } from "react"
 import './style.css'
+import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
 
 function ManaPoints() {
 
-  const [total, setTotal, manaLife, setManaLife] = useContext(ContextCharPoke)
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife ] = useContext(ApiContextCharPoke)
 
   return (
     <div className="mana">

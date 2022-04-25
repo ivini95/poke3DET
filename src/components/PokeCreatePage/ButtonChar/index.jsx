@@ -1,12 +1,10 @@
 import { useState, useContext, useEffect } from "react"
 import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
-import {ContextCharPoke } from "../../../contexts/ContextCharPoke"
 import './style.css'
 
 
 function ButtonChar(props){
 
-  const [total, setTotal, manaLife, setManaLife] = useContext(ContextCharPoke)
 
   const [typeChar, setTypeChar] = useState(props.typeChar)
 
@@ -14,7 +12,7 @@ function ButtonChar(props){
 
   const [className, setClassName] = useState(props.className)
   
-  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar ] = useContext(ApiContextCharPoke)
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife ] = useContext(ApiContextCharPoke)
 
   useEffect(()=>{
     setChar(0)

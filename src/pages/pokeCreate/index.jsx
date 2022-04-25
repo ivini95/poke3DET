@@ -1,5 +1,4 @@
 import { ApiProviderChar } from '../../contexts/ApiContextCharPoke'
-import { CharProvider } from '../../contexts/ContextCharPoke'
 import Background from '../../components/Background'
 import ButtonChar from '../../components/PokeCreatePage/ButtonChar'
 import ImgCharPoke from '../../components/PokeCreatePage/ImgCharPoke'
@@ -16,7 +15,6 @@ function ContainerPoke() {
     
     <div className="containerPoke">
       <Background/>
-      <CharProvider>
             <ApiProviderChar>
             <ImgCharPoke></ImgCharPoke>
             <NameCharPoke></NameCharPoke>
@@ -30,7 +28,6 @@ function ContainerPoke() {
             <ResetButton teste={'teste'}></ResetButton>
             <SaveButton></SaveButton>
             </ApiProviderChar>
-        </CharProvider>
     </div>
   )
 }

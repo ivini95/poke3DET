@@ -1,13 +1,10 @@
 import { useContext } from 'react'
 import {ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
-import { ContextCharPoke } from '../../../contexts/ContextCharPoke'
 import './style.css'
 
 function ResetButton(){
 
-  const [total, setTotal, manaLife, setManaLife] = useContext(ContextCharPoke)
-
-  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar ] = useContext(ApiContextCharPoke)
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife ] = useContext(ApiContextCharPoke)
 
   
   function resetCharPoke(){

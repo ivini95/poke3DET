@@ -1,10 +1,10 @@
 import { useState, useContext } from "react"
-import {ContextCharPoke } from "../../../contexts/ContextCharPoke"
 import './style.css'
+import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
 
 function LifePoints() {
 
-  const [total, setTotal, manaLife, setManaLife] = useContext(ContextCharPoke)
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife ] = useContext(ApiContextCharPoke)
 
   return (
     <div className="life">

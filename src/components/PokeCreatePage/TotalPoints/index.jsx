@@ -1,10 +1,11 @@
-import { useState, useContext,useEffect  } from "react"
-import {ContextCharPoke } from "../../../contexts/ContextCharPoke"
+import {useContext} from "react"
 import './style.css'
+import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
 
-function TotalPoints(props){
+function TotalPoints(){
 
-  const [total, setTotal] = useContext(ContextCharPoke)
+
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife ] = useContext(ApiContextCharPoke)
 
   return(
     
