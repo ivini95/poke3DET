@@ -4,9 +4,9 @@ import './style.css'
 
 function NameCharPoke(){
 
-  const [pokemons, setPokemons, count, setCount] = useContext(ApiContextCharPoke)
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName ] = useContext(ApiContextCharPoke)
 
-  const [pokeName, setPokeName] = useState('bulbasaur')
+  //const [pokeName, setPokeName] = useState('bulbasaur')
 
   const [active, setActive] = useState(0)
   

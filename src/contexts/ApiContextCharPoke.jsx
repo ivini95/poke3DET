@@ -18,6 +18,14 @@ export function ApiProviderChar(props){
 
   const [resetChar, setResetChar] = useState(0)
 
+  const [pokeName, setPokeName] = useState('bulbasaur')
+
+  const [charObj, setCharObj] = useState({'strength': 0,
+  'ability': 0,
+  'resistence': 0,
+  'armor': 0,
+  'firePower': 0})
+
   useEffect(()=>{
     
     fetch(url).then(res=> res.json())
@@ -31,7 +39,7 @@ export function ApiProviderChar(props){
   
 
   return(
-    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife ]}>
+    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj ]}>
       {props.children}
     </ApiContextCharPoke.Provider>
   )
