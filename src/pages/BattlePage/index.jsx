@@ -8,11 +8,16 @@ import './style.css'
 function BattlePage() {
   return (
     <div className="battleContainer">
-      <ImgCharBattle></ImgCharBattle>
-      <DiceBattle></DiceBattle>
-      <SkillContainer></SkillContainer>
-      <BattleLog></BattleLog>
-      <CharDetails></CharDetails>
+      <div className='topContainer'>
+        <BattleLog></BattleLog>
+        <CharDetails></CharDetails>
+      </div>
+      <div className='imgContainer imgContainerTop'><ImgCharBattle></ImgCharBattle></div>
+      <div className='imgContainer imgContainerBot'><ImgCharBattle></ImgCharBattle></div>
+      <div className='footerContainer'>
+        <SkillContainer></SkillContainer>
+        <DiceBattle></DiceBattle>
+      </div>
     </div>
   )
 }

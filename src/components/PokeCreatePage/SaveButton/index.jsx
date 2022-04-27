@@ -12,13 +12,13 @@ function SaveButton(){
   let navigate = useNavigate()
 
   async function save(){
-      await addDoc(collection(db, "pokeChars"), {
+      /* await addDoc(collection(db, "pokeChars"), {
         name: pokeName,
         caracteristics: charObj,
         life: manaLife,
         mana: manaLife,
         totalPoints: total
-      }); 
+      });  */
       console.log("PokeCreate");
       navigate('/battle')
   }

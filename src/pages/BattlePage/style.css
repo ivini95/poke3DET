@@ -1,17 +1,41 @@
-:root {
-  --color1:#232323 ;
-  --color2:#DEDEDE;
-  --color3:#FCE728;
-  --color4:#DB0A2D;
-  --color5:#28ABFD;
-}
 
 .battleContainer {
   box-sizing: border-box;
   background-color:var(--color4);
-  width: 21.5rem;
-  height:39rem;
-  border: 0.2rem solid var(--color1);
+  width: 22.5rem;
+  height:40rem;
   color: var(--color1);
+  display: flex;
+  flex-direction: column;
+}
 
+.topContainer{
+  margin: 8px 8px 0px 8px;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.imgContainer {
+  height: 154px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContainerTop {
+  margin: 25px 6px 0px 6px;
+}
+
+.imgContainerBot {
+  margin: 0px 6px 25px 6px;
+}
+
+.footerContainer{
+  margin: 0px 8px 8px 8px;
+  display: flex;
+  height: 160px;
+  align-items: center;
+  justify-content: space-between;
 }

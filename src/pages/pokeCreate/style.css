@@ -2,9 +2,8 @@
 .containerPoke {
   box-sizing: border-box;
   background-color:var(--color4);
-  width: 21.5rem;
-  height:39rem;
-  border: 0.2rem solid var(--color1);
+  width: 22.5rem;
+  height:40rem;
   color: var(--color1);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
