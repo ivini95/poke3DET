@@ -10,13 +10,15 @@ Projeto para estudo das tecnologias a seguir!
 - Css
 - JavaScript
 - React
-- yarn
+- Yarn
+- FireBase
 
 ## :open_book: Conhecimentos aplicados
 
 - Html (Semantic, forms)
 - Css (Box Model, Display, FlexBox, Grid)
-- JavaScript (Sintaxe, DOM, Fecth Api, Hosting, Scope)
-- React(Hooks, ContextApi)
+- JavaScript (Sintaxe, DOM, Fecth Api, Hosting, Scope, objects)
+- React(Hooks, ContextApi, ReactRouter)
+- Firebase (FireStore)
 
 :hourglass_flowing_sand: Em Andamento...
