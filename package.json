@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",
+    "ts-migrate": "^0.1.28",
     "vite": "^2.9.0"
   }
 }
