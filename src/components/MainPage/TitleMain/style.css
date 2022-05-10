@@ -1,0 +1,12 @@
+.title {
+  margin: 0;
+  font-size: 22px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  margin-right: 4px;
+  line-height: 25px;
+}
+
+.titleContainer {
+  display: flex;
+}

@@ -1,0 +1,38 @@
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerFirst {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerSecond {
+  text-align:center;
+}
+
+.mainpageContainer {
+  box-sizing: border-box;
+  width: 360px;
+  height: 640px;
+  background-color: #3F3F3F;
+  padding: 10px;
+  position: relative;
+}
+
+.containerImg {
+  width: 19.375rem;
+  height: 15rem;
+  background-color: #BD5656;
+  border-radius: 15px;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top:22px;
+  align-items: center;
+}

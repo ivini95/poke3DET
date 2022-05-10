@@ -1,0 +1,19 @@
+.menuIcon {
+  width: 18px;
+  height: 18px;
+  padding-top:2px;
+} 
+
+.menuIconButton{
+  border: none;
+  background-color: transparent;
+  margin-left: 12px;
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+
+}
+
+.menuIconButton:hover{
+  background-color: #303030d5;
+}

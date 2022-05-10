@@ -2,6 +2,7 @@ import './styles/style.css'
 import {BrowserRouter , Routes, Route } from "react-router-dom"
 import ContainerPoke from "./pages/PokeCreate"
 import BattlePage from "./pages/BattlePage"
+import MainPage from './pages/MainPage'
 
 function App() {
 
@@ -11,7 +12,8 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ContainerPoke/>}/>
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="create" element={<ContainerPoke/>}/>
           <Route path="battle" element={<BattlePage/>}></Route>
         </Routes>
       </BrowserRouter>

@@ -1,0 +1,37 @@
+.fieldSearch {
+  height: 46px;
+  width: 302px;
+  border: none;
+  background-color: transparent;
+  color: #BD5656;
+  text-align: center;
+  border-radius: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+}
+
+.fieldSearch::placeholder {
+  color: #BD5656;
+  font-weight: 700;
+}
+
+.fieldSearchContainer{
+  display: flex;
+  background-color: #f4f4f4;
+  height: 46px;
+  width: 306px;
+  align-items: center;
+  border-radius: 50px;
+  justify-content: end;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.buttonSearch {
+  background-color: transparent;
+  border: none;
+  margin-top: 4px;
+  margin-right: 6px;
+}
