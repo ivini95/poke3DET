@@ -1,5 +1,7 @@
 import { useState, useContext, useEffect } from "react"
 import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
+import minusSign from '../../../assets/images/minusSignRed.svg'
+import plusSign from '../../../assets/images/plusSignRed.svg'
 import './style.css'
 
 function ButtonChar(props){
@@ -98,9 +100,9 @@ function ButtonChar(props){
       <div className={className}>
         <h1>{typeChar}</h1>
         <div className="containerButtonChar">
-          <button className="buttonCharacteristc button" onClick={lessChar}>-</button>
+          <button className="button buttonCharacteristcLess" onClick={lessChar}><img className="minusSign" src={minusSign} alt="" /></button>
           <div className="number">{char}</div>
-          <button className="buttonCharacteristc button" onClick={moreChar}>+</button>
+          <button className="button buttonCharacteristcMore" onClick={moreChar}><img className="plusSign" src={plusSign} alt="" /></button>
         </div>
       </div>
     )

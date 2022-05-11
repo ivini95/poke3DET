@@ -1,13 +1,26 @@
 :root {
-  --color1:#232323 ;
+  --color1:#232323;
   --color2:#DEDEDE;
   --color3:#FCE728;
   --color4:#DB0A2D;
   --color5:#28ABFD;
+
+  --black:#0B090A;
+  --lightBlack:#161A1D;
+
+  --darkRed:#660708;
+  --mediumRed:#A4161A;
+  --red:#BA181B;
+  --lightRed:#E5383B;
+
+  --darkGrey:#B1A7A6;
+  --grey:#D3D3D3;
+
+  --darkWhite:#F5F3F4;
+  --white:#FFFFFF;
 }
 
 body {
-  
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,29 +29,17 @@ body {
   align-items: center;
   height: 100vh;
   width: 100%;
-  font-family: 'VT323', monospace;
-  
+  font-family: 'Signika Negative', sans-serif;
 }
 
 .button {
   display: relative;
   width: 2.5rem;
   height: 2rem;
-  background-color: var(--color1);
-  color: var(--color2);
+  background-color: var(--darkWhite);
+  color: var(--mediumRed);
   border: none;
-  
 }
-
-.buttonReset{
-  width: 6rem;
-} 
-
-
-.buttonSave{
-  width: 6rem;
-}
-
 
 .number {
   box-sizing: border-box;
@@ -49,8 +50,14 @@ body {
   font-size: 1.5rem;
   width: 2.2rem;
   height: 2rem;
-  background-color: var(--color2);
+  background-color: var(--darkWhite);
 
-  border: 1px solid var(--color1);
 }
+
+.navigateButton {
+  width: 150px;
+  height: 46px;
+  font-weight: 700;
+  border-radius: 5px;
+} 
 

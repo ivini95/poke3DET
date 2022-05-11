@@ -4,8 +4,8 @@
 }
 
 .imagePoke {
-  width: 120px;
-  background-color: var(--color2);
-  border: 2px solid var(--color1);
+  width: 150px;
+  background-color: var(--darkWhite);
+  border-radius: 5px;
   margin-top: 0.7rem;
 }

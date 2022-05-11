@@ -10,9 +10,15 @@
 
 .totalPoints  h1 {
  margin: 0;
- margin-right: 1.5rem;
+ margin-right: 1rem;
 }
 
 .totalPoints div {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.totalNumber{
+  border-radius: 5px;
+  width: 50px;
 }

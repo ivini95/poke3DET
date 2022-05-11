@@ -7,8 +7,8 @@ function MenuComponent(){
     <div className="ContainerMenuOpen">
         <FieldSearch/>
         <div className="buttonContainer">
-          <button className="buttonMenu">Como Jogar</button>
-          <button className="buttonMenu">Sobre</button>
+          <button className="button navigateButton">Como Jogar</button>
+          <button className="button navigateButton">Sobre</button>
         </div>
         <div className="links"></div>
     </div>

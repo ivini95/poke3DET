@@ -16,7 +16,7 @@ function ResetButton(){
    
   return (
     <div className="reset">
-      <button className="button buttonReset" type="submit" onClick={resetCharPoke}>Resetar</button>
+      <button className="button navigateButton buttonReset" type="submit" onClick={resetCharPoke}>Resetar</button>
     </div>
   )
 }

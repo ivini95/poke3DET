@@ -1,5 +1,5 @@
 import './style.css'
-import iconpoke from '../../../assets/images/iconpoke.png'
+import iconpoke from '../../../assets/images/iconpoke.svg'
 
 
 function IconPoke(){

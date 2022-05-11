@@ -3,7 +3,8 @@
   width: 302px;
   border: none;
   background-color: transparent;
-  color: #BD5656;
+  color: var(--mediumRed);
+  font-weight: 700;
   text-align: center;
   border-radius: 50px;
   position: absolute;
@@ -13,13 +14,13 @@
 }
 
 .fieldSearch::placeholder {
-  color: #BD5656;
+  color: var(--mediumRed);
   font-weight: 700;
 }
 
 .fieldSearchContainer{
   display: flex;
-  background-color: #f4f4f4;
+  background-color: var(--white);
   height: 46px;
   width: 306px;
   align-items: center;
@@ -32,6 +33,6 @@
 .buttonSearch {
   background-color: transparent;
   border: none;
-  margin-top: 4px;
+  margin-top: 6px;
   margin-right: 6px;
 }

@@ -1,7 +1,6 @@
 .menuIcon {
   width: 18px;
   height: 18px;
-  padding-top:2px;
 } 
 
 .menuIconButton{
@@ -15,5 +14,6 @@
 }
 
 .menuIconButton:hover{
-  background-color: #303030d5;
+  transition: 0.5s ease-out;
+  background-color: var(--black);
 }

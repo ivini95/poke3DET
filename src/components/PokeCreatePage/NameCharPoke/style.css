@@ -3,15 +3,21 @@
   width: 14.6rem;
   height: 2rem;
   text-align: center;
-  line-height: 90%;
   margin: 0;
-  background-color: var(--color2);
-  border: 1px solid var(--color1);
-  
+  background-color: var(--darkWhite);
+  font-size: 1.5rem;
 }
 
 .nameChange {
   grid-area: name;
   display: flex;
   align-items: center;
+}
+
+.previousButton {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.nextButton{
+  border-radius: 0px 5px 5px 0px;
 }

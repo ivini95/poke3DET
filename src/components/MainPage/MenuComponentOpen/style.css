@@ -4,20 +4,27 @@
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: #3f3f3fcb;
+  background-color: var(--lightBlack);
   position: absolute;
+  opacity: 0.98;
   top: 0;
   left: 0;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  
+  animation: open 0.5s ease;
+}
+
+@keyframes open {
+  from {
+    transform: translateX(-100%)
+  }
 }
 
 .links {
   width: 19.375rem;
   height: 27.5125rem;
-  background-color: #BD5656;
+  background-color: var(--mediumRed);
   border-radius: 15px;
 }
 
@@ -27,12 +34,3 @@
   margin-bottom: 10px;
 }
 
-.buttonMenu {
-  width: 150px;
-  height: 46px;
-  background-color: #f4f4f4;
-  color: #BD5656;
-  border-radius: 5px;
-  border: none;
-  font-weight: 700;
-}

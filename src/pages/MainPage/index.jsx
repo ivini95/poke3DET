@@ -7,9 +7,6 @@ import PlayButton from "../../components/MainPage/PlayButton"
 import TitleMain from "../../components/MainPage/TitleMain"
 import "./style.css"
 
-
-
-
 function MainPage() {
 
   const [sideBar, setSideBar] = useState(false)

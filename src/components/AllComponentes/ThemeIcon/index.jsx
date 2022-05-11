@@ -1,5 +1,5 @@
 import './style.css'
-import sun from '../../../assets/images/sun.png'
+import sun from '../../../assets/images/sun.svg'
 
 function ThemeIcon(){
   return (

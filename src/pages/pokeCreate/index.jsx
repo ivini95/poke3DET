@@ -1,5 +1,4 @@
 import { ApiProviderChar } from '../../contexts/ApiContextCharPoke'
-import Background from '../../components/Background'
 import ButtonChar from '../../components/PokeCreatePage/ButtonChar'
 import ImgCharPoke from '../../components/PokeCreatePage/ImgCharPoke'
 import LifeMana from '../../components/PokeCreatePage/LifeMana'
@@ -14,7 +13,6 @@ function ContainerPoke() {
   return (
     
     <div className="containerPoke">
-      <Background/>
             <ApiProviderChar>
             <ImgCharPoke></ImgCharPoke>
             <NameCharPoke></NameCharPoke>

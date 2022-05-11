@@ -1,5 +1,5 @@
 import './style.css'
-import menuIcon from '../../../assets/images/menuWhite.png'
+import menuIcon from '../../../assets/images/menuWhite.svg'
 
 
 function MenuIcon(props){

@@ -1,16 +1,32 @@
 .pokeStatus{
   width: 10rem;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .pokeStatus > h1{
-
   margin: 0;
 }
-
 
 .containerButtonChar {
   display: flex;
   justify-content: center;
+}
+
+.buttonCharacteristcLess {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.buttonCharacteristcMore {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.minusSign{
+  margin-bottom: 3px;
+  width: 14px;
+}
+
+.plusSign {
+  margin-top: 3px;
+  width: 14px;
 }

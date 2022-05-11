@@ -25,7 +25,7 @@ function SaveButton(){
 
   return (
     <div className="save">
-      <button className="button buttonSave" type="submit"  onClick={save} >Salvar</button>
+      <button className="button navigateButton buttonSave" type="submit"  onClick={save} >Salvar</button>
     </div>
   )
 }

@@ -12,3 +12,8 @@
 .mana  div {
   margin-left: 1.5rem;
 }
+
+.manaNumber {
+  border-radius: 5px;
+  width: 50px;
+}

@@ -9,7 +9,7 @@ function ManaPoints() {
   return (
     <div className="mana">
       <h2>Mana</h2>
-      <div className="number">{manaLife}</div>
+      <div className="number manaNumber">{manaLife}</div>
     </div>
   )
 }

@@ -10,5 +10,11 @@
 }
 
 .life  div {
+  margin-bottom: 1.4rem;
   margin-left: 1.5rem;
+}
+
+.lifeNumber {
+  border-radius: 5px;
+  width: 50px;
 }

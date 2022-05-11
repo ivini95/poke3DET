@@ -17,15 +17,16 @@ header {
   box-sizing: border-box;
   width: 360px;
   height: 640px;
-  background-color: #3F3F3F;
+  background-color: var(--lightBlack);
   padding: 10px;
   position: relative;
+  overflow: hidden;
 }
 
 .containerImg {
   width: 19.375rem;
   height: 15rem;
-  background-color: #BD5656;
+  background-color: var(--mediumRed);
   border-radius: 15px;
 }
 
@@ -36,3 +37,4 @@ header {
   margin-top:22px;
   align-items: center;
 }
+
