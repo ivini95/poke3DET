@@ -2,6 +2,7 @@
 .containerPoke {
   box-sizing: border-box;
   background-color:var(--lightBlack);
+  border-radius: 10px;
   width: 22.5rem;
   height:40rem;
   color: var(--mediumRed);
@@ -24,6 +25,7 @@
 
 .force{
   grid-area: force;
+  
 }
 .ability{
   grid-area: ability;
@@ -36,6 +38,7 @@
 }
 .firePower{
   grid-area: firePower;
+  margin-bottom: 16px;
 }
 .reset{
   grid-area: reset;

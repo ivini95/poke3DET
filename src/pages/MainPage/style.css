@@ -21,6 +21,7 @@ header {
   padding: 10px;
   position: relative;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .containerImg {

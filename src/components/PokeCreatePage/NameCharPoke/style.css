@@ -1,23 +1,28 @@
 .nameContent{
   box-sizing: border-box;
-  width: 14.6rem;
-  height: 2rem;
+  width: 15.4rem;
+  height: 2.5rem;
   text-align: center;
   margin: 0;
   background-color: var(--darkWhite);
   font-size: 1.5rem;
+  line-height: 38px;
+  
 }
 
 .nameChange {
   grid-area: name;
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 .previousButton {
+  height: 2.5rem;
   border-radius: 5px 0px 0px 5px;
 }
 
 .nextButton{
+  height: 2.5rem;
   border-radius: 0px 5px 5px 0px;
 }

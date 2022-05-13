@@ -23,7 +23,7 @@ function ContainerPoke() {
             <ButtonChar className={"resistence pokeStatus"} typeChar={'Resistência'} value={0}></ButtonChar>
             <ButtonChar className={"armor pokeStatus"} typeChar={'Armadura'} value={0}></ButtonChar>
             <ButtonChar className={"firePower pokeStatus"} typeChar={'Poder de fogo'} value={0}></ButtonChar>
-            <ResetButton teste={'teste'}></ResetButton>
+            <ResetButton></ResetButton>
             <SaveButton></SaveButton>
             </ApiProviderChar>
     </div>

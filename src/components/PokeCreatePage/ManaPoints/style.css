@@ -7,10 +7,18 @@
 .mana  h2 {
   margin: 0;
   margin-left: 1.5rem;
+  background-color: var(--darkWhite);
+  border-radius: 5px;
+  padding: 4px;
+  border-radius: 5px 5px 0px 0px ;
+  text-align: center;
+  width: 65px;
 }
 
 .mana  div {
   margin-left: 1.5rem;
+  border-radius: 0px 0px 5px 5px ;
+  width: 73px;
 }
 
 .manaNumber {

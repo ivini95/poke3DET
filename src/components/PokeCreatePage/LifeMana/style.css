@@ -3,4 +3,6 @@
   flex-direction: column;
   grid-area: lifeMana;
   width: 5rem;
+  margin-right: 8px;
+  gap: 2px;
 }

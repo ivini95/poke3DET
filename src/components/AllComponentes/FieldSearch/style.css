@@ -31,8 +31,14 @@
 }
 
 .buttonSearch {
+  position: absolute;
   background-color: transparent;
+  margin-top: 10px;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.buttonSearch:hover {
   border: none;
-  margin-top: 6px;
-  margin-right: 6px;
 }

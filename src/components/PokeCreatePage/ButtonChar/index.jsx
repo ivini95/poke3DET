@@ -101,7 +101,7 @@ function ButtonChar(props){
         <h1>{typeChar}</h1>
         <div className="containerButtonChar">
           <button className="button buttonCharacteristcLess" onClick={lessChar}><img className="minusSign" src={minusSign} alt="" /></button>
-          <div className="number">{char}</div>
+          <div className="number numberChar">{char}</div>
           <button className="button buttonCharacteristcMore" onClick={moreChar}><img className="plusSign" src={plusSign} alt="" /></button>
         </div>
       </div>
