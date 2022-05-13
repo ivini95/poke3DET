@@ -7,9 +7,17 @@ import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke";
 
 function SaveButton(){
 
-  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj] = useContext(ApiContextCharPoke) 
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj] = useContext(ApiContextCharPoke)
 
-  let navigate = useNavigate()
+  let disabledButton = false;
+
+  if (total > 0) {
+    disabledButton = true
+  }else {
+    disabledButton = false
+  }
+
+  let navigate = useNavigate()--
 
   async function save(){
        await addDoc(collection(db, "pokeChars"), {
@@ -25,7 +33,7 @@ function SaveButton(){
 
   return (
     <div className="save">
-      <button className="button navigateButton buttonSave" type="submit"  onClick={save} >Salvar</button>
+      <button className="button navigateButton buttonSave" type="submit" onClick={save} disabled={disabledButton}>Salvar</button>
     </div>
   )
 }
