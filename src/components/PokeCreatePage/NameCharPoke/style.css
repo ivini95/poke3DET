@@ -15,6 +15,31 @@
   display: flex;
   align-items: center;
   margin-top: 10px;
+  flex-direction: column;
+}
+
+.rangeBarContainer {
+  display: flex;
+  margin-bottom: 10px;
+  height: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 340px;
+  gap: 30px;
+}
+
+.rangeBar {
+  margin-left: 86px;
+  width: 158px;
+}
+
+.countNumber {
+  width: 50px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.nameChangeFooter {
+  display: flex;
 }
 
 .previousButton {
@@ -24,5 +49,5 @@
 
 .nextButton{
   height: 2.5rem;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 0px 5px 0px;
 }

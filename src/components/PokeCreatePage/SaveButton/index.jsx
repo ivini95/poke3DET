@@ -17,7 +17,7 @@ function SaveButton(){
     disabledButton = false
   }
 
-  let navigate = useNavigate()--
+  let navigate = useNavigate()
 
   async function save(){
        await addDoc(collection(db, "pokeChars"), {
