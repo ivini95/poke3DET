@@ -1,11 +1,12 @@
 .battleContainer {
   box-sizing: border-box;
-  background-color:var(--color4);
+  background-color:var(--lightBlack);
   width: 22.5rem;
   height:40rem;
-  color: var(--color1);
+  color: var(--darkWhite);
   display: flex;
   flex-direction: column;
+  border-radius: 15px;
 }
 
 .topContainer{

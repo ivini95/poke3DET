@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { ApiContextBattle } from '../../../contexts/ApiContextBattle';
-import './style.css'
+import './style.css';
 
 function DiceBattle(){
 
@@ -15,7 +15,7 @@ function DiceBattle(){
 
   return (
     <div className='diceBattle'>
-      <h1 onClick={generateValue}>{diceValue}</h1>
+      <img className='diceImg' onClick={generateValue} src={`src/assets/images/dice/dice${diceValue}.svg`} alt="" />
     </div>
   )
 }

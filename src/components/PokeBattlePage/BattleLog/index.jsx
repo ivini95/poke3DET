@@ -1,9 +1,13 @@
+import { useContext } from 'react'
+import { ApiContextBattle } from '../../../contexts/ApiContextBattle'
 import './style.css'
 
+
 function BattleLog(){
+
   return (
-    <div className="battleLog">
-      BattleLog
+    <div>
+    <textarea className="battleLog" value={'teste'} readOnly/>
     </div>
   )
 }
