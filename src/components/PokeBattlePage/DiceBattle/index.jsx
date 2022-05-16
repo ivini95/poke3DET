@@ -4,14 +4,18 @@ import './style.css';
 
 function DiceBattle(){
 
-  const [diceValue , setDiceValue] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp] = useContext(ApiContextBattle)
+
+  let historicTempCopy = {...historicTemp};
 
   function generateValue() {
-
     const randomNumber = Math.floor(Math.random() * 6) + 1;
     setDiceValue(randomNumber)
-    // battleLog(randomNumber);
+    historicTempCopy.id ++
+    historicTempCopy.diceValue = randomNumber
+    setHistoricTemp({...historicTemp,...historicTempCopy})
   }
+  
 
   return (
     <div className='diceBattle'>
