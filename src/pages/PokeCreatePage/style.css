@@ -2,7 +2,7 @@
 .containerPoke {
   box-sizing: border-box;
   background-color:var(--lightBlack);
-  border-radius: 10px;
+  border-radius: 5px;
   width: 22.5rem;
   height:40rem;
   color: var(--mediumRed);

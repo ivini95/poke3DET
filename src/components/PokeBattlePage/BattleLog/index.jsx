@@ -10,15 +10,14 @@ function BattleLog(){
   let historicTempCopy = {...historicTemp};
 
   useEffect(()=>{
-    historicTempCopy.text = `Resultado Dado:${historicTemp.diceValue}`
+    historicTempCopy.text = `Resultado Dado:${historicTemp.diceValue}\n`
+    historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
   },[historicTemp.id])
 
-  
-
   return (
     <div>
-    <textarea className="battleLog" value={historicTemp.text} readOnly></textarea>
+    <textarea className="battleLog" value={historicTemp.textLog} scrollHeight readOnly></textarea>
     </div>
   )
 }

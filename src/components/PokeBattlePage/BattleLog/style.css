@@ -3,3 +3,8 @@
   height: 105px;
   background-color: var(--color2);
 }
+
+textarea {
+  resize: none;
+  
+}

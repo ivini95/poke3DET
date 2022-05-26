@@ -1,0 +1,19 @@
+.createNameContainer {
+  box-sizing: border-box;
+  background-color:var(--lightBlack);
+  border-radius: 5px;
+  width: 22.5rem;
+  height:40rem;
+  color: var(--mediumRed);
+  font-size: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.createNameContainer > .buttonContainer {
+  
+  gap: 16px;
+}
