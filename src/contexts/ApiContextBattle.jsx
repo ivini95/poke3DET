@@ -11,12 +11,10 @@ export function ApiProviderBattle(props){
     'id':0,
     'diceValue': diceValue,
     'text': `Resultado Dado:${1}`,
-    'textLog': []
+    'textLog': ''
   })
 
-  useEffect(()=>{
-    
-  },[historicTemp.ud])
+  
 
  return (
   <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp]}>
