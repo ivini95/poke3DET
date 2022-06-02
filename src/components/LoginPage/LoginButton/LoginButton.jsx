@@ -11,7 +11,6 @@ function LoginButton() {
   async function handleGoogleSignIn() {
     try {
       await googleSignIn()
-      console.log('user logado', user);
     } catch (error) {
       console.log(error);
     }

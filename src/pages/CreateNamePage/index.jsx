@@ -13,6 +13,8 @@ function CreateNamePage() {
   const { googleSignIn, user } = UserAuth()
   const navigate = useNavigate()
 
+  
+
   return (
     <ApiProviderUser>
       <div className="createNameContainer">

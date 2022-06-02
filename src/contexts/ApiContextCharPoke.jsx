@@ -6,7 +6,7 @@ export const ApiContextCharPoke = createContext()
 
 export function ApiProviderChar(props){
 
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(12)
 
   const [manaLife, setManaLife] = useState(0)
 

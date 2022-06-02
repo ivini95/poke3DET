@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import './style.css'
 import {db} from '../../../dataBase/firerebase.js'
 import {collection, getDocs, addDoc, setDoc, doc}  from "firebase/firestore";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke";
 import {UserAuth} from '../../../contexts/AuthContext'
 
@@ -21,18 +21,28 @@ function SaveButton(){
   }
 
   let navigate = useNavigate()
+  
+  useEffect(async ()=> {
+    
+    if (pokeRef.id == "pokemon") {
+      navigate('/battle')
+    } 
+  }, [])
 
   async function savePokeData(){
-      
-       await addDoc(collection(db, "users"), {
-        name: pokeName,
-        caracteristics: charObj,
-        life: manaLife,
-        mana: manaLife,
-        totalPoints: total
-      });  
-      console.log(user);
-      navigate('/battle')
+
+    const pokeRef = await collection(db, "users", user.uid, "pokemon")
+      console.log("poke não existe");
+      console.log(pokeRef);
+      await addDoc(collection(db, "users", user.uid, "pokemon"), {
+      name: pokeName,
+      caracteristics: charObj,
+      life: manaLife,
+      mana: manaLife,
+      totalPoints: total
+    });  
+    navigate('/battle')
+    
   } 
 
   return (

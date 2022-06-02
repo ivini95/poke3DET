@@ -24,7 +24,7 @@ function App() {
             <Route path="createPoke" element={
               <Protected>
                 <ContainerPoke/>
-              </Protected>}/>
+              </Protected>}/>,
             <Route path="battle" element={
               <Protected>
                 <BattlePage/>

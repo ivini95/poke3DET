@@ -4,17 +4,14 @@ import './style.css'
 
 function InputNickName() {
 
-  const nickNameValue = document.getElementById('nickName')
-
   const [nickName, setNickName] = useContext(ApiContextUser)
 
   function nickNameChange () {
-    setNickName(nickNameValue.value)
+    setNickName(document.getElementById('nickName').value)
   }
 
   return (
       <input className='inputNickName' type="text" name="nickName" id="nickName" placeholder='NickName' onChange={nickNameChange}/>
-      
   )
 }
 
