@@ -20,5 +20,6 @@ Projeto para estudo das tecnologias a seguir!
 - JavaScript (Sintaxe, DOM, Fecth Api, Hosting, Scope, objects)
 - React(Hooks, ContextApi, ReactRouter)
 - Firebase (FireStore)
+- Consumo de API
 
 :hourglass_flowing_sand: Em Andamento...
