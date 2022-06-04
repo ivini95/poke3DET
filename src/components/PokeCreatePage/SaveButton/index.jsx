@@ -1,16 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import './style.css'
 import {db} from '../../../dataBase/firerebase.js'
-import {collection, getDocs, addDoc, setDoc, doc}  from "firebase/firestore";
+import {collection, getDocs, addDoc, doc, setDoc}  from "firebase/firestore";
 import { useContext, useEffect } from "react";
 import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke";
 import {UserAuth} from '../../../contexts/AuthContext'
+
 
 function SaveButton(){
 
   const {user} = UserAuth()
 
-  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj] = useContext(ApiContextCharPoke)
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj, imgPoke, setImgPoke] = useContext(ApiContextCharPoke)
 
   let disabledButton = false;
 
@@ -23,23 +24,23 @@ function SaveButton(){
   let navigate = useNavigate()
   
   useEffect(async ()=> {
-    
-    if (pokeRef.id == "pokemon") {
+    const pokeRef =  collection(db, "users", user.uid,"pokemon")
+    const snapPokeRef = await getDocs(pokeRef)
+    if (snapPokeRef.size > 0) {
       navigate('/battle')
     } 
-  }, [])
+  }, [user])
 
   async function savePokeData(){
 
-    const pokeRef = await collection(db, "users", user.uid, "pokemon")
-      console.log("poke não existe");
-      console.log(pokeRef);
-      await addDoc(collection(db, "users", user.uid, "pokemon"), {
+    const pokeRef = collection(db, "users", user.uid, "pokemon")
+      await setDoc(doc(pokeRef, "01"), {
       name: pokeName,
-      caracteristics: charObj,
+      characteristics: charObj,
       life: manaLife,
       mana: manaLife,
-      totalPoints: total
+      totalPoints: total,
+      img: imgPoke
     });  
     navigate('/battle')
     

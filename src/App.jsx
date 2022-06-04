@@ -8,10 +8,11 @@ import { ApiProviderAuthGoogle } from './contexts/AuthContext'
 import CreateNamePage from './pages/CreateNamePage'
 import Protected from './components/AllComponentes/ProtectRoute/Protected'
 
+
 function App() {
 
   return (
-    <div>
+    <>
       <ApiProviderAuthGoogle>
         <BrowserRouter>
           <Routes>
@@ -32,7 +33,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </ApiProviderAuthGoogle>
-    </div>
+    </>
   )
 }
 

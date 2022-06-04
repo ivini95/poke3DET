@@ -5,13 +5,13 @@ import './style.css'
 function ImgCharPoke(){
 
 
-  const [pokemons, setPokemons, count, setCount, urlPoke, setUrlPoke] = useContext(ApiContextCharPoke)
+  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj, imgPoke, setImgPoke ] = useContext(ApiContextCharPoke)
 
 
   return (
 
     <div className="imagePokeContainer">
-      <img className="imagePoke" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${count + 1}.png`} alt={'pokemon image'} />
+      <img className="imagePoke" src={imgPoke} alt={'pokemon image'} />
     </div>
   )
 }

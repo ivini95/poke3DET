@@ -14,17 +14,17 @@ function ContainerPoke() {
     
     <div className="containerPoke">
             <ApiProviderChar>
-            <ImgCharPoke></ImgCharPoke>
-            <NameCharPoke></NameCharPoke>
-            <LifeMana></LifeMana>
-            <TotalPoints></TotalPoints>
-            <ButtonChar className={"force pokeStatus"} typeChar={'Força'} value={0}></ButtonChar>
-            <ButtonChar className={"ability pokeStatus"} typeChar={'Habilidade'} value={0}></ButtonChar>
-            <ButtonChar className={"resistence pokeStatus"} typeChar={'Resistência'} value={0}></ButtonChar>
-            <ButtonChar className={"armor pokeStatus"} typeChar={'Armadura'} value={0}></ButtonChar>
-            <ButtonChar className={"firePower pokeStatus"} typeChar={'Poder de fogo'} value={0}></ButtonChar>
-            <ResetButton></ResetButton>
-            <SaveButton></SaveButton>
+              <ImgCharPoke></ImgCharPoke>
+              <NameCharPoke></NameCharPoke>
+              <LifeMana></LifeMana>
+              <TotalPoints></TotalPoints>
+              <ButtonChar className={"force pokeStatus"} typeChar={'Força'} value={0}></ButtonChar>
+              <ButtonChar className={"ability pokeStatus"} typeChar={'Habilidade'} value={0}></ButtonChar>
+              <ButtonChar className={"resistence pokeStatus"} typeChar={'Resistência'} value={0}></ButtonChar>
+              <ButtonChar className={"armor pokeStatus"} typeChar={'Armadura'} value={0}></ButtonChar>
+              <ButtonChar className={"firePower pokeStatus"} typeChar={'Poder de fogo'} value={0}></ButtonChar>
+              <ResetButton></ResetButton>
+              <SaveButton></SaveButton>
             </ApiProviderChar>
     </div>
   )

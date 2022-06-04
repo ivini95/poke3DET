@@ -1,6 +1,6 @@
 import { useContext, createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
-import { auth } from "../dataBase/firerebase";
+import { GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged, getRedirectResult, updateCurrentUser } from "firebase/auth";
+import {auth} from "../dataBase/firerebase";
 
 
 const ApiContextAuthGoogle = createContext();
@@ -8,7 +8,8 @@ const ApiContextAuthGoogle = createContext();
 export function ApiProviderAuthGoogle(props) {
 
   const [user, setUser] = useState({})
-
+  console.log("user reset");
+  
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -18,14 +19,18 @@ export function ApiProviderAuthGoogle(props) {
     signOut(auth)
   }
 
+
   useEffect(() => {
-     const unsubscribe =  onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser)
+
+     const unsubscribe = onAuthStateChanged(auth, (user) => {
+     setUser(user)
+
     })
     return () => {
       unsubscribe()
     }
   }, [])
+
 
   return (
     <ApiContextAuthGoogle.Provider value={{googleSignIn, logOut, user}}>
@@ -34,6 +39,7 @@ export function ApiProviderAuthGoogle(props) {
   )
 }
 
-export const UserAuth = () => {
+export const UserAuth =  () => {
+
   return useContext(ApiContextAuthGoogle)
 }

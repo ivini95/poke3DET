@@ -1,5 +1,11 @@
 .charDetails{
   width: 121px;
   height: 105px;
-  background-color: var(--color3);
+  background-color: var(--darkRed);
+}
+
+.charDetails > p{
+  margin: 0;
+  font-size: 0.7rem;
+  color: var(--white);
 }

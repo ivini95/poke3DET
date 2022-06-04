@@ -1,5 +1,9 @@
 .imgCharBattle {
   width: 140px;
   height: 120px;
-  background: var(--color3);
+  background: var(--darkWhite);
+}
+
+p {
+  color: red;
 }

@@ -21,7 +21,6 @@ function LogoutButton() {
   
   )
   
-  //{user?.displayName ? <button onClick={handleSignOut}>Logout</button> : <h2>Usuario deslogado</h2>}
 }
 
 export default LogoutButton

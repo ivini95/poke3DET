@@ -26,6 +26,8 @@ export function ApiProviderChar(props){
   'armor': 0,
   'firePower': 0})
 
+  const [imgPoke, setImgPoke] = useState(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${count + 1}.png`)
+
   useEffect(()=>{
     
     fetch(url).then(res=> res.json())
@@ -35,11 +37,12 @@ export function ApiProviderChar(props){
 
   useEffect(()=>{
       setUrlPoke(pokemons[count].url)
+      setImgPoke(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${count + 1}.png`)
   },[count])
   
 
   return(
-    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj ]}>
+    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj, imgPoke, setImgPoke ]}>
       {props.children}
     </ApiContextCharPoke.Provider>
   )

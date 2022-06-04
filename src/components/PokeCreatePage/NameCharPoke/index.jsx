@@ -6,7 +6,7 @@ import './style.css'
 
 function NameCharPoke(){
 
-  const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName ] = useContext(ApiContextCharPoke)
+  const [pokemons, setPokemons, count, setCount, urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName ] = useContext(ApiContextCharPoke)
 
   useEffect(()=>{
     setPokeName(pokemons[count].name)

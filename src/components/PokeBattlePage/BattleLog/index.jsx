@@ -17,7 +17,7 @@ function BattleLog(){
 
   return (
     <div>
-    <textarea className="battleLog" value={historicTemp.textLog} scrollHeight readOnly></textarea>
+    <textarea className="battleLog" value={historicTemp.textLog} readOnly></textarea>
     </div>
   )
 }

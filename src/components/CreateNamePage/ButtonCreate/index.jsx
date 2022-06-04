@@ -15,18 +15,23 @@ function ButtonCreate() {
   
   const userRef = collection(db, "users")
 
-  useEffect(async ()=> {
+ /*  useEffect(async ()=> {
+    
     const usersSnap = await getDocs(userRef)
+    console.log(usersSnap);
     if (usersSnap.nickName) {
       navigate('/createpoke')
     }
-  }, [])
-
+  }, [user])   */
+  
   async function saveNickName(){
-    await setDoc(doc(userRef, user.uid), {
+    if (nickName != "") {
+      await setDoc(doc(userRef, user.uid), {
         nickName: nickName
       }); 
     navigate('/createpoke')
+    }
+
   }
 
   return (

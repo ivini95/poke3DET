@@ -5,7 +5,7 @@ import {UserAuth} from '../../../contexts/AuthContext'
 
 function LoginButton() {
 
-  const { googleSignIn, user } = UserAuth()
+  const { googleSignIn} = UserAuth()
 
  
   async function handleGoogleSignIn() {

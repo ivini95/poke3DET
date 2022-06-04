@@ -9,7 +9,7 @@ import { ApiContextUser } from "../../contexts/ApiContextUser"
 
 function LoginPage() {
 
-  const { googleSignIn, user } = UserAuth()
+  const {user } = UserAuth()
   const navigate = useNavigate()
 
   useEffect( async () => {
@@ -29,6 +29,7 @@ function LoginPage() {
             userExist = true
             const docSnap = (await getDoc(docRef)).data();
             if (docSnap.nickName) {
+              console.log('redirect');
               navigate('/createpoke')
             }else {
               navigate('/createnick')
@@ -43,14 +44,13 @@ function LoginPage() {
           await setDoc(doc(userRef, user.uid), {nickName: ""});
           navigate('/createnick')
         }
-       
-        //verificar se o user possui nickname, caso sim redirecionar para outra tela, caso não redirecionar para createnick
         
         }
     }
   },[user])
 
   return (
+    
     <div className="loginContainer">
       <LoginButton/>
     </div>
