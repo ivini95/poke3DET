@@ -1,12 +1,14 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ApiContextBattle } from '../../../contexts/ApiContextBattle';
 import './style.css';
 
 function DiceBattle(){
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, generateBot, botCurrent, action] = useContext(ApiContextBattle)
 
   let historicTempCopy = {...historicTemp};
+
+  const[turn, setTurn] = useState(0)
 
   function generateValue() {
     const randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -14,9 +16,15 @@ function DiceBattle(){
     historicTempCopy.id ++
     historicTempCopy.diceValue = randomNumber
     setHistoricTemp({...historicTemp,...historicTempCopy})
+    setTurn(historicTempCopy.id);
   }
-  
 
+  useEffect(()=> {
+    if (turn > 0) {
+      action()
+    }
+  },[turn])
+  
   return (
     <div className='diceBattle'>
       <img className='diceImg' onClick={generateValue} src={`src/assets/images/dice/dice${diceValue}.svg`} alt="" />

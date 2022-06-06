@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ApiContextBattle } from '../../../contexts/ApiContextBattle'
+import Skill from '../skill/Skill'
 import './style.css'
 
 function SkillContainer(){
@@ -11,10 +12,10 @@ function SkillContainer(){
   return (
     <div className='skillContainer'>
       <button onClick={generateBot}>BOT</button>
-      <button onClick={attack}>Ataque Corpo A Corpo</button>
-      <button onClick={rangedAttack}>Ataque Distancia</button>
-      <button onClick={defend}>Defesa</button>
-      <button onClick={dodge}>Esquiva</button>
+      <Skill nameAction={"attack"}></Skill>
+      <Skill nameAction={"rangedAttack"}></Skill>
+      <Skill nameAction={"defend"}></Skill>
+      <Skill nameAction={"dodge"}></Skill>
     </div>
   )
 }

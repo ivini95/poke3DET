@@ -1,5 +1,5 @@
 import { useState } from "react"
-import BackButton from "../../components/AllComponentes/backButton"
+import BackButton from "../../components/AllComponentes/BackButton"
 import MenuIcon from "../../components/AllComponentes/MenuIcon"
 import ThemeIcon from "../../components/AllComponentes/ThemeIcon"
 import MenuComponent from "../../components/MainPage/MenuComponentOpen"

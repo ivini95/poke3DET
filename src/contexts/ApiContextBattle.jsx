@@ -30,6 +30,7 @@ export function ApiProviderBattle(props){
     setCurrentName(pokeStatus.name)
     setCurrentImg(pokeStatus.img)
     setCurrentAtribute(pokeStatus.characteristics)
+    
   },[user])
 
   const [currentImg, setCurrentImg] = useState("")
@@ -68,8 +69,10 @@ export function ApiProviderBattle(props){
     })
   }
 
+  function action() {
+    console.log(diceValue);
+  }
 
-  
   function attack() {
     console.log("ataque");
   }
@@ -84,7 +87,7 @@ export function ApiProviderBattle(props){
   }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, generateBot, botCurrent]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, generateBot, botCurrent, action]}>
     {props.children}
   </ApiContextBattle.Provider>
  )

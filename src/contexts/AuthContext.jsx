@@ -8,8 +8,7 @@ const ApiContextAuthGoogle = createContext();
 export function ApiProviderAuthGoogle(props) {
 
   const [user, setUser] = useState({})
-  console.log("user reset");
-  
+
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -19,12 +18,12 @@ export function ApiProviderAuthGoogle(props) {
     signOut(auth)
   }
 
-
   useEffect(() => {
 
+    console.log('setUser');
      const unsubscribe = onAuthStateChanged(auth, (user) => {
      setUser(user)
-
+     
     })
     return () => {
       unsubscribe()

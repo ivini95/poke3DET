@@ -1,5 +1,5 @@
 
-import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LogoutButton from '../../components/AllComponentes/LogoutButton/'

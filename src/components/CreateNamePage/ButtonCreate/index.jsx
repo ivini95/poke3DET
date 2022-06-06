@@ -1,5 +1,5 @@
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
-import { useContext, useEffect } from 'react';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiContextUser } from '../../../contexts/ApiContextUser';
 import { UserAuth } from '../../../contexts/AuthContext';
@@ -11,27 +11,18 @@ function ButtonCreate() {
   let navigate = useNavigate()
 
   const [nickName, setNickName] = useContext(ApiContextUser)
-  const { googleSignIn, user } = UserAuth()
+  const {user } = UserAuth()
   
   const userRef = collection(db, "users")
 
- /*  useEffect(async ()=> {
-    
-    const usersSnap = await getDocs(userRef)
-    console.log(usersSnap);
-    if (usersSnap.nickName) {
-      navigate('/createpoke')
-    }
-  }, [user])   */
-  
   async function saveNickName(){
+    
     if (nickName != "") {
       await setDoc(doc(userRef, user.uid), {
         nickName: nickName
       }); 
     navigate('/createpoke')
     }
-
   }
 
   return (

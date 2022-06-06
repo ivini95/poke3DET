@@ -1,11 +1,10 @@
 import LoginButton from "../../components/LoginPage/LoginButton/LoginButton"
 import './style.css'
 import {useNavigate} from 'react-router-dom'
-import { useContext, useEffect} from 'react'
+import {  useEffect} from 'react'
 import {UserAuth} from '../../contexts/AuthContext'
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, setDoc} from "firebase/firestore"
 import { db } from "../../dataBase/firerebase"
-import { ApiContextUser } from "../../contexts/ApiContextUser"
 
 function LoginPage() {
 
