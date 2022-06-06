@@ -23,14 +23,7 @@ function SaveButton(){
 
   let navigate = useNavigate()
   
-  useEffect(async ()=> {
-    const pokeRef =  collection(db, "users", user.uid,"pokemon")
-    const snapPokeRef = await getDocs(pokeRef)
-    if (snapPokeRef.size > 0) {
-      navigate('/battle')
-    } 
-  }, [user])
-
+  
   async function savePokeData(){
 
     const pokeRef = collection(db, "users", user.uid, "pokemon")
@@ -42,7 +35,7 @@ function SaveButton(){
       totalPoints: total,
       img: imgPoke
     });  
-    navigate('/battle')
+    navigate('/profile')
     
   } 
 

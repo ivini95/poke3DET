@@ -1,0 +1,13 @@
+.lifeContainer {
+  display: flex;
+  width: 24px;
+  height: 140px;
+  background-color: var(--lightRed);
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.lifeContainer > p {
+  color: var(--white);
+}

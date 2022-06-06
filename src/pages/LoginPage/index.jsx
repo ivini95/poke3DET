@@ -28,7 +28,6 @@ function LoginPage() {
             userExist = true
             const docSnap = (await getDoc(docRef)).data();
             if (docSnap.nickName) {
-              console.log('redirect');
               navigate('/createpoke')
             }else {
               navigate('/createnick')

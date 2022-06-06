@@ -1,0 +1,13 @@
+.manaContainer {
+  display: flex;
+  width: 24px;
+  height: 140px;
+  background-color: var(--lightBlue);
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.manaContainer > p {
+  color: var(--white);
+}

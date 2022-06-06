@@ -19,8 +19,6 @@ export function ApiProviderAuthGoogle(props) {
   }
 
   useEffect(() => {
-
-    console.log('setUser');
      const unsubscribe = onAuthStateChanged(auth, (user) => {
      setUser(user)
      

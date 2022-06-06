@@ -11,7 +11,7 @@ function ButtonCreate() {
   let navigate = useNavigate()
 
   const [nickName, setNickName] = useContext(ApiContextUser)
-  const {user } = UserAuth()
+  const {user} = UserAuth()
   
   const userRef = collection(db, "users")
 

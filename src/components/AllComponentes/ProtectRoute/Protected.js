@@ -10,7 +10,6 @@ const Protected = ({children}) => {
 
   useEffect(()=> {
     if (!user) {
-      console.log('teste');
       return navigate('/')
     }
   },[user])

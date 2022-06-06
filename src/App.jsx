@@ -6,7 +6,9 @@ import MainPage from './pages/MainPage'
 import LoginPage from './pages/LoginPage'
 import { ApiProviderAuthGoogle } from './contexts/AuthContext'
 import CreateNamePage from './pages/CreateNamePage'
+import ProfilePage from './pages/ProfilePage'
 import Protected from './components/AllComponentes/ProtectRoute/Protected'
+
 
 
 function App() {
@@ -25,7 +27,12 @@ function App() {
             <Route path="createPoke" element={
               <Protected>
                 <ContainerPoke/>
-              </Protected>}/>,
+              </Protected>}/>
+            <Route path="profile" element={
+              <Protected>
+                <ProfilePage/>
+              </Protected>
+            }></Route>
             <Route path="battle" element={
               <Protected>
                 <BattlePage/>

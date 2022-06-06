@@ -1,6 +1,5 @@
-
 import { doc, getDoc } from 'firebase/firestore'
-import { useEffect, useRef } from 'react'
+import { useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import LogoutButton from '../../components/AllComponentes/LogoutButton/'
 import ButtonCreate from '../../components/CreateNamePage/ButtonCreate'
@@ -12,7 +11,7 @@ import './style.css'
 
 function CreateNamePage() {
 
-  const { googleSignIn, user } = UserAuth()
+  const {user} = UserAuth()
 
   const navigate = useNavigate()
 

@@ -1,0 +1,6 @@
+.imgProfile {
+  width: 140px;
+  height: 140px;
+  background-color: var(--darkWhite);
+  border-radius: 5px;
+}

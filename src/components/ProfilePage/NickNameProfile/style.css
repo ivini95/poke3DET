@@ -1,0 +1,13 @@
+.nickNameContainer {
+  display: flex;
+  width: 140px;
+  height: 24px;
+  background-color: var(--darkWhite);
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nickNameContainer > p {
+  color: var(--lightBlack);
+}

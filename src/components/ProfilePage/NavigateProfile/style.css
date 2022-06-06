@@ -1,0 +1,6 @@
+.navigateContainer {
+  background-color: var(--darkWhite);
+  border-radius: 5px;
+  width: 140px;
+  height: 110px;
+}
