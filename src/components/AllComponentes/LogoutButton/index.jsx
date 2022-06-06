@@ -9,7 +9,6 @@ function LogoutButton() {
   const handleSignOut = async () => {
     try {
       await logOut()
-      console.log('usuario deslogado', user);
     } catch (error) {
       console.log(error);
     }

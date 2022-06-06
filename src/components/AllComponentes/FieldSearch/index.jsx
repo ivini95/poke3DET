@@ -3,10 +3,6 @@ import './style.css'
 
 function FieldSearch(){
 
-  function log(){
-    console.log('teste');
-  }
-
   return (
     <div className='fieldSearchContainer'>
       <label>
