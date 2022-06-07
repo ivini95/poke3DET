@@ -5,13 +5,12 @@ import './style.css'
 
 function SkillContainer(){
   
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, generateBot] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge] = useContext(ApiContextBattle)
 
   
 
   return (
     <div className='skillContainer'>
-      <button onClick={generateBot}>BOT</button>
       <Skill nameAction={"attack"}></Skill>
       <Skill nameAction={"rangedAttack"}></Skill>
       <Skill nameAction={"defend"}></Skill>

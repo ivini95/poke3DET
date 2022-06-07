@@ -5,7 +5,9 @@ import './style.css'
 
 function ImgCharBattle(props) {
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg, currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, generateBot, botCurrent] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action] = useContext(ApiContextBattle)
+
+  console.log(botCurrent);
 
   if (props.value == "player") {
     return (

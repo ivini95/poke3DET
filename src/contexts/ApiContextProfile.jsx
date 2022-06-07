@@ -1,12 +1,24 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { createContext,useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { bot } from "../components/bot";
 import { db } from "../dataBase/firerebase";
 import { UserAuth } from "./AuthContext";
 
 export const ApiContextProfile = createContext()
 
 export function ApiProviderProfile(props) {
+
+  const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800'
+
+  const [pokemons, setPokemons] = useState({})
+
+  useEffect(()=>{
+    
+    fetch(url).then(res=> res.json())
+        .then(data=>setPokemons(data.results))
+        
+  },[])
 
   const {user} = UserAuth()
   let navigate = useNavigate()
@@ -27,8 +39,6 @@ export function ApiProviderProfile(props) {
     setNickName(nickName.nickName)
   },[user])
 
-
-
   const [imgPoke, setImgPoke] = useState('')
   const [namePoke, setNamePoke] = useState('')
   const [lifePoke, setLifePoke] = useState(0)
@@ -45,9 +55,31 @@ export function ApiProviderProfile(props) {
     } 
   }, [user])
 
+  async function saveCurrentBot() {
+    const botNumber = bot.pokeNumber()
+    const botChars = bot.atributes
+    bot.generateAtribute()
+
+    const pokeRef = collection(db, "users", user.uid, "tempData")
+      await setDoc(doc(pokeRef, "pokeBot"), {
+        number: botNumber,
+        name: pokemons[botNumber - 1].name,
+        characteristics: {
+          'strength': botChars[0],
+          'ability': botChars[1],
+          'resistence': botChars[2],
+          'armor': botChars[3],
+          'firePower': botChars[4]
+        },
+        life: botChars[2] * 5,
+        mana: botChars[2] * 5,
+        imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${botNumber}.png`
+    })
+    
+  }
 
   return (
-    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName]}>
+    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot]}>
       {props.children}
     </ApiContextProfile.Provider>
   )

@@ -30,7 +30,11 @@ export function ApiProviderBattle(props){
     setCurrentName(pokeStatus.name)
     setCurrentImg(pokeStatus.img)
     setCurrentAtribute(pokeStatus.characteristics)
-    
+
+    const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
+    const botPokeRefSnap = await getDoc(botPokeRef)
+    const pokeBot = botPokeRefSnap.data()
+    setBotCurrent(pokeBot)
   },[user])
 
   const [currentImg, setCurrentImg] = useState("")
@@ -47,27 +51,6 @@ export function ApiProviderBattle(props){
     'text': `Resultado Dado:${1}`,
     'textLog': ''
   })
-
-  function generateBot() {
-    
-    bot.generateAtribute()
-    const botNumber = bot.pokeNumber()
-    const botChars = bot.atributes
-    setBotCurrent( {
-      number: botNumber,
-      name: pokemons[botNumber].name,
-      characteristics: {
-        'strength': botChars[0],
-        'ability': botChars[1],
-        'resistence': botChars[2],
-        'armor': botChars[3],
-        'firePower': botChars[4]
-      },
-      life: botChars[2] * 5,
-      mana: botChars[2] * 5,
-      imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${botNumber}.png`
-    })
-  }
 
   function action() {
     console.log(diceValue);
@@ -87,7 +70,7 @@ export function ApiProviderBattle(props){
   }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, generateBot, botCurrent, action]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action]}>
     {props.children}
   </ApiContextBattle.Provider>
  )
