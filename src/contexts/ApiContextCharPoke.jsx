@@ -50,11 +50,14 @@ export function ApiProviderChar(props){
 
 
   useEffect(async ()=> {
-    const pokeRef =  collection(db, "users", user.uid,"pokemon")
-    const snapPokeRef = await getDocs(pokeRef)
-    if (snapPokeRef.size > 0) {
-      navigate('/profile')
-    } 
+    if (user.uid) {
+        const pokeRef =  collection(db, "users", user.uid,"pokemon")
+        const snapPokeRef = await getDocs(pokeRef)
+        if (snapPokeRef.size > 0) {
+          navigate('/profile')
+      } 
+    }
+    
   }, [user])
 
   return(

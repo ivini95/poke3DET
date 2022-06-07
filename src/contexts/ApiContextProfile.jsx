@@ -24,19 +24,22 @@ export function ApiProviderProfile(props) {
   let navigate = useNavigate()
 
   useEffect(async ()=> {
-    const nickRef = doc(db,"users", user.uid)
-    const nickSnap = await getDoc(nickRef)
-    const nickName = nickSnap.data()
-  
-    const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
-    const pokeStatusRefSnap = await getDoc(pokeStatusRef)
-    const pokeStatus = pokeStatusRefSnap.data()
-    setLifePoke(pokeStatus.life)
-    setManaPoke(pokeStatus.mana)
-    setNamePoke(pokeStatus.name)
-    setImgPoke(pokeStatus.img)
-    setAtributesPoke(pokeStatus.characteristics)
-    setNickName(nickName.nickName)
+    if (user.uid) {
+      const nickRef = doc(db,"users", user.uid)
+      const nickSnap = await getDoc(nickRef)
+      const nickName = nickSnap.data()
+    
+      const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
+      const pokeStatusRefSnap = await getDoc(pokeStatusRef)
+      const pokeStatus = pokeStatusRefSnap.data()
+      setLifePoke(pokeStatus.life)
+      setManaPoke(pokeStatus.mana)
+      setNamePoke(pokeStatus.name)
+      setImgPoke(pokeStatus.img)
+      setAtributesPoke(pokeStatus.characteristics)
+      setNickName(nickName.nickName)
+    }
+    
   },[user])
 
   const [imgPoke, setImgPoke] = useState('')
@@ -48,11 +51,14 @@ export function ApiProviderProfile(props) {
   
 
   useEffect(async ()=> {
-    const pokeRef =  collection(db, "users", user.uid,"pokemon")
-    const snapPokeRef = await getDocs(pokeRef)
-    if (snapPokeRef.size == 0) {
-      navigate('/')
+    if (user.uid) {
+      const pokeRef =  collection(db, "users", user.uid,"pokemon")
+      const snapPokeRef = await getDocs(pokeRef)
+      if (snapPokeRef.size == 0) {
+        navigate('/')
     } 
+    }
+    
   }, [user])
 
   async function saveCurrentBot() {

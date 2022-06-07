@@ -11,6 +11,7 @@ function ButtonCreate() {
   let navigate = useNavigate()
 
   const [nickName, setNickName] = useContext(ApiContextUser)
+
   const {user} = UserAuth()
   
   const userRef = collection(db, "users")
@@ -18,10 +19,12 @@ function ButtonCreate() {
   async function saveNickName(){
     
     if (nickName != "") {
-      await setDoc(doc(userRef, user.uid), {
-        nickName: nickName
-      }); 
-    navigate('/createpoke')
+      if (user.uid) {
+        await setDoc(doc(userRef, user.uid), {
+          nickName: nickName
+        }); 
+        navigate('/createpoke')
+      }
     }
   }
 

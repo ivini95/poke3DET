@@ -16,12 +16,15 @@ function CreateNamePage() {
   const navigate = useNavigate()
 
   useEffect(async ()=> {
-    const userRef = doc(db, "users", user.uid)
-    const usersSnap = (await getDoc(userRef)).data()
+    if (user.uid) {
+      const userRef = doc(db, "users", user.uid)
+      const usersSnap = (await getDoc(userRef)).data()
 
-    if (usersSnap.nickName) {
-      navigate('/createpoke')
+      if (usersSnap.nickName) {
+        navigate('/createpoke')
     }
+    }
+    
   }, [user]) 
 
 

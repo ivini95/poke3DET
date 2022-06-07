@@ -22,19 +22,22 @@ export function ApiProviderBattle(props){
   const {user} = UserAuth()
 
   useEffect(async ()=> {
-    const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
-    const pokeStatusRefSnap = await getDoc(pokeStatusRef)
-    const pokeStatus = pokeStatusRefSnap.data()
-    setCurrentLife(pokeStatus.life)
-    setCurrentMana(pokeStatus.mana)
-    setCurrentName(pokeStatus.name)
-    setCurrentImg(pokeStatus.img)
-    setCurrentAtribute(pokeStatus.characteristics)
+    if (user.uid) {
+      const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
+      const pokeStatusRefSnap = await getDoc(pokeStatusRef)
+      const pokeStatus = pokeStatusRefSnap.data()
+      setCurrentLife(pokeStatus.life)
+      setCurrentMana(pokeStatus.mana)
+      setCurrentName(pokeStatus.name)
+      setCurrentImg(pokeStatus.img)
+      setCurrentAtribute(pokeStatus.characteristics)
 
-    const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
-    const botPokeRefSnap = await getDoc(botPokeRef)
-    const pokeBot = botPokeRefSnap.data()
-    setBotCurrent(pokeBot)
+      const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
+      const botPokeRefSnap = await getDoc(botPokeRef)
+      const pokeBot = botPokeRefSnap.data()
+      setBotCurrent(pokeBot)
+    }
+    
   },[user])
 
   const [currentImg, setCurrentImg] = useState("")
