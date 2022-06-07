@@ -2,7 +2,6 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { useState, createContext, useEffect } from "react";
 import { db } from "../dataBase/firerebase";
 import { UserAuth } from "./AuthContext";
-import { bot } from "../components/bot";
 
 export const ApiContextBattle = createContext()
 
@@ -55,15 +54,81 @@ export function ApiProviderBattle(props){
     'textLog': ''
   })
 
+  const [currentAction, setCurrentAction] = useState("initiative")
+  const [charTurn, setCharTurn] = useState("")
+
   function action() {
-    console.log(diceValue);
+    
+      switch (currentAction) {
+        case "initiative":
+          initiative()
+          break;
+        case "attack":
+          attack()
+          break;
+        case "rangedAttack":
+          rangedAttack()
+          break;
+        case "defend":
+          defend()
+          break;
+        case "dodge":
+          dodge()
+          break;
+
+        default:
+          break;
+      }
+    
   }
 
+  function initiative(){
+    let botDiceIniciative = 0
+    botDiceIniciative = Math.floor(Math.random() * (6 - 0) + 1)
+    
+    if (botDiceIniciative > diceValue) {
+      setCharTurn("bot")
+      setCurrentAction("")
+      console.log("bot primeiro");
+    }else if(botDiceIniciative < diceValue) {
+      setCharTurn("player")
+      setCurrentAction("")
+      console.log("player primeiro");
+    }
+  }
+
+  useEffect(()=>{
+    if(charTurn == "bot"){
+      attack()
+      setCharTurn("player")
+      console.log("bot ataque");
+    }
+  },[charTurn])
+
   function attack() {
-    console.log("ataque");
+    if (charTurn == "player") {
+      const damage = (diceValue + currentAtributes.strength + currentAtributes.ability )
+      console.log(charTurn, damage);
+      setCharTurn("bot")
+      setCurrentAction("")
+    }else if(charTurn == "bot") {
+      const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
+      const damage = (diceBot + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
+      console.log(charTurn, damage);
+    }
+    
   }
   function rangedAttack() {
-    console.log("ataque distancia");
+    if (charTurn == "player") {
+      const damage = (diceValue + currentAtributes.firePower + currentAtributes.ability )
+      console.log(charTurn, damage);
+      setCharTurn("bot")
+      setCurrentAction("")
+    }else if(charTurn == "bot") {
+      const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
+      const damage = (diceBot + botCurrent.characteristics.firePower + botCurrent.characteristics.ability)
+      console.log(charTurn, damage);
+    }
   }
   function defend() {
     console.log("defesa");
@@ -73,7 +138,7 @@ export function ApiProviderBattle(props){
   }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn]}>
     {props.children}
   </ApiContextBattle.Provider>
  )

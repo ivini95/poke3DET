@@ -7,7 +7,7 @@ import { ApiProviderBattle } from '../../contexts/ApiContextBattle'
 import './style.css'
 
 function BattlePage() {
-
+  
   return (
     <ApiProviderBattle>
       <div className="battleContainer">

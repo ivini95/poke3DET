@@ -6,12 +6,13 @@ import './style.css'
 
 function BattleButon() {
 
-  const [imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName,saveCurrentBot] = useContext(ApiContextProfile)
+  const [imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData] = useContext(ApiContextProfile)
 
   const navigate = useNavigate()
 
   function toBattle(){
     saveCurrentBot()
+    createTempBattleData()
     navigate('/battle')
   }
 

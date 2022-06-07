@@ -4,19 +4,21 @@ import './style.css';
 
 function DiceBattle(){
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction] = useContext(ApiContextBattle)
 
   let historicTempCopy = {...historicTemp};
 
   const[turn, setTurn] = useState(0)
 
   function generateValue() {
-    const randomNumber = Math.floor(Math.random() * 6) + 1;
-    setDiceValue(randomNumber)
-    historicTempCopy.id ++
-    historicTempCopy.diceValue = randomNumber
-    setHistoricTemp({...historicTemp,...historicTempCopy})
-    setTurn(historicTempCopy.id);
+    if (currentAction != "") {
+      const randomNumber = Math.floor(Math.random() * 6) + 1;
+      setDiceValue(randomNumber)
+      historicTempCopy.id ++
+      historicTempCopy.diceValue = randomNumber
+      setHistoricTemp({...historicTemp,...historicTempCopy})
+      setTurn(historicTempCopy.id);
+    }
   }
 
   useEffect(()=> {

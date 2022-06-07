@@ -84,8 +84,13 @@ export function ApiProviderProfile(props) {
     
   }
 
+  async function createTempBattleData() {
+    const pokeRef = collection(db, "users", user.uid, "tempData")
+      await setDoc(doc(pokeRef, "tempBattleData"), {})
+  }
+
   return (
-    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot]}>
+    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData]}>
       {props.children}
     </ApiContextProfile.Provider>
   )
