@@ -10,7 +10,7 @@ function Skill(props) {
   
 
   useEffect(()=>{
-    if (charTurn == "player") {
+    if (charTurn[0] == "player") {
       setButtonState(false)
     }
   },[charTurn])
