@@ -8,12 +8,12 @@ function Skill(props) {
 
   const [buttonState, setButtonState] = useState(true)
   
-
+/* 
   useEffect(()=>{
     if (charTurn[0] == "player") {
       setButtonState(false)
     }
-  },[charTurn])
+  },[charTurn]) */
 
   function skillSelected(){
     setCurrentAction(props.nameAction)
@@ -21,7 +21,7 @@ function Skill(props) {
 
   return (
     <div>
-      <button onClick={skillSelected} className='skill' disabled={buttonState}> {props.nameAction}</button>
+      <button onClick={skillSelected} className='skill' disabled={props.disabled}> {props.nameAction}</button>
     </div>
   )
 }
