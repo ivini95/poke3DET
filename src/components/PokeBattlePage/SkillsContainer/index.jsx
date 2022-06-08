@@ -12,7 +12,13 @@ function SkillContainer(){
 
   
   useEffect(()=>{
-    if (charTurn[0] == "player" && charTurn[1] == "defense") {
+
+    if(currentAction == "initiative") {
+      setButtonStateAt(true)
+      setButtonStateDef(true)
+    }
+
+    if (charTurn[0] == "player" && charTurn[1] == "defense" ) {
       setButtonStateAt(true)
       setButtonStateDef(false)
     }else if (charTurn[0] == "player" && charTurn[1] == "attack"){

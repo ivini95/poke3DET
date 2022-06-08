@@ -1,10 +1,107 @@
-.diceBattle {
-  width: 85px;
-  height: 85px; 
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
-.diceImg{
-  width: 85px;
-  height: 85px;
+#cube .front {
+  transform: 
+  translateZ(37.50px);
+}
+
+#cube .back {
+  transform: 
+    rotateX(-180deg)
+    translateZ(37.50px);
+}
+
+#cube .right {
+  transform:
+    rotateY(90deg)
+    translateZ(37.50px);
+}
+
+#cube .left {
+  transform:
+    rotateY(-90deg)
+    translateZ(37.50px);
+}
+
+#cube .top {
+  transform:
+    rotateX(90deg)
+    translateZ(37.50px);
+}
+
+#cube .bottom {
+  transform:
+    rotateX(-90deg)
+    translateZ(37.50px);
+}
+
+.container {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  perspective: 1000px;
+  perspective-origin: 50% 100%;
+  margin-right: 10px;
+}
+
+#cube {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1.5s linear;
+}
+
+#cube:hover {
   cursor: pointer;
 }
+
+#cube div {
+  background: hsla(0, 35%, 50%, 0.8);
+  display: block;
+  position: absolute;
+  width: 75px;
+  height: 37.50px;
+  border: 2px solid #ab1a1a;
+  
+  margin: 0 auto;  
+  
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 500%;
+  text-align: center;
+  padding: 18.75px 0;
+}
+
+.dot {
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-radius: 15px;  
+}
+
+.front .dot1 { top: 30px; left: 30px; }
+.back .dot1 { top: 10px; left: 10px; }
+.back .dot2 { top: 51px; left: 51px; }
+.right .dot1 { top: 10px; left: 10px; }
+.right .dot2 { top: 30px; left: 30px; }
+.right .dot3 { top: 51px; left: 51px; }
+.left .dot1 { top: 10px; left: 10px; }
+.left .dot2 { top: 10px; left: 51px; }
+.left .dot3 { top: 51px; left: 10px; }
+.left .dot4 { top: 51px; left: 51px; }
+.top .dot1 { top: 10px; left: 10px; }
+.top .dot2 { top: 10px; left: 51px; }
+.top .dot3 { top: 30px; left: 30px; }
+.top .dot4 { top: 51px; left: 10px; }
+.top .dot5 { top: 51px; left: 51px; }
+.bottom .dot1 { top: 10px; left: 10px; }
+.bottom .dot2 { top: 10px; left: 30px; }
+.bottom .dot3 { top: 10px; left: 51px; }
+.bottom .dot4 { top: 51px; left: 10px; }
+.bottom .dot5 { top: 51px; left: 30px; }
+.bottom .dot6 { top: 51px; left: 51px; }
