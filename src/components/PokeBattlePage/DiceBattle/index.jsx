@@ -29,7 +29,7 @@ function DiceBattle(){
   
   return (
     <div className='diceBattle'>
-      <img className='diceImg' onClick={generateValue} src={`src/assets/images/dice/dice${diceValue}.svg`} alt="" />
+      <img className='diceImg' onClick={generateValue} src={`src/assets/images/dice${diceValue}.svg`} alt="" />
     </div>
   )
 }
