@@ -52,7 +52,7 @@ h1 {
   height: 100%;
   position: absolute;
   transform-style: preserve-3d;
-  transition: transform 1.5s linear;
+  transition: transform 2.0s linear;
 }
 
 #cube:hover {

@@ -8,57 +8,56 @@ function DiceBattle(){
 
   var cube = document.getElementById('cube');
 
-  var min = 1;
-  var max = 12;
-
-  function rotateDice(randomNumber) {
-    var xRand = getRandom(max, min);
-    var yRand = getRandom(max, min);
+  const [diceRolling, setDiceRolling] = useState(false)
   
-    cube.style.webkitTransform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
-    cube.style.transform = 'rotateX('+xRand+'deg) rotateY('+yRand+'deg)';
+  function rotateDice(randomNumber) {
 
+    setDiceRolling(true)
+
+    var xyRand = getDiceSide(randomNumber)
+    
+    cube.style.transform = 'rotateX('+xyRand[0]+'deg) rotateY('+xyRand[1]+'deg)';
+    
     setTimeout(() => {
-      var xyRand = getDiceSide(randomNumber)
-    
-      cube.style.transform = 'rotateX('+xyRand[0]+'deg) rotateY('+xyRand[1]+'deg)';
-    }, 1000);
-    
-    
+      setDiceRolling(false)
+    }, 2100);
   }
-
-function getRandom(max, min) {
-  return (Math.floor(Math.random() * (max-min)) + min) * 90;
-}
 
 function getDiceSide(randomNumber){
 
+  var min = 1;
+  var max = 6;
+
+  const randomDeg = Math.floor(Math.random() * ((max-min) + min))
+  const multipleDeg = randomDeg * 360
+
+  console.log(randomDeg);
   const deg = [0,0]
 
   switch (randomNumber) {
     case 1:
-        deg[0] = 0
-        deg[1] = 0
+        deg[0] = 0 + multipleDeg
+        deg[1] = 0 + multipleDeg
       break;
       case 2:
-        deg[0] = 0
-        deg[1] = 180
+        deg[0] = 0 + multipleDeg
+        deg[1] = 180 + multipleDeg
       break;
       case 3:
-        deg[0] = 180
-        deg[1] = 90
+        deg[0] = 180 + multipleDeg
+        deg[1] = 90 + multipleDeg
       break;
       case 4:
-        deg[0] = 180
-        deg[1] = 270
+        deg[0] = 180 + multipleDeg
+        deg[1] = 270 + multipleDeg
       break;
       case 5:
-        deg[0] = 270
-        deg[1] = 360
+        deg[0] = 270 + multipleDeg
+        deg[1] = 360 + multipleDeg
       break;
       case 6:
-        deg[0] = 90
-        deg[1] = 90
+        deg[0] = 90 + multipleDeg
+        deg[1] = 90 + multipleDeg
       break;
   
     default:
@@ -75,14 +74,19 @@ function getDiceSide(randomNumber){
   const[turn, setTurn] = useState(0)
 
   function generateValue() {
-    if (currentAction != "") {
-      const randomNumber = Math.floor(Math.random() * 6) + 1;
-      rotateDice(randomNumber)
-      setDiceValue(randomNumber)
-      historicTempCopy.id ++
-      historicTempCopy.diceValue = randomNumber
-      setHistoricTemp({...historicTemp,...historicTempCopy})
-      setTurn(historicTempCopy.id);
+    if (diceRolling == false) {
+      if (currentAction != "") {
+        const randomNumber = Math.floor(Math.random() * 6) + 1;
+        rotateDice(randomNumber)
+        setDiceValue(randomNumber)
+        setTimeout(() => {
+          historicTempCopy.id ++
+          historicTempCopy.diceValue = randomNumber
+          setHistoricTemp({...historicTemp,...historicTempCopy})
+          setTurn(historicTempCopy.id);
+        }, 2010);
+        
+      }
     }
   }
 
