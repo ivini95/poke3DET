@@ -1,10 +1,10 @@
 export const bot = {
 
-  total: 12,
+  total: 7,
   pokeNumber: () => {
     return Math.floor(Math.random() * (800 - 1) + 1)
   },
-  atributes: [0,0,0,0,0],
+  atributes: [1,1,1,1,1],
   generateAtribute: ()=> {
     while (bot.total > 0) {
       let count = Math.floor(Math.random() * (5 - 0))

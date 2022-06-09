@@ -46,6 +46,7 @@ export function ApiProviderBattle(props){
   const [currentAtributes, setCurrentAtribute] = useState({})
   const [diceValue , setDiceValue] = useState(1)
   const [botCurrent, setBotCurrent] = useState({})
+  const [pokeStatusSelected, setPokeStatusSelected] = useState("")
 
   const [historicTemp, setHistoricTemp] = useState({
     'id':0,
@@ -159,7 +160,7 @@ export function ApiProviderBattle(props){
   }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected]}>
     {props.children}
   </ApiContextBattle.Provider>
  )
