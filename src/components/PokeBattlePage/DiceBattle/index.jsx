@@ -36,13 +36,12 @@ function getDiceSide(randomNumber){
 
   setCompareDeg(multipleDeg)
   setCompareDice(randomNumber)
-  console.log(multipleDeg);
+
   if (multipleDeg == compareDeg && compareDice == randomNumber) {
     console.log("dado repetiu");
     multipleDeg = randomDeg * 720
   } 
   
-  console.log(multipleDeg);
   const deg = [0,0]
 
   switch (randomNumber) {

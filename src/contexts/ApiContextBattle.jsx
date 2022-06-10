@@ -1,4 +1,4 @@
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { useState, createContext, useEffect } from "react";
 import { db } from "../dataBase/firerebase";
 import { UserAuth } from "./AuthContext";
@@ -35,12 +35,11 @@ export function ApiProviderBattle(props){
       const botPokeRefSnap = await getDoc(botPokeRef)
       const pokeBot = botPokeRefSnap.data()
       setBotCurrent(pokeBot)
-      if (botLife == 0) {
-        setBotLife(pokeBot.life)
-      }
     }
     
   },[user])
+
+  
 
   const [currentImg, setCurrentImg] = useState("")
   const [currentLife, setCurrentLife] = useState(0)
@@ -50,7 +49,7 @@ export function ApiProviderBattle(props){
   const [diceValue , setDiceValue] = useState(1)
   const [botCurrent, setBotCurrent] = useState({})
   const [pokeStatusSelected, setPokeStatusSelected] = useState("")
-  const [botLife, setBotLife] = useState(0)
+
 
   const [historicTemp, setHistoricTemp] = useState({
     'id':0,
@@ -63,6 +62,17 @@ export function ApiProviderBattle(props){
   const [charTurn, setCharTurn] = useState("")
   const [damage, setDamage] = useState(0)
   const [protection, setProtection] = useState(0)
+
+
+  useEffect(async () => {
+    if (user.uid) {
+      const turnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+      const turnSnap = await getDoc(turnRef)
+      const turn = turnSnap.data()
+      setCharTurn(turn.turn)
+    }
+    
+  },[user])
 
   function action() {
     
@@ -89,15 +99,22 @@ export function ApiProviderBattle(props){
     
   }
 
-  function initiative(){
+  async function initiative(){
+    
     let botDiceIniciative = 0
     botDiceIniciative = Math.floor(Math.random() * (6 - 0) + 1)
     
     if (botDiceIniciative > diceValue) {
+      await setDoc(doc(db, "users", user.uid,"tempData","tempBattleData"), {
+        turn: ["bot","attack"]
+      })
       setCharTurn(["bot","attack"])
       setCurrentAction("")
       console.log("bot primeiro");
     }else if(botDiceIniciative < diceValue) {
+      await setDoc(doc(db, "users", user.uid,"tempData","tempBattleData"), {
+        turn: ["player","attack"]
+      })
       setCharTurn(["player","attack"])
       setCurrentAction("")
       console.log("player primeiro");
@@ -119,11 +136,15 @@ export function ApiProviderBattle(props){
     
   },[charTurn])
 
-  function attack() {
+  async function attack() {
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
 
       if (diceValue == 6) {
         const currentDamage = (diceValue + (currentAtributes.strength * 2) + currentAtributes.ability )
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["bot","defense"]
+            })
         console.log(charTurn, currentDamage);
         setCharTurn(["bot","defense"])
         setCurrentAction("")
@@ -131,6 +152,10 @@ export function ApiProviderBattle(props){
       }else {
         const currentDamage = (diceValue + currentAtributes.strength + currentAtributes.ability )
         console.log(charTurn, currentDamage);
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["bot","defense"]
+            })
         setCharTurn(["bot","defense"])
         setCurrentAction("")
         setDamage(currentDamage)
@@ -142,29 +167,45 @@ export function ApiProviderBattle(props){
         const currentDamage = (diceBot + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
         console.log(charTurn, currentDamage);
         setDamage(currentDamage)
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["player","defense"]
+            })
         setCharTurn(["player", "defense"])
       }else {
         const currentDamage = (diceBot + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
         console.log(charTurn, currentDamage);
         setDamage(currentDamage)
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["player","defense"]
+            })
         setCharTurn(["player", "defense"])
       }
       
     }
   }
 
-  function rangedAttack() {
+  async function rangedAttack() {
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
 
       if (diceValue == 6) {
         const currentDamage = (diceValue + (currentAtributes.firePower * 2) + currentAtributes.ability )
         console.log(charTurn, currentDamage);
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["bot","defense"]
+            })
         setCharTurn(["bot","defense"])
         setCurrentAction("")
         setDamage(currentDamage)
       }else {
         const currentDamage = (diceValue + currentAtributes.firePower + currentAtributes.ability )
         console.log(charTurn, currentDamage);
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["bot","defense"]
+            })
         setCharTurn(["bot","defense"])
         setCurrentAction("")
         setDamage(currentDamage)
@@ -184,11 +225,15 @@ export function ApiProviderBattle(props){
       
     }
   }
-  function defend() {
+  async function defend() {
     if (charTurn[0] == "player" && charTurn[1] == "defense" && protection == 0) {
       if (diceValue == 6) {
         const currentProtection = (diceValue + (currentAtributes.armor * 2) + currentAtributes.ability )
         console.log(charTurn, currentProtection);
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["player","attack"]
+            })
         setCharTurn(["player","attack"])
         setCurrentAction("")
         setProtection(currentProtection)
@@ -196,6 +241,10 @@ export function ApiProviderBattle(props){
       }else {
         const currentProtection = (diceValue + currentAtributes.armor + currentAtributes.ability )
         console.log(charTurn, currentProtection);
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["player","attack"]
+            })
         setCharTurn(["player","attack"])
         setCurrentAction("")
         setProtection(currentProtection)
@@ -263,46 +312,77 @@ export function ApiProviderBattle(props){
     }
   }
 
-  useEffect(()=>{
+  useEffect(async ()=>{
     if (protection != 0 && charTurn[0] == "bot" && charTurn[1] == "defense") {
       calcDamage()
+      const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            await updateDoc(battleTurnRef, {
+              turn: ["bot","attack"]
+            })
       setCharTurn(["bot", "attack"])
     }else if(protection != 0){
       calcDamage()
     }
     
   },[protection])
+
+  const [lifeChange, setLifeChange] = useState(false)
   
-  useEffect(()=>{
+  useEffect(async ()=>{
     if (finalDamage != undefined) {
       
       if (charTurn[0] == "bot" && charTurn[1] == "attack") {
         
         if (finalDamage > 0) {
-          setBotLife(botLife - finalDamage)
-          endBattle()
+          if (user.uid) {
+            const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
+            await updateDoc(botPokeRef, {
+              life:botCurrent.life - finalDamage
+            })
+            
+            const botPokeRefSnap = await getDoc(botPokeRef)
+            const pokeBot = botPokeRefSnap.data()
+            setBotCurrent(pokeBot)
+            setLifeChange(true)
+            
+          }
+          
         }
       } else {
         
           if (finalDamage > 0) {
             setCurrentLife(currentLife - finalDamage)
-            endBattle()
+            setLifeChange(true)
         }
       }
     }
   },[finalDamage])
 
+  useEffect(()=> {
+    if (lifeChange == true) {
+        endBattle()
+        console.log('teste');
+    }
+  },[lifeChange])
+
+  const [battleEnd, setBattleEnd] = useState(false)
+  const [winner, setWinner] = useState("")
+
   function endBattle() {
-    if (botLife <= 0) {
-      console.log("fim");
+    if (botCurrent.life <= 0) {
+      console.log("fim, player vence");
+    }else if (currentLife <= 0){
+      console.log("fim, bot vence");
+    }else{
+      setLifeChange(false)
     }
     //resetar bot do banco de dados
+    //resetar turno
     //redirecionar para tela profile
   }
 
-
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,botLife]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected]}>
     {props.children}
   </ApiContextBattle.Provider>
  )
