@@ -24,6 +24,7 @@ function DiceBattle(){
   }
 
   const [compareDeg, setCompareDeg] = useState(0)
+  const [compareDice, setCompareDice] = useState(0)
 
 function getDiceSide(randomNumber){
 
@@ -31,15 +32,17 @@ function getDiceSide(randomNumber){
   var max = 6;
 
   const randomDeg = Math.floor(Math.random() * ((max-min) + min))
-  const multipleDeg = randomDeg * 360
+  let multipleDeg = randomDeg * 360
 
   setCompareDeg(multipleDeg)
-
-  if (multipleDeg == compareDeg) {
-    multipleDeg + 360
+  setCompareDice(randomNumber)
+  console.log(multipleDeg);
+  if (multipleDeg == compareDeg && compareDice == randomNumber) {
+    console.log("dado repetiu");
+    multipleDeg = randomDeg * 720
   } 
   
-
+  console.log(multipleDeg);
   const deg = [0,0]
 
   switch (randomNumber) {
@@ -101,7 +104,6 @@ function getDiceSide(randomNumber){
   useEffect(()=> {
     if (turn > 0) {
       action()
-      
     }
   },[turn])
 
