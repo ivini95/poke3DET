@@ -6,8 +6,6 @@ function CharDetails() {
 
   const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected] = useContext(ApiContextBattle)
 
-  console.log(botCurrent);
-
   if (pokeStatusSelected == "" || pokeStatusSelected == "player") {
     return (
       <div className="charDetails">

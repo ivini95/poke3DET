@@ -23,6 +23,8 @@ function DiceBattle(){
     }, 2100);
   }
 
+  const [compareDeg, setCompareDeg] = useState(0)
+
 function getDiceSide(randomNumber){
 
   var min = 1;
@@ -31,7 +33,13 @@ function getDiceSide(randomNumber){
   const randomDeg = Math.floor(Math.random() * ((max-min) + min))
   const multipleDeg = randomDeg * 360
 
-  console.log(randomDeg);
+  setCompareDeg(multipleDeg)
+
+  if (multipleDeg == compareDeg) {
+    multipleDeg + 360
+  } 
+  
+
   const deg = [0,0]
 
   switch (randomNumber) {

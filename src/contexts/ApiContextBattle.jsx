@@ -97,67 +97,181 @@ export function ApiProviderBattle(props){
       setCharTurn(["player","attack"])
       setCurrentAction("")
       console.log("player primeiro");
+    }else {
+      console.log("Empate");
     }
   }
 
   useEffect(()=>{
-    if(charTurn[0] == "bot" && charTurn[1] == "attack"){
-      attack()
-      setCharTurn(["player", "defense"])
-      console.log("bot ataque");
-    }else if (charTurn[0] == "bot" && charTurn[1] == "defense"){
-      defend()
-      setCharTurn(["bot", "attack"])
-      console.log("bot defend");
-    }
+    
+      if(charTurn[0] == "bot" && charTurn[1] == "attack" ){
+        attack()
+        
+        console.log("bot ataque");
+      }else if (charTurn[0] == "bot" && charTurn[1] == "defense" ){
+        defend()
+        console.log("bot defend");
+      }
+    
   },[charTurn])
 
   function attack() {
-    if (charTurn[0] == "player" && charTurn[1] == "attack") {
-      const currentDamage = (diceValue + currentAtributes.strength + currentAtributes.ability )
-      console.log(charTurn, currentDamage);
-      setCharTurn(["bot","defense"])
-      setCurrentAction("")
-      setDamage(currentDamage)
-    }else if(charTurn[0] == "bot") {
+    if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
+
+      if (diceValue == 6) {
+        const currentDamage = (diceValue + (currentAtributes.strength * 2) + currentAtributes.ability )
+        console.log(charTurn, currentDamage);
+        setCharTurn(["bot","defense"])
+        setCurrentAction("")
+        setDamage(currentDamage)
+      }else {
+        const currentDamage = (diceValue + currentAtributes.strength + currentAtributes.ability )
+        console.log(charTurn, currentDamage);
+        setCharTurn(["bot","defense"])
+        setCurrentAction("")
+        setDamage(currentDamage)
+      }
+      
+    }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
       const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
-      const currentDamage = (diceBot + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
-      console.log(charTurn, currentDamage);
-      setDamage(currentDamage)
+      if (diceBot == 6) {
+        const currentDamage = (diceBot + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
+        console.log(charTurn, currentDamage);
+        setDamage(currentDamage)
+        setCharTurn(["player", "defense"])
+      }else {
+        const currentDamage = (diceBot + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
+        console.log(charTurn, currentDamage);
+        setDamage(currentDamage)
+        setCharTurn(["player", "defense"])
+      }
+      
     }
   }
 
   function rangedAttack() {
-    if (charTurn[0] == "player" && charTurn[1] == "attack") {
-      const currentDamage = (diceValue + currentAtributes.firePower + currentAtributes.ability )
-      console.log(charTurn, currentDamage);
-      setCharTurn(["bot","defense"])
-      setCurrentAction("")
-      setDamage(currentDamage)
-    }else if(charTurn[0] == "bot") {
+    if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
+
+      if (diceValue == 6) {
+        const currentDamage = (diceValue + (currentAtributes.firePower * 2) + currentAtributes.ability )
+        console.log(charTurn, currentDamage);
+        setCharTurn(["bot","defense"])
+        setCurrentAction("")
+        setDamage(currentDamage)
+      }else {
+        const currentDamage = (diceValue + currentAtributes.firePower + currentAtributes.ability )
+        console.log(charTurn, currentDamage);
+        setCharTurn(["bot","defense"])
+        setCurrentAction("")
+        setDamage(currentDamage)
+      }
+      
+    }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
       const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
-      const currentDamage = (diceBot + botCurrent.characteristics.firePower + botCurrent.characteristics.ability)
-      console.log(charTurn, currentDamage);
-      setDamage(currentDamage)
+      if (diceBot == 6) {
+        const currentDamage = (diceBot + (botCurrent.characteristics.firePower * 2) + botCurrent.characteristics.ability)
+        console.log(charTurn, currentDamage);
+        setDamage(currentDamage)
+      }else {
+        const currentDamage = (diceBot + botCurrent.characteristics.firePower + botCurrent.characteristics.ability)
+        console.log(charTurn, currentDamage);
+        setDamage(currentDamage)
+      }
+      
     }
   }
   function defend() {
-    if (charTurn[0] == "player" && charTurn[1] == "defense") {
-      const currentProtection = (diceValue + currentAtributes.armor + currentAtributes.ability )
-      console.log(charTurn, currentProtection);
-      setCharTurn(["player","attack"])
-      setCurrentAction("")
-      setProtection(currentProtection)
+    if (charTurn[0] == "player" && charTurn[1] == "defense" && protection == 0) {
+      if (diceValue == 6) {
+        const currentProtection = (diceValue + (currentAtributes.armor * 2) + currentAtributes.ability )
+        console.log(charTurn, currentProtection);
+        setCharTurn(["player","attack"])
+        setCurrentAction("")
+        setProtection(currentProtection)
+        
+      }else {
+        const currentProtection = (diceValue + currentAtributes.armor + currentAtributes.ability )
+        console.log(charTurn, currentProtection);
+        setCharTurn(["player","attack"])
+        setCurrentAction("")
+        setProtection(currentProtection)
+        
+      }
+      
     }else if(charTurn[0] == "bot") {
       const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
-      const currentProtection = (diceBot + botCurrent.characteristics.armor + botCurrent.characteristics.ability)
-      console.log(charTurn, currentProtection);
-      setProtection(currentProtection)
+
+      if (diceBot == 6) {
+        const currentProtection = (diceBot + (botCurrent.characteristics.armor * 2) + botCurrent.characteristics.ability)
+        console.log(charTurn, currentProtection);
+        setProtection(currentProtection)
+        //setCharTurn(["bot", "attack"])
+        
+      }else {
+        const currentProtection = (diceBot + botCurrent.characteristics.armor + botCurrent.characteristics.ability)
+        console.log(charTurn, currentProtection);
+        setProtection(currentProtection)
+        ///setCharTurn(["bot", "attack"])
+      }
     }
   }
   function dodge() {
-    console.log("esquiva");
+
+    if (charTurn[0] == "player" && charTurn[1] == "defense") {
+
+      const currentProtection = currentAtributes.ability - botCurrent.characteristics.ability
+      
+      if (currentProtection < 1) {
+        console.log("impossivel esquivar");
+      } else if (diceValue <= currentProtection){
+        console.log("esquivou");
+      } else {
+        console.log("não esquivou");
+      }
+    
+    } else if(charTurn[0] == "enemy" && charTurn[1] == "defense"){
+      const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
+      const currentProtection = botCurrent.characteristics.ability - currentAtributes.ability
+      
+      if (currentProtection < 1) {
+        console.log("impossivel esquivar");
+      } else if (diceBot <= currentProtection){
+        console.log("esquivou");
+      } else {
+        console.log("não esquivou");
+      }
+    }
   }
+
+  const [finalDamage, setFinalDamage] = useState()
+
+  function calcDamage() {
+
+    const currentFinalDamage = damage - protection
+    if (currentFinalDamage <= 0) {
+      setFinalDamage(0)
+      setDamage(0)
+      setProtection(0)
+    }else {
+      setFinalDamage(currentFinalDamage)
+      setDamage(0)
+      setProtection(0)
+    }
+  }
+
+  useEffect(()=>{
+    if (protection != 0 && charTurn[0] == "bot" && charTurn[1] == "defense") {
+      calcDamage()
+      setCharTurn(["bot", "attack"])
+    }else if(protection != 0){
+      calcDamage()
+    }
+    
+  },[protection])
+
+  useEffect(()=>{
+    console.log(finalDamage);
+  },[finalDamage])
 
  return (
   <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected]}>

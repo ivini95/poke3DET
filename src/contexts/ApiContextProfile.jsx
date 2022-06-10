@@ -62,9 +62,9 @@ export function ApiProviderProfile(props) {
   }, [user])
 
   async function saveCurrentBot() {
+    bot.generateAtribute()
     const botNumber = bot.pokeNumber()
     const botChars = bot.atributes
-    bot.generateAtribute()
 
     const pokeRef = collection(db, "users", user.uid, "tempData")
       await setDoc(doc(pokeRef, "pokeBot"), {
