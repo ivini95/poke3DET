@@ -35,6 +35,9 @@ export function ApiProviderBattle(props){
       const botPokeRefSnap = await getDoc(botPokeRef)
       const pokeBot = botPokeRefSnap.data()
       setBotCurrent(pokeBot)
+      if (botLife == 0) {
+        setBotLife(pokeBot.life)
+      }
     }
     
   },[user])
@@ -47,6 +50,7 @@ export function ApiProviderBattle(props){
   const [diceValue , setDiceValue] = useState(1)
   const [botCurrent, setBotCurrent] = useState({})
   const [pokeStatusSelected, setPokeStatusSelected] = useState("")
+  const [botLife, setBotLife] = useState(0)
 
   const [historicTemp, setHistoricTemp] = useState({
     'id':0,
@@ -205,13 +209,13 @@ export function ApiProviderBattle(props){
         const currentProtection = (diceBot + (botCurrent.characteristics.armor * 2) + botCurrent.characteristics.ability)
         console.log(charTurn, currentProtection);
         setProtection(currentProtection)
-        //setCharTurn(["bot", "attack"])
+        
         
       }else {
         const currentProtection = (diceBot + botCurrent.characteristics.armor + botCurrent.characteristics.ability)
         console.log(charTurn, currentProtection);
         setProtection(currentProtection)
-        ///setCharTurn(["bot", "attack"])
+        
       }
     }
   }
@@ -268,13 +272,37 @@ export function ApiProviderBattle(props){
     }
     
   },[protection])
-
+  
   useEffect(()=>{
-    console.log(finalDamage);
+    if (finalDamage != undefined) {
+      
+      if (charTurn[0] == "bot" && charTurn[1] == "attack") {
+        
+        if (finalDamage > 0) {
+          setBotLife(botLife - finalDamage)
+          endBattle()
+        }
+      } else {
+        
+          if (finalDamage > 0) {
+            setCurrentLife(currentLife - finalDamage)
+            endBattle()
+        }
+      }
+    }
   },[finalDamage])
 
+  function endBattle() {
+    if (botLife <= 0) {
+      console.log("fim");
+    }
+    //resetar bot do banco de dados
+    //redirecionar para tela profile
+  }
+
+
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,botLife]}>
     {props.children}
   </ApiContextBattle.Provider>
  )
