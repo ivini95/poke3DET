@@ -7,9 +7,8 @@ function SkillContainer(){
 
   const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn] = useContext(ApiContextBattle)
 
-  const [buttonStateAt, setButtonStateAt] = useState(false)
-  const [buttonStateDef, setButtonStateDef] = useState(false)
-
+  const [buttonStateAt, setButtonStateAt] = useState(true)
+  const [buttonStateDef, setButtonStateDef] = useState(true)
   
   useEffect(()=>{
 
@@ -18,7 +17,7 @@ function SkillContainer(){
       setButtonStateDef(true)
     }
 
-    if (charTurn[0] == "player" && charTurn[1] == "defense" ) {
+    else if (charTurn[0] == "player" && charTurn[1] == "defense" ) {
       setButtonStateAt(true)
       setButtonStateDef(false)
     }else if (charTurn[0] == "player" && charTurn[1] == "attack"){
@@ -26,6 +25,14 @@ function SkillContainer(){
       setButtonStateAt(false)
     }
   },[charTurn])
+
+  useEffect(()=>{
+
+    if(currentAction == "initiative") {
+      setButtonStateAt(true)
+      setButtonStateDef(true)
+    }
+  },[currentAction])
   
   return (
     <div className='skillContainer'>

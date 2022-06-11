@@ -58,13 +58,27 @@ export function ApiProviderBattle(props){
     'textLog': ''
   })
 
-  const [currentAction, setCurrentAction] = useState("initiative")
+  const [currentAction, setCurrentAction] = useState("")
   const [charTurn, setCharTurn] = useState("")
   const [damage, setDamage] = useState(0)
   const [protection, setProtection] = useState(0)
 
+  useEffect(async ()=>{
+    
+    if (user.uid) {
+    
+    const isInitiativeRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+    const isInitiativeSnap = await getDoc(isInitiativeRef)
+    const isInitiative = isInitiativeSnap.data()
+    if (isInitiative.initiative == true) {
+      
+      setCurrentAction("initiative")
+    }
+    }
+  },[user])
 
-  /* useEffect(async () => {
+
+  useEffect(async () => {
     if (user.uid) {
       const turnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
       const turnSnap = await getDoc(turnRef)
@@ -72,7 +86,7 @@ export function ApiProviderBattle(props){
       setCharTurn(turn.turn)
     }
     
-  },[user]) */
+  },[user]) 
 
   function action() {
     
@@ -128,7 +142,7 @@ export function ApiProviderBattle(props){
   }
 
   useEffect(()=>{
-    
+    if (currentAction != "initiative") {
       if(charTurn[0] == "bot" && charTurn[1] == "attack" ){
         attack()
         
@@ -137,6 +151,9 @@ export function ApiProviderBattle(props){
         defend()
         console.log("bot defend");
       }
+    }
+    
+      
     
   },[charTurn])
 
@@ -333,27 +350,24 @@ export function ApiProviderBattle(props){
     
   },[protection])
 
-  useEffect(()=>{
-    console.log(damage, "dano mudou");
-  },[damage])
 
   const [lifeChange, setLifeChange] = useState(false)
   
   useEffect(async ()=>{
-    console.log("life update in db 0 ");
+    
     if (finalDamage != undefined) {
-      console.log("life update in db 1 ");
-      console.log(charTurn);
+     
+      
       if (charTurn[0] == "bot" && charTurn[1] == "attack") {
-        console.log("life update in db 2");
+        
         if (finalDamage > 0) {
-            console.log("life update in db 3");
+            
           if (user.uid) {
             const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
             await updateDoc(botPokeRef, {
               life:botCurrent.life - finalDamage
             })
-            console.log("life update in db 4");
+            
             const botPokeRefSnap = await getDoc(botPokeRef)
             const pokeBot = botPokeRefSnap.data()
             setBotCurrent(pokeBot)
@@ -374,16 +388,16 @@ export function ApiProviderBattle(props){
 
 
   function calcDamage() {
-    console.log(damage, protection,"função dano chamada");
+
     
       const currentFinalDamage = damage - protection
     if (currentFinalDamage <= 0) {
-      console.log(currentFinalDamage, "dano menor que 0");
+      
       setFinalDamage(0)
       setDamage(0)
       setProtection(0)
     }else {
-      console.log(currentFinalDamage);
+      
       setFinalDamage(currentFinalDamage , "dano maior que 0")
       setDamage(0)
       setProtection(0)
@@ -394,7 +408,6 @@ export function ApiProviderBattle(props){
   useEffect(()=> {
     if (lifeChange == true) {
         endBattle()
-        console.log('teste');
     }
   },[lifeChange])
 

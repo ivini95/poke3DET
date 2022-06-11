@@ -86,7 +86,9 @@ export function ApiProviderProfile(props) {
 
   async function createTempBattleData() {
     const pokeRef = collection(db, "users", user.uid, "tempData")
-      await setDoc(doc(pokeRef, "tempBattleData"), {})
+      await setDoc(doc(pokeRef, "tempBattleData"), {
+        initiative: true
+      })
   }
 
   return (
