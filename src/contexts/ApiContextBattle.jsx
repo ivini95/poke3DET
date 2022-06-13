@@ -159,98 +159,148 @@ export function ApiProviderBattle(props){
 
   async function attack() {
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
-
-      if (diceValue == 6) {
-        const currentDamage = (diceValue + (currentAtributes.strength * 2) + currentAtributes.ability )
-        setDamage(currentDamage)
+      if (diceValue <= currentAtributes.ability ) {
+        if (diceValue == 6) {
+          const currentDamage = (diceValue + (currentAtributes.strength * 2) + currentAtributes.ability )
+          setDamage(currentDamage)
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["bot","defense"]
+              })
+          console.log(charTurn, currentDamage);
+          setCharTurn(["bot","defense"])
+          setCurrentAction("")
+          
+        }else {
+          const currentDamage = (diceValue + currentAtributes.strength + currentAtributes.ability )
+          setDamage(currentDamage)
+          console.log(charTurn, currentDamage);
+          setCurrentAction("")
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["bot","defense"]
+              })
+          setCharTurn(["bot","defense"])
+         
+        }
+      }else{
+        console.log("errou");
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
-            await updateDoc(battleTurnRef, {
-              turn: ["bot","defense"]
-            })
-        console.log(charTurn, currentDamage);
-        setCharTurn(["bot","defense"])
-        setCurrentAction("")
-        
-      }else {
-        const currentDamage = (diceValue + currentAtributes.strength + currentAtributes.ability )
-        setDamage(currentDamage)
-        console.log(charTurn, currentDamage);
-        setCurrentAction("")
-        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
-            await updateDoc(battleTurnRef, {
-              turn: ["bot","defense"]
-            })
-        setCharTurn(["bot","defense"])
-       
-        
+              await updateDoc(battleTurnRef, {
+                turn: ["bot","attack"]
+              })
+          setCharTurn(["bot","attack"])
+          setCurrentAction("")
       }
+
+      
       
     }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
       const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
-      if (diceBot == 6) {
-        const currentDamage = (diceBot + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
-        console.log(charTurn, currentDamage);
-        setDamage(currentDamage)
-        setCharTurn(["player", "defense"])
-        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
-            await updateDoc(battleTurnRef, {
-              turn: ["player","defense"]
-            })
-        
+      if (diceBot <= botCurrent.characteristics.ability) {
+        if (diceBot == 6) {
+          const currentDamage = (diceBot + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
+          console.log(charTurn, currentDamage);
+          setDamage(currentDamage)
+          setCharTurn(["player", "defense"])
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["player","defense"]
+              })
+          
+        }else {
+          const currentDamage = (diceBot + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
+          console.log(charTurn, currentDamage);
+          setDamage(currentDamage)
+          setCharTurn(["player", "defense"])
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["player","defense"]
+              })
+          
+        }
       }else {
-        const currentDamage = (diceBot + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
-        console.log(charTurn, currentDamage);
-        setDamage(currentDamage)
-        setCharTurn(["player", "defense"])
-        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
-            await updateDoc(battleTurnRef, {
-              turn: ["player","defense"]
-            })
-        
+        console.log("bot errou");
+          setCharTurn(["player", "attack"])
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["player","attack"]
+              })
       }
+      
       
     }
   }
 
   async function rangedAttack() {
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
-
-      if (diceValue == 6) {
-        const currentDamage = (diceValue + (currentAtributes.firePower * 2) + currentAtributes.ability )
-        console.log(charTurn, currentDamage);
-        setDamage(currentDamage)
-        setCharTurn(["bot","defense"])
-        setCurrentAction("")
+      if (diceValue <= currentAtributes.ability ) {
+        if (diceValue == 6) {
+          const currentDamage = (diceValue + (currentAtributes.firePower * 2) + currentAtributes.ability )
+          setDamage(currentDamage)
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["bot","defense"]
+              })
+          console.log(charTurn, currentDamage);
+          setCharTurn(["bot","defense"])
+          setCurrentAction("")
+          
+        }else {
+          const currentDamage = (diceValue + currentAtributes.firePower + currentAtributes.ability )
+          setDamage(currentDamage)
+          console.log(charTurn, currentDamage);
+          setCurrentAction("")
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["bot","defense"]
+              })
+          setCharTurn(["bot","defense"])
+         
+        }
+      }else{
+        console.log("errou");
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
-            await updateDoc(battleTurnRef, {
-              turn: ["bot","defense"]
-            })
-        
-        
-      }else {
-        const currentDamage = (diceValue + currentAtributes.firePower + currentAtributes.ability )
-        console.log(charTurn, currentDamage);
-        setDamage(currentDamage)
-        setCharTurn(["bot","defense"])
-        setCurrentAction("")
-        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
-            await updateDoc(battleTurnRef, {
-              turn: ["bot","defense"]
-            })
-        
-        
+              await updateDoc(battleTurnRef, {
+                turn: ["bot","attack"]
+              })
+          setCharTurn(["bot","attack"])
+          setCurrentAction("")
       }
+
+      
       
     }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
       const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
-      if (diceBot == 6) {
-        const currentDamage = (diceBot + (botCurrent.characteristics.firePower * 2) + botCurrent.characteristics.ability)
-        console.log(charTurn, currentDamage);
-        setDamage(currentDamage)
+      if (diceBot <= botCurrent.characteristics.ability) {
+        if (diceBot == 6) {
+          const currentDamage = (diceBot + (botCurrent.characteristics.firePower * 2) + botCurrent.characteristics.ability)
+          console.log(charTurn, currentDamage);
+          setDamage(currentDamage)
+          setCharTurn(["player", "defense"])
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["player","defense"]
+              })
+          
+        }else {
+          const currentDamage = (diceBot + botCurrent.characteristics.firePower + botCurrent.characteristics.ability)
+          console.log(charTurn, currentDamage);
+          setDamage(currentDamage)
+          setCharTurn(["player", "defense"])
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["player","defense"]
+              })
+          
+        }
       }else {
-        const currentDamage = (diceBot + botCurrent.characteristics.firePower + botCurrent.characteristics.ability)
-        console.log(charTurn, currentDamage);
-        setDamage(currentDamage)
+        console.log("bot errou");
+          setCharTurn(["player", "attack"])
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turn: ["player","attack"]
+              })
       }
       
     }
