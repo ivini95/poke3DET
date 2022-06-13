@@ -1,5 +1,6 @@
 import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { useState, createContext, useEffect } from "react";
+import DiceBattle from "../components/PokeBattlePage/DiceBattle";
 import { db } from "../dataBase/firerebase";
 import { UserAuth } from "./AuthContext";
 
@@ -57,6 +58,89 @@ export function ApiProviderBattle(props){
     'text': `Resultado Dado:${1}`,
     'textLog': ''
   })
+
+  //--------------------------------------Dice Animation
+
+
+  var cube = document.getElementById('cube');
+  
+  const [diceRolling, setDiceRolling] = useState(false)
+  
+  function rotateDice(randomNumber) {
+
+    setDiceRolling(true)
+
+    var xyRand = getDiceSide(randomNumber)
+
+    
+    cube.style.transform = 'rotateX('+xyRand[0]+'deg) rotateY('+xyRand[1]+'deg)';
+    
+    setTimeout(() => {
+      setDiceRolling(false)
+    }, 2100);
+  }
+
+  const randomNumberInicial = Math.floor(Math.random() * 6) + 1;
+
+  const [compareRandomDeg, setCompareRandomDeg] = useState(randomNumberInicial)
+
+function getDiceSide(randomNumber){
+
+  console.log(compareRandomDeg);
+
+  var min = 1;
+  var max = 6;
+
+  const randomDeg = Math.floor(Math.random() * ((max-min) + min))
+  if (randomDeg == compareRandomDeg) {
+    setCompareRandomDeg(randomDeg + 1)
+  }else {
+    setCompareRandomDeg(randomDeg)
+  }
+  
+  let multipleDeg = compareRandomDeg * 360
+
+  const deg = [0,0]
+
+
+  switch (randomNumber) {
+    case 1:
+        deg[0] = 0 + multipleDeg
+        deg[1] = 0 + multipleDeg
+      
+      break;
+      case 2:
+        deg[0] = 0 + multipleDeg
+        deg[1] = 180 + multipleDeg
+       
+      break;
+      case 3:
+        deg[0] = 180 + multipleDeg
+        deg[1] = 90 + multipleDeg
+        
+      break;
+      case 4:
+        deg[0] = 180 + multipleDeg
+        deg[1] = 270 + multipleDeg
+      break;
+      case 5:
+        deg[0] = 270 + multipleDeg
+        deg[1] = 360 + multipleDeg
+      break;
+      case 6:
+        deg[0] = 90 + multipleDeg
+        deg[1] = 90 + multipleDeg
+      break;
+  
+    default:
+      break;
+  }
+
+  return deg
+} 
+
+
+  //--------------------------------------Battle actions
 
   const [currentAction, setCurrentAction] = useState("")
   const [charTurn, setCharTurn] = useState("")
@@ -478,7 +562,7 @@ export function ApiProviderBattle(props){
   }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling]}>
     {props.children}
   </ApiContextBattle.Provider>
  )
