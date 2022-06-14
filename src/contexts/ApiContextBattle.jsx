@@ -11,6 +11,7 @@ export function ApiProviderBattle(props){
 
   const [pokemons, setPokemons] = useState({})
 
+
   
   useEffect(()=>{//consome POKEAPI
     
@@ -70,6 +71,44 @@ export function ApiProviderBattle(props){
 
   function generateValue() {
     console.log('jogou dado');
+    console.log(isBotRollingDice, diceBotValue);
+    if (isBotRollingDice == true) {
+      if (isTurnDamage == false) {
+        if (diceRolling == false) {
+          console.log(currentAction);
+          
+            console.log("dado de tentativa bot", diceBotValue);
+            rotateDice(diceBotValue)
+            
+            setTimeout(() => {
+              historicTempCopy.id ++
+              historicTempCopy.diceValue = diceBotValue
+              setHistoricTemp({...historicTemp,...historicTempCopy})
+              setTurn(historicTempCopy.id);
+            }, 2010);
+          
+          setIsBotRollingDice(false)
+          
+        }
+      }else if(isTurnDamage == true){
+      if (diceRolling == false) {
+        console.log(currentAction);
+        
+          console.log("dado de dano bot", diceBotValue);
+          rotateDice(diceBotValue)
+          
+          damageFase(diceBotValue)
+          setTimeout(() => {
+            historicTempCopy.id ++
+            historicTempCopy.diceValue = diceBotValue
+            setHistoricTemp({...historicTemp,...historicTempCopy})
+            setTurn(historicTempCopy.id);
+          }, 2010);
+        
+        
+    }
+    }
+    }else {
       if (isTurnDamage == false) {
         if (diceRolling == false) {
           if (currentAction != "") {
@@ -85,7 +124,7 @@ export function ApiProviderBattle(props){
           }
           console.log("dado de tentativa ");
         }
-      }else if(isTurnDamage == true)
+      }else if(isTurnDamage == true){
       if (diceRolling == false) {
         if (currentAction != "") {
           const randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -101,6 +140,8 @@ export function ApiProviderBattle(props){
         }
         console.log("dado de dano ");
     }
+    }
+  }
     
   }
 
@@ -247,29 +288,53 @@ function getDiceSide(randomNumber){
     
   }
 
+  const[diceBotValue, setDiceBotValue] = useState(0)
+  const [isBotRollingDice, setIsBotRollingDice] = useState(false)
 
   async function initiative(){
 
     let botDiceInitiative = Math.floor(Math.random() * (6 - 0) + 1)
+    setDiceBotValue(botDiceInitiative)
+    
+    setTimeout(() => {
+      setIsBotRollingDice(true)
+    }, 1000);
+    
+    setTimeout(() => {
+      if (botDiceInitiative > diceValue) {
+        setCurrentAction("")
+        setCharTurn(["bot","attack"])
+        console.log("bot primeiro");
+  
+      }else if(botDiceInitiative < diceValue) {
+        setCurrentAction("")
+        setCharTurn(["player","attack"])
+        console.log("player primeiro");
+      }else {
+        console.log("Empate");
+      } 
+    }, 2200);
+    
     if (botDiceInitiative > diceValue) {
-      setCurrentAction("")
-      setCharTurn(["bot","attack"])
+
       await setDoc(doc(db, "users", user.uid,"tempData","tempBattleData"), {
         turn: ["bot","attack"]
       })
-      console.log("bot primeiro");
 
     }else if(botDiceInitiative < diceValue) {
-      setCurrentAction("")
-      setCharTurn(["player","attack"])
+
       await setDoc(doc(db, "users", user.uid,"tempData","tempBattleData"), {
         turn: ["player","attack"]
       })
-      console.log("player primeiro");
-    }else {
-      console.log("Empate");
+
     }
   }
+
+  useEffect(()=>{//verificar se é o bot que está jogando o dado
+    if (isBotRollingDice == true) {
+      generateValue()
+    }
+  },[isBotRollingDice])
 
   useEffect(()=>{//verifica se é a vez do bot
     if (currentAction != "initiative") {
@@ -302,15 +367,29 @@ function getDiceSide(randomNumber){
       
     }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
       const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
-      console.log("bot jogou dado");
-      if (diceBot <= botCurrent.characteristics.ability) {
-        setIsTurnDamage(true)
-        damageFase(diceBot,'meleeAttack')
-        console.log("bot acertou", diceBot);
-      }else {
-        console.log("bot errou", diceBot);
-          setCharTurn(["player", "attack"])
-          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+      setDiceBotValue(diceBot)
+      setTimeout(() => {
+        setIsBotRollingDice(true)
+        console.log("bot jogou dado");
+      }, 1000);
+
+      setTimeout(() => {
+        if (diceBot <= botCurrent.characteristics.ability) {
+          setIsTurnDamage(true)
+          const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
+          setTimeout(() => {
+            damageFase(diceBotDamage,'meleeAttack')
+          console.log("bot acertou", diceBot);
+          }, 1000);
+          
+        }else {
+          console.log("bot errou", diceBot);
+            setCharTurn(["player", "attack"])           
+        }
+      }, 3200);
+      
+      if (diceBot >= botCurrent.characteristics.ability) {
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","attack"]
               })
@@ -335,16 +414,30 @@ function getDiceSide(randomNumber){
       }
       
     }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
-      const diceBot = Math.floor(Math.random() * 6) + 1;
-      console.log("bot jogou dado");
-      if (diceBot <= botCurrent.characteristics.ability) {
-        setIsTurnDamage(true)
-        damageFase(diceBot,'rangerAttack')
-        console.log("bot acertou", diceBot);
-      }else {
-        console.log("bot errou", diceBot);
-          setCharTurn(["player", "attack"])
-          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+      const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
+      setDiceBotValue(diceBot)
+      setTimeout(() => {
+        setIsBotRollingDice(true)
+        console.log("bot jogou dado");
+      }, 1000);
+
+      setTimeout(() => {
+        if (diceBot <= botCurrent.characteristics.ability) {
+          setIsTurnDamage(true)
+          const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
+          setTimeout(() => {
+            damageFase(diceBotDamage,'rangerAttack')
+          console.log("bot acertou", diceBot);
+          }, 1000);
+          
+        }else {
+          console.log("bot errou", diceBot);
+            setCharTurn(["player", "attack"])           
+        }
+      }, 3200);
+      
+      if (diceBot >= botCurrent.characteristics.ability) {
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","attack"]
               })
@@ -435,10 +528,12 @@ function getDiceSide(randomNumber){
       if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         if (randomNumber == 6) {
           const currentDamage = (randomNumber + (currentAtributes.strength * 2) + currentAtributes.ability )
+          setTimeout(() => {
+            setCharTurn(["bot","defense"])
+            setCurrentAction("")
+            setIsTurnDamage(false)
+          }, 2100);
           setDamage(currentDamage)
-          setCharTurn(["bot","defense"])
-          setCurrentAction("")
-          setIsTurnDamage(false)
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["bot","defense"]
@@ -447,10 +542,12 @@ function getDiceSide(randomNumber){
           
         }else {
           const currentDamage = (randomNumber + currentAtributes.strength + currentAtributes.ability )
+          setTimeout(() => {
+            setCharTurn(["bot","defense"])
+            setCurrentAction("")
+            setIsTurnDamage(false)
+          }, 2100);
           setDamage(currentDamage)
-          setCharTurn(["bot","defense"])
-          setCurrentAction("")
-          setIsTurnDamage(false)
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
           
               await updateDoc(battleTurnRef, {
@@ -460,34 +557,43 @@ function getDiceSide(randomNumber){
           
         }
       }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
-        console.log('bot aplica dano');
-        const diceBot = Math.floor(Math.random() * 6) + 1;
-        generateValue()
         
-      if (diceBot == 6) {
-          const currentDamage = (diceBot + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
-          console.log(charTurn, currentDamage);
-          setDamage(currentDamage)
-          setCharTurn(["player", "defense"])
-          setIsTurnDamage(false)
+        setTimeout(() => {
+          setDiceBotValue(randomNumber)
+          setIsBotRollingDice(true)
+        }, 1000);
+
+
+      if (randomNumber == 6) {
+          setTimeout(() => {
+            const currentDamage = (randomNumber + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
+            console.log(charTurn, currentDamage);
+            setDamage(currentDamage)
+            setCharTurn(["player", "defense"])
+            setIsTurnDamage(false)
+          }, 3100);
+          
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","defense"]
               })
           
         }else {
-          const currentDamage = (diceBot + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
-          console.log(charTurn, currentDamage);
-          setDamage(currentDamage)
-          setCharTurn(["player", "defense"])
-          setIsTurnDamage(false)
+          setTimeout(() => {
+            const currentDamage = (randomNumber + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
+            console.log(charTurn, currentDamage);
+            setDamage(currentDamage)
+            setCharTurn(["player", "defense"])
+            setIsTurnDamage(false)
+          }, 3100);
+          
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","defense"]
               })
         }
       }
-    }else if (attackType == "rangerAttack" || BotAttackType == "meleeAttack") {
+    }else if (attackType == "rangerAttack" || BotAttackType == "rangerAttack") {
       if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         if (randomNumber == 6) {
           const currentDamage = (randomNumber + (currentAtributes.firePower * 2) + currentAtributes.ability )
@@ -516,26 +622,36 @@ function getDiceSide(randomNumber){
           
         }
       }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
-        const diceBot = Math.floor(Math.random() * 6) + 1;
-        generateValue()
         
-      if (diceBot == 6) {
-          const currentDamage = (diceBot + (botCurrent.characteristics.firePower * 2) + botCurrent.characteristics.ability)
-          console.log(charTurn, currentDamage);
-          setDamage(currentDamage)
-          setCharTurn(["player", "defense"])
-          setIsTurnDamage(false)
+        setTimeout(() => {
+          setDiceBotValue(randomNumber)
+          setIsBotRollingDice(true)
+        }, 1000);
+
+
+      if (randomNumber == 6) {
+          setTimeout(() => {
+            const currentDamage = (randomNumber + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
+            console.log(charTurn, currentDamage);
+            setDamage(currentDamage)
+            setCharTurn(["player", "defense"])
+            setIsTurnDamage(false)
+          }, 3100);
+          
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","defense"]
               })
           
         }else {
-          const currentDamage = (diceBot + botCurrent.characteristics.firePower + botCurrent.characteristics.ability)
-          console.log(charTurn, currentDamage);
-          setDamage(currentDamage)
-          setCharTurn(["player", "defense"])
-          setIsTurnDamage(false)
+          setTimeout(() => {
+            const currentDamage = (randomNumber + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
+            console.log(charTurn, currentDamage);
+            setDamage(currentDamage)
+            setCharTurn(["player", "defense"])
+            setIsTurnDamage(false)
+          }, 3100);
+          
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","defense"]
