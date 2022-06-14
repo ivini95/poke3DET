@@ -27,6 +27,19 @@ function SkillContainer(){
   },[charTurn])
 
   useEffect(()=>{
+    if(currentAction == "initiative") {
+      setButtonStateAt(true)
+      setButtonStateDef(true)
+    }else if (charTurn[0] == "bot" && charTurn[1] == "defense" ) {
+      setButtonStateAt(true)
+      setButtonStateDef(true)
+    }else if (charTurn[0] == "bot" && charTurn[1] == "attack"){
+      setButtonStateDef(true)
+      setButtonStateAt(true)
+    }
+  },[charTurn])
+
+  useEffect(()=>{
 
     if(currentAction == "initiative") {
       setButtonStateAt(true)
