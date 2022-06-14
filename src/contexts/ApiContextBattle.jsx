@@ -476,19 +476,26 @@ function getDiceSide(randomNumber){
       
     }else if(charTurn[0] == "bot") {
       const diceBot = Math.floor(Math.random() * (6 - 0) + 1)
+      setDiceBotValue(diceBot)
+      setTimeout(() => {
+        setIsBotRollingDice(true)
+      }, 1000);
 
-      if (diceBot == 6) {
-        const currentProtection = (diceBot + (botCurrent.characteristics.armor * 2) + botCurrent.characteristics.ability)
-        console.log(charTurn, currentProtection);
-        setProtection(currentProtection)
-        
-        
-      }else {
-        const currentProtection = (diceBot + botCurrent.characteristics.armor + botCurrent.characteristics.ability)
-        console.log(charTurn, currentProtection);
-        setProtection(currentProtection)
-        
-      }
+      setTimeout(() => {
+        if (diceBot == 6) {
+          const currentProtection = (diceBot + (botCurrent.characteristics.armor * 2) + botCurrent.characteristics.ability)
+          console.log(charTurn, currentProtection);
+          setProtection(currentProtection)
+          
+          
+        }else {
+          const currentProtection = (diceBot + botCurrent.characteristics.armor + botCurrent.characteristics.ability)
+          console.log(charTurn, currentProtection);
+          setProtection(currentProtection)
+          
+        }
+      }, 3100);
+      
     }
   }
   function dodge() {
