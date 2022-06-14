@@ -5,7 +5,7 @@ import './style.css'
 
 function SkillContainer(){
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase] = useContext(ApiContextBattle)
 
   const [buttonStateAt, setButtonStateAt] = useState(true)
   const [buttonStateDef, setButtonStateDef] = useState(true)
@@ -33,6 +33,13 @@ function SkillContainer(){
       setButtonStateDef(true)
     }
   },[currentAction])
+
+  useEffect(()=>{
+    if (isTurnDamage == true) {
+      setButtonStateAt(true)
+      setButtonStateDef(true)
+    }
+  },[isTurnDamage])
   
   return (
     <div className='skillContainer'>

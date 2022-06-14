@@ -5,34 +5,7 @@ import './style.css';
 export function DiceBattle(){
   
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling] = useContext(ApiContextBattle)
-
-  let historicTempCopy = {...historicTemp};
-
-  const[turn, setTurn] = useState(0)
-
-  function generateValue() {
-    if (diceRolling == false) {
-      if (currentAction != "") {
-        const randomNumber = Math.floor(Math.random() * 6) + 1;
-        rotateDice(randomNumber)
-        setDiceValue(randomNumber)
-        setTimeout(() => {
-          historicTempCopy.id ++
-          historicTempCopy.diceValue = randomNumber
-          setHistoricTemp({...historicTemp,...historicTempCopy})
-          setTurn(historicTempCopy.id);
-        }, 2010);
-        
-      }
-    }
-  }
-
-  useEffect(()=> {
-    if (turn > 0) {
-      action()
-    }
-  },[turn])
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue] = useContext(ApiContextBattle)
 
   return (
     
