@@ -17,8 +17,6 @@ function LoginPage() {
     const usersSnap = await getDocs(userRef)
     
     let userExist = false;
-
-    const docRef = doc(db, "users", user.uid);
     
     if (user != null) {
       if (user.uid) {    
@@ -26,6 +24,7 @@ function LoginPage() {
         usersSnap.forEach(async (element) => {
           if (element.id == user.uid) {
             userExist = true
+            const docRef = doc(db, "users", user.uid);
             const docSnap = (await getDoc(docRef)).data();
             if (docSnap.nickName) {
               navigate('/createpoke')

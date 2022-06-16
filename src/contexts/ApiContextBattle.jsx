@@ -332,7 +332,6 @@ export function ApiProviderBattle(props){
           console.log("bot ataque distancia");
         }
         
-        
       }else if (charTurn[0] == "bot" && charTurn[1] == "defense" ){
         if (dodged == false) {
           let skillRandom = Math.floor(Math.random() * (2 - 0) + 1)
@@ -448,10 +447,10 @@ export function ApiProviderBattle(props){
     }
   }
 
-  async function defend() {
+  async function defend(miss) {
 
     if (charTurn[0] == "player" && charTurn[1] == "defense" && protection == 0) {
-      if (dodged == true) {
+      if (miss == "miss") {
       if (diceValue == 6) {
         const currentProtection = (currentAtributes.armor * 2) + currentAtributes.ability 
         console.log("player defesa critica após esquiva",currentProtection);
@@ -505,7 +504,7 @@ export function ApiProviderBattle(props){
 
       setTimeout(() => {
         //VERIFICAR SE JÁ ESQUIVOU
-        if (dodged == true) {
+        if (miss == "miss") {
           if (diceBot == 6) {
             const currentProtection = diceBot + (botCurrent.characteristics.armor * 2) 
             console.log("bot defesa critica após esquiva",currentProtection);
@@ -558,20 +557,12 @@ export function ApiProviderBattle(props){
           console.log("esquivou", damage);
         } else {
           setDodged(true)
-          defend()
+          defend("miss")
           console.log("não esquivou");
         }
       
       } else if(charTurn[0] == "bot" && charTurn[1] == "defense"){
 
-        /* if (botCurrent) {
-          const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
-          const botPokeRefSnap = await getDoc(botPokeRef)
-          const pokeBot = botPokeRefSnap.data()
-          const abilityTest = pokeBot.characteristics.ability - currentAtributes.ability 
-          return pokeBot
-        }
-        console.log(pokeBot); */
  
         const abilityTest = botCurrent.characteristics.ability - currentAtributes.ability 
 
@@ -599,7 +590,7 @@ export function ApiProviderBattle(props){
             } else {
               setDodged(true)
               console.log("bot não esquivou");
-              defend()
+              defend("miss")
           }
         } 
       }
@@ -621,11 +612,11 @@ export function ApiProviderBattle(props){
             setIsTurnDamage(false)
           }, 2100);
           setDamage(currentDamage)
+          console.log("player ataque critico ", currentDamage);
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["bot","defense"]
               })
-          console.log(charTurn, currentDamage);
           
         }else {
           const currentDamage = (randomNumber + currentAtributes.strength + currentAtributes.ability )
@@ -635,13 +626,12 @@ export function ApiProviderBattle(props){
             setIsTurnDamage(false)
           }, 2100);
           setDamage(currentDamage)
+          console.log("player ataque", currentDamage);
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
           
               await updateDoc(battleTurnRef, {
                 turn: ["bot","defense"]
               })
-          console.log(charTurn, currentDamage);
-          
         }
       }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
         
@@ -684,28 +674,33 @@ export function ApiProviderBattle(props){
       if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         if (randomNumber == 6) {
           const currentDamage = (randomNumber + (currentAtributes.firePower * 2) + currentAtributes.ability )
+          setTimeout(() => {
+            setCharTurn(["bot","defense"])
+            setCurrentAction("")
+            setIsTurnDamage(false)
+          }, 2100);
           setDamage(currentDamage)
-          setCharTurn(["bot","defense"])
-          setCurrentAction("")
-          setIsTurnDamage(false)
+          console.log("player ataque a distancia critico", currentDamage);
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["bot","defense"]
               })
-          console.log(charTurn, currentDamage);
           
         }else {
           const currentDamage = (randomNumber + currentAtributes.firePower + currentAtributes.ability )
+          setTimeout(() => {
+            setCharTurn(["bot","defense"])
+            setCurrentAction("")
+            setIsTurnDamage(false)
+          }, 2100);
           setDamage(currentDamage)
-          setCharTurn(["bot","defense"])
-          setCurrentAction("")
-          setIsTurnDamage(false)
+          console.log("player ataque a distancia", currentDamage);
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
           
               await updateDoc(battleTurnRef, {
                 turn: ["bot","defense"]
               })
-          console.log(charTurn, currentDamage);
+          
           
         }
       }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
