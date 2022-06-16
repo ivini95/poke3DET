@@ -69,11 +69,10 @@ export function ApiProviderBattle(props){
   const[turn, setTurn] = useState(0)
 
   function generateValue() {
-
+    console.log("dado rolado");
     if (isBotRollingDice == true) {
       if (isTurnDamage == false) {
         if (diceRolling == false) {
-            console.log("dado de tentativa bot", diceBotValue);
             rotateDice(diceBotValue)
             setIsBotRollingDice(false)
             setTimeout(() => {
@@ -88,7 +87,6 @@ export function ApiProviderBattle(props){
         }
       }else if(isTurnDamage == true){
       if (diceRolling == false) {
-          console.log("dado de dano bot", diceBotValue);
           rotateDice(diceBotValue)
           damageFase(diceBotValue)
           setIsBotRollingDice(false)
@@ -115,7 +113,6 @@ export function ApiProviderBattle(props){
               setTurn(historicTempCopy.id);
             }, 2010);
           }
-          console.log("dado de tentativa ");
         }
       }else if(isTurnDamage == true){
         if (diceRolling == false) {
@@ -131,7 +128,6 @@ export function ApiProviderBattle(props){
               setTurn(historicTempCopy.id);
             }, 2010);
           }
-          console.log("dado de dano ");
       }
     }
   }
@@ -318,7 +314,6 @@ export function ApiProviderBattle(props){
   }
 
   useEffect(()=>{//verificar se é o bot que está jogando o dado
-    console.log(isBotRollingDice);
     if (isBotRollingDice == true) {
       generateValue()
       setIsBotRollingDice(false)
@@ -329,7 +324,6 @@ export function ApiProviderBattle(props){
     if (currentAction != "initiative") {
       if(charTurn[0] == "bot" && charTurn[1] == "attack" ){
         let skillRandom = Math.floor(Math.random() * (2 - 0) + 1)
-        console.log(skillRandom);
         if (skillRandom == 1) {
           attack()
           console.log("bot ataque");
@@ -340,17 +334,19 @@ export function ApiProviderBattle(props){
         
         
       }else if (charTurn[0] == "bot" && charTurn[1] == "defense" ){
-        let skillRandom = Math.floor(Math.random() * (2 - 0) + 1)
-        console.log(skillRandom);
-        if (skillRandom == 1) {
-          defend()
-          console.log("bot defend");
+        if (dodged == false) {
+          let skillRandom = Math.floor(Math.random() * (2 - 0) + 1)
+          console.log(skillRandom);
+          if (skillRandom == 1) {
+            defend()
+            console.log("bot defend");
+          }else {
+            dodge()
+            console.log("bot esquiva");
+          }
         }else {
-          dodge()
-          console.log("bot esquiva");
+          defend()
         }
-        
-        
       }
     }
   },[charTurn])
@@ -549,7 +545,6 @@ export function ApiProviderBattle(props){
         const abilityTest = currentAtributes.ability - botCurrent.characteristics.ability
         
         if (abilityTest < 1) {
-          setDodged(true)
           defend()
           console.log("impossivel esquivar");
         } else if (diceValue <= abilityTest){
