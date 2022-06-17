@@ -81,11 +81,9 @@ export function ApiProviderBattle(props){
               setHistoricTemp({...historicTemp,...historicTempCopy})
               //setTurn(historicTempCopy.id);
             }, 2010);
-          
-         
-          
         }
       }else if(isTurnDamage == true){
+        
       if (diceRolling == false) {
           rotateDice(diceBotValue)
           damageFase(diceBotValue)
@@ -115,8 +113,8 @@ export function ApiProviderBattle(props){
           }
         }
       }else if(isTurnDamage == true){
+        
         if (diceRolling == false) {
-          if (currentAction != "") {
             const randomNumber = Math.floor(Math.random() * 6) + 1;
             rotateDice(randomNumber)
             setDiceValue(randomNumber)
@@ -127,7 +125,6 @@ export function ApiProviderBattle(props){
               setHistoricTemp({...historicTemp,...historicTempCopy})
               setTurn(historicTempCopy.id);
             }, 2010);
-          }
       }
     }
   }
@@ -243,6 +240,13 @@ export function ApiProviderBattle(props){
       const turnSnap = await getDoc(turnRef)
       const turn = turnSnap.data()
       setCharTurn(turn.turn)
+      console.log(turn.turnDamage);
+      if (turn.turnDamage) {
+        setIsTurnDamage(turn.turnDamage)
+      }
+      if (turn.attackTypeTemp) {
+        setAttackType(turn.attackTypeTemp)
+      }
     }
     
   },[user]) 
@@ -354,6 +358,11 @@ export function ApiProviderBattle(props){
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
       if (diceValue <= currentAtributes.ability ) {
         console.log('acertou');
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turnDamage: true,
+                attackTypeTemp:"meleeAttack"
+              })
         setIsTurnDamage(true)
         setAttackType("meleeAttack")
       }else{
@@ -374,20 +383,27 @@ export function ApiProviderBattle(props){
         console.log("bot jogou dado");
       }, 1000);
 
-      setTimeout(() => {
+      
         if (diceBot <= botCurrent.characteristics.ability) {
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turnDamage: true
+              })
+          setTimeout(() => {
           setIsTurnDamage(true)
           const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
           setTimeout(() => {
             damageFase(diceBotDamage,'meleeAttack')
           console.log("bot acertou", diceBot);
           }, 1000);
+          }, 3100);
           
         }else {
           console.log("bot errou", diceBot);
-            setCharTurn(["player", "attack"])           
+          setTimeout(() => {
+            setCharTurn(["player", "attack"])
+          }, 3200);
         }
-      }, 3200);
       
       if (diceBot >= botCurrent.characteristics.ability) {
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
@@ -402,6 +418,11 @@ export function ApiProviderBattle(props){
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
       if (diceValue <= currentAtributes.ability ) {
         console.log('acertou');
+        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turnDamage: true,
+                attackTypeTemp:"rangerAttack"
+              })
         setIsTurnDamage(true)
         setAttackType("rangerAttack")
       }else{
@@ -422,21 +443,37 @@ export function ApiProviderBattle(props){
         console.log("bot jogou dado");
       }, 1000);
 
-      setTimeout(() => {
+      
         if (diceBot <= botCurrent.characteristics.ability) {
-          setIsTurnDamage(true)
           const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
+          const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              await updateDoc(battleTurnRef, {
+                turnDamage: true
+              })
           setTimeout(() => {
             damageFase(diceBotDamage,'rangerAttack')
-          console.log("bot acertou", diceBot);
+            console.log("bot acertou", diceBot);
           }, 1000);
+          setTimeout(() => {
+
+            setIsTurnDamage(true)
+            const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
+
+            setTimeout(() => {
+              damageFase(diceBotDamage,'rangerAttack')
+              console.log("bot acertou", diceBot);
+            }, 1000);
+          }, 3100);
+          
+          
           
         }else {
           console.log("bot errou", diceBot);
-            setCharTurn(["player", "attack"])
-            
+            setTimeout(() => {
+              setCharTurn(["player", "attack"])
+            }, 3200);
         }
-      }, 3200);
+      
       
       if (diceBot >= botCurrent.characteristics.ability) {
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
@@ -602,6 +639,8 @@ export function ApiProviderBattle(props){
 
   async function damageFase(randomNumber, BotAttackType){
 
+    console.log(attackType);
+
     if (attackType == "meleeAttack" || BotAttackType == "meleeAttack") {
       if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         if (randomNumber == 6) {
@@ -609,13 +648,15 @@ export function ApiProviderBattle(props){
           setTimeout(() => {
             setCharTurn(["bot","defense"])
             setCurrentAction("")
-            setIsTurnDamage(false)
+            
           }, 2100);
+          setIsTurnDamage(false)
           setDamage(currentDamage)
           console.log("player ataque critico ", currentDamage);
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
-                turn: ["bot","defense"]
+                turn: ["bot","defense"],
+                turnDamage: false
               })
           
         }else {
@@ -630,7 +671,8 @@ export function ApiProviderBattle(props){
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
           
               await updateDoc(battleTurnRef, {
-                turn: ["bot","defense"]
+                turn: ["bot","defense"],
+                turnDamage: false
               })
         }
       }else if(charTurn[0] == "bot" && charTurn[1] == "attack") {
@@ -652,7 +694,8 @@ export function ApiProviderBattle(props){
           
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
-                turn: ["player","defense"]
+                turn: ["player","defense"],
+                turnDamage: false
               })
           
         }else {
@@ -666,7 +709,8 @@ export function ApiProviderBattle(props){
           
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
-                turn: ["player","defense"]
+                turn: ["player","defense"],
+                turnDamage: false
               })
         }
       }
@@ -683,7 +727,8 @@ export function ApiProviderBattle(props){
           console.log("player ataque a distancia critico", currentDamage);
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
-                turn: ["bot","defense"]
+                turn: ["bot","defense"],
+                turnDamage: false
               })
           
         }else {
@@ -698,7 +743,8 @@ export function ApiProviderBattle(props){
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
           
               await updateDoc(battleTurnRef, {
-                turn: ["bot","defense"]
+                turn: ["bot","defense"],
+                turnDamage: false
               })
           
           
@@ -722,7 +768,8 @@ export function ApiProviderBattle(props){
           
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
-                turn: ["player","defense"]
+                turn: ["player","defense"],
+                turnDamage: false
               })
           
         }else {
@@ -736,7 +783,8 @@ export function ApiProviderBattle(props){
           
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
-                turn: ["player","defense"]
+                turn: ["player","defense"],
+                turnDamage: false
               })
         }
       }
