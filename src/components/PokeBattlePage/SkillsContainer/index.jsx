@@ -5,11 +5,20 @@ import './style.css'
 
 function SkillContainer(){
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge] = useContext(ApiContextBattle)
 
   const [buttonStateAt, setButtonStateAt] = useState(true)
   const [buttonStateDef, setButtonStateDef] = useState(true)
   const [buttonStateDod, setButtonStateDod] = useState(true)
+
+  useEffect(()=>{
+    console.log("aplica verificação");
+    if (possibleDodge == true) {
+      setButtonStateDod(true)
+    }else{
+      setButtonStateDod(false)
+    }
+  },[charTurn])
   
   useEffect(()=>{
 
@@ -22,7 +31,7 @@ function SkillContainer(){
     else if (charTurn[0] == "player" && charTurn[1] == "defense" ) {
       setButtonStateAt(true)
       setButtonStateDef(false)
-      setButtonStateDod(false)
+      
     }else if (charTurn[0] == "player" && charTurn[1] == "attack"){
       setButtonStateDef(true)
       setButtonStateAt(false)

@@ -42,12 +42,14 @@ export function ApiProviderProfile(props) {
     
   },[user])
 
+  
   const [imgPoke, setImgPoke] = useState('')
   const [namePoke, setNamePoke] = useState('')
   const [lifePoke, setLifePoke] = useState(0)
   const [manaPoke, setManaPoke] = useState(0)
   const [atributesPoke, setAtributesPoke] = useState({})
   const [nickName, setNickName] = useState('')
+  
   
 
   useEffect(async ()=> {
@@ -66,8 +68,8 @@ export function ApiProviderProfile(props) {
     const botNumber = bot.pokeNumber()
     const botChars = bot.atributes
 
-    const pokeRef = collection(db, "users", user.uid, "tempData")
-      await setDoc(doc(pokeRef, "pokeBot"), {
+    const tempBattleRef = collection(db, "users", user.uid, "tempData")
+      await setDoc(doc(tempBattleRef, "pokeBot"), {
         number: botNumber,
         name: pokemons[botNumber - 1].name,
         characteristics: {
@@ -81,6 +83,15 @@ export function ApiProviderProfile(props) {
         mana: botChars[2] * 5,
         imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${botNumber}.png`
     })
+
+      const pokeRef = doc(db, "users", user.uid, "pokemon", "01")
+      const pokeRefSnap = await getDoc(pokeRef)
+      const poke = pokeRefSnap.data()
+
+      const temDataRef = collection(db, "users", user.uid, "tempData")
+      await setDoc(doc(temDataRef, "pokePlayerTemp"), {
+        poke
+      })
     
   }
 

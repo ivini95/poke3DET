@@ -1,16 +1,18 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { useState, createContext, useEffect } from "react";
 import { db } from "../dataBase/firerebase";
 import { UserAuth } from "./AuthContext";
+import { useNavigate } from 'react-router-dom'
 
 export const ApiContextBattle = createContext()
 
 export function ApiProviderBattle(props){
 
+  const navigate = useNavigate()
+
   const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800'
 
   const [pokemons, setPokemons] = useState({})
-
   
   const [currentImg, setCurrentImg] = useState("")
   const [currentLife, setCurrentLife] = useState(0)
@@ -38,16 +40,15 @@ export function ApiProviderBattle(props){
   
   useEffect(async ()=> {//busca dados do pokemon do player no banco de dados
     if (user.uid) {
-      const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
+      const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
       const pokeStatusRefSnap = await getDoc(pokeStatusRef)
-      const pokeStatus = pokeStatusRefSnap.data()
+      const poke = pokeStatusRefSnap.data()
+      const pokeStatus = poke.poke
       setCurrentLife(pokeStatus.life)
       setCurrentMana(pokeStatus.mana)
       setCurrentName(pokeStatus.name)
       setCurrentImg(pokeStatus.img)
       setCurrentAtribute(pokeStatus.characteristics)
-
-      
     }
     
   },[user])
@@ -84,18 +85,17 @@ export function ApiProviderBattle(props){
         }
       }else if(isTurnDamage == true){
         
-      if (diceRolling == false) {
-          rotateDice(diceBotValue)
-          damageFase(diceBotValue)
-          setIsBotRollingDice(false)
-          setTimeout(() => {
-            historicTempCopy.id ++
-            historicTempCopy.diceValue = diceBotValue
-            setHistoricTemp({...historicTemp,...historicTempCopy})
-            //setTurn(historicTempCopy.id);
-          }, 2010);
-          
-    }
+          if (diceRolling == false) {
+              rotateDice(diceBotValue)
+              //damageFase(diceBotValue)
+              setIsBotRollingDice(false)
+              setTimeout(() => {
+                historicTempCopy.id ++
+                historicTempCopy.diceValue = diceBotValue
+                setHistoricTemp({...historicTemp,...historicTempCopy})
+                //setTurn(historicTempCopy.id);
+              }, 2010);
+            }
     }
     }else {
       if (isTurnDamage == false) {
@@ -213,14 +213,13 @@ export function ApiProviderBattle(props){
 } 
 
 
-  //--------------------------------------Battle actions
+  //--------------persistencia de dados------------------
 
   const [currentAction, setCurrentAction] = useState("")
   const [charTurn, setCharTurn] = useState("")
-  const [damage, setDamage] = useState(0)
-  const [protection, setProtection] = useState(0)
+  const [finalDamage, setFinalDamage] = useState()
 
-  useEffect(async ()=>{//verifica se é o turno inicial
+  useEffect(async ()=>{//verifica se é o turno inicial e recupera
     
     if (user.uid) {
     
@@ -251,6 +250,51 @@ export function ApiProviderBattle(props){
     
   },[user]) 
 
+  useEffect(async ()=>{ //atualiza vida do bot no bando de dados quando toma dano
+    
+    if (finalDamage != undefined) {
+     
+      if (charTurn[0] == "bot" && charTurn[1] == "attack") {
+        
+        if (finalDamage > 0) {
+            
+          if (user.uid) {
+            const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
+            await updateDoc(botPokeRef, {
+              life:botCurrent.life - finalDamage
+            })
+            
+            const botPokeRefSnap = await getDoc(botPokeRef)
+            const pokeBot = botPokeRefSnap.data()
+            setBotCurrent(pokeBot)
+            setLifeChange(true)
+            
+          }
+          
+        }
+      } else {
+        
+          if (finalDamage > 0) {
+            const PokeRefPlayer = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
+            await updateDoc(PokeRefPlayer, {
+              "poke.life": currentLife - finalDamage
+              
+              
+            })
+            setCurrentLife(currentLife - finalDamage)
+            setLifeChange(true)
+        }
+      }
+    }
+  },[finalDamage])
+
+  //--------------Battle actions--------------------------
+
+  
+  const [damage, setDamage] = useState(0)
+  const [protection, setProtection] = useState(0)
+
+  
   function action() {//chama a função de acordo com o botão selecionado
     
       switch (currentAction) {
@@ -354,6 +398,8 @@ export function ApiProviderBattle(props){
     }
   },[charTurn])
 
+
+
   async function attack() {
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
       if (diceValue <= currentAtributes.ability ) {
@@ -385,6 +431,7 @@ export function ApiProviderBattle(props){
 
       
         if (diceBot <= botCurrent.characteristics.ability) {
+
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turnDamage: true
@@ -445,17 +492,13 @@ export function ApiProviderBattle(props){
 
       
         if (diceBot <= botCurrent.characteristics.ability) {
-          const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
+          
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turnDamage: true
               })
+              
           setTimeout(() => {
-            damageFase(diceBotDamage,'rangerAttack')
-            console.log("bot acertou", diceBot);
-          }, 1000);
-          setTimeout(() => {
-
             setIsTurnDamage(true)
             const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
 
@@ -572,7 +615,21 @@ export function ApiProviderBattle(props){
   }
 
   const [dodged, setDodged] = useState(false)
+  const [possibleDodge, setPossibleDodge] = useState(true)
 
+  useEffect(()=>{//verifica se bot pode esquivar
+    if (user) {
+      if (botCurrent.characteristics) {
+        
+        const abilityTest = currentAtributes.ability - botCurrent.characteristics.ability
+        if (abilityTest < 1) {
+          setPossibleDodge(true)
+        } else {
+          setPossibleDodge(false)
+        }
+      }
+    }
+  },[botCurrent])
 
   async function dodge() {
     if (dodged == false) {
@@ -580,10 +637,7 @@ export function ApiProviderBattle(props){
 
         const abilityTest = currentAtributes.ability - botCurrent.characteristics.ability
         
-        if (abilityTest < 1) {
-          defend()
-          console.log("impossivel esquivar");
-        } else if (diceValue <= abilityTest){
+        if (diceValue <= abilityTest){
           setCurrentAction("")
           setProtection(damage)
           setCharTurn(["player","attack"])
@@ -638,8 +692,6 @@ export function ApiProviderBattle(props){
   const [attackType, setAttackType] = useState('')
 
   async function damageFase(randomNumber, BotAttackType){
-
-    console.log(attackType);
 
     if (attackType == "meleeAttack" || BotAttackType == "meleeAttack") {
       if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
@@ -759,7 +811,7 @@ export function ApiProviderBattle(props){
 
       if (randomNumber == 6) {
           setTimeout(() => {
-            const currentDamage = (randomNumber + (botCurrent.characteristics.strength * 2) + botCurrent.characteristics.ability)
+            const currentDamage = (randomNumber + (botCurrent.characteristics.firePower * 2) + botCurrent.characteristics.ability)
             console.log(charTurn, currentDamage);
             setDamage(currentDamage)
             setCharTurn(["player", "defense"])
@@ -774,7 +826,7 @@ export function ApiProviderBattle(props){
           
         }else {
           setTimeout(() => {
-            const currentDamage = (randomNumber + botCurrent.characteristics.strength + botCurrent.characteristics.ability)
+            const currentDamage = (randomNumber + botCurrent.characteristics.firePower + botCurrent.characteristics.ability)
             console.log(charTurn, currentDamage);
             setDamage(currentDamage)
             setCharTurn(["player", "defense"])
@@ -792,7 +844,6 @@ export function ApiProviderBattle(props){
     
   }
 
-  const [finalDamage, setFinalDamage] = useState()
 
   useEffect(async ()=>{
 
@@ -811,37 +862,6 @@ export function ApiProviderBattle(props){
 
   const [lifeChange, setLifeChange] = useState(false)
   
-  useEffect(async ()=>{ //atualiza vida do bot no bando de dados quando toma dano
-    
-    if (finalDamage != undefined) {
-     
-      if (charTurn[0] == "bot" && charTurn[1] == "attack") {
-        
-        if (finalDamage > 0) {
-            
-          if (user.uid) {
-            const botPokeRef = doc(db, "users", user.uid, "tempData", "pokeBot")
-            await updateDoc(botPokeRef, {
-              life:botCurrent.life - finalDamage
-            })
-            
-            const botPokeRefSnap = await getDoc(botPokeRef)
-            const pokeBot = botPokeRefSnap.data()
-            setBotCurrent(pokeBot)
-            setLifeChange(true)
-            
-          }
-          
-        }
-      } else {
-        
-          if (finalDamage > 0) {
-            setCurrentLife(currentLife - finalDamage)
-            setLifeChange(true)
-        }
-      }
-    }
-  },[finalDamage])
 
   function calcDamage() {
 
@@ -854,7 +874,7 @@ export function ApiProviderBattle(props){
 
     }else {
       
-      setFinalDamage(currentFinalDamage , "dano maior que 0")
+      setFinalDamage(currentFinalDamage)
       setDamage(0)
       setProtection(0)
       
@@ -862,30 +882,36 @@ export function ApiProviderBattle(props){
 
   }
 
-  useEffect(()=> {
+  useEffect(()=> {//sempre que tomar dano
     if (lifeChange == true) {
         endBattle()
     }
   },[lifeChange])
 
-  const [battleEnd, setBattleEnd] = useState(false)
-  const [winner, setWinner] = useState("")
-
-  function endBattle() {
+  async function endBattle() {
     if (botCurrent.life <= 0) {
       console.log("fim, player vence");
+      //acesso bot no banco de dados e apago o bot
+      await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
+      await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
+      await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
+      //redireciono para tela profile
+      navigate('/profile')
     }else if (currentLife <= 0){
       console.log("fim, bot vence");
+      //acesso bot no banco de dados e apago o bot
+      await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
+      await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
+      await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
+      //redireciono para tela profile
+      navigate('/profile')
     }else{
       setLifeChange(false)
     }
-    //resetar bot do banco de dados
-    //resetar turno
-    //redirecionar para tela profile
   }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge]}>
     {props.children}
   </ApiContextBattle.Provider>
  )
