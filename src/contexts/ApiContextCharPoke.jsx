@@ -34,18 +34,19 @@ export function ApiProviderChar(props){
   'armor': 0,
   'firePower': 0})
 
-  const [imgPoke, setImgPoke] = useState(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${count + 1}.png`)
+  const [imgPoke, setImgPoke] = useState(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${count + 1}.png`)
 
   useEffect(()=>{
     
-    fetch(url).then(res=> res.json())
-        .then(data=>setPokemons(data.results))
+    fetch(url).then(res=> res.json() )
+    
+    .then(data=>setPokemons(data.results))
         
   },[])
 
   useEffect(()=>{
       setUrlPoke(pokemons[count].url)
-      setImgPoke(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${count + 1}.png`)
+      setImgPoke(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${count + 1}.png`)
   },[count])
 
 

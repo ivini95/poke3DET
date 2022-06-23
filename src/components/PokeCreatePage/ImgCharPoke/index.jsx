@@ -12,6 +12,7 @@ function ImgCharPoke(){
 
     <div className="imagePokeContainer">
       <img className="imagePoke" src={imgPoke} alt={'pokemon image'} />
+      
     </div>
   )
 }

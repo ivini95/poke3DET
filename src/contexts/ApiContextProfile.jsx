@@ -63,7 +63,22 @@ export function ApiProviderProfile(props) {
     
   }, [user])
 
+
+  async function verifyTempData(){
+    const botPokeRef = collection(db,"users", user.uid,"tempData")
+      const botPokeSnap = await getDocs(botPokeRef)
+      if (botPokeSnap.size < 1) {
+        createTempBattleData()
+        saveCurrentBot()
+        navigate("/battle")
+      }else {
+        navigate("/battle")
+      }
+  }
+
+
   async function saveCurrentBot() {
+    saveCurrentPlayer()
     bot.generateAtribute()
     const botNumber = bot.pokeNumber()
     const botChars = bot.atributes
@@ -81,18 +96,22 @@ export function ApiProviderProfile(props) {
         },
         life: botChars[2] * 5,
         mana: botChars[2] * 5,
-        imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${botNumber}.png`
+        imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${botNumber}.png`
     })
 
-      const pokeRef = doc(db, "users", user.uid, "pokemon", "01")
-      const pokeRefSnap = await getDoc(pokeRef)
-      const poke = pokeRefSnap.data()
+     
+  }
 
-      const temDataRef = collection(db, "users", user.uid, "tempData")
-      await setDoc(doc(temDataRef, "pokePlayerTemp"), {
-        poke
-      })
-    
+  async function saveCurrentPlayer(){
+    const pokeRef = doc(db, "users", user.uid, "pokemon", "01")
+    const pokeRefSnap = await getDoc(pokeRef)
+    const poke = pokeRefSnap.data()
+
+    const temDataRef = collection(db, "users", user.uid, "tempData")
+    await setDoc(doc(temDataRef, "pokePlayerTemp"), {
+      poke
+    })
+  
   }
 
   async function createTempBattleData() {
@@ -103,7 +122,7 @@ export function ApiProviderProfile(props) {
   }
 
   return (
-    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData]}>
+    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData]}>
       {props.children}
     </ApiContextProfile.Provider>
   )

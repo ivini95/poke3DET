@@ -1,13 +1,19 @@
+import { useEffect } from 'react'
 import BattleLog from '../../components/PokeBattlePage/BattleLog'
 import CharDetails from '../../components/PokeBattlePage/CharDetails'
 import DiceBattle from '../../components/PokeBattlePage/DiceBattle'
 import ImgCharBattle from '../../components/PokeBattlePage/ImgCharBattle'
 import SkillContainer from '../../components/PokeBattlePage/SkillsContainer'
 import { ApiProviderBattle } from '../../contexts/ApiContextBattle'
+import { UserAuth } from '../../contexts/AuthContext'
+import { db } from '../../dataBase/firerebase'
 import './style.css'
 
 function BattlePage() {
+
+ 
   
+
   return (
     <ApiProviderBattle>
       <div className="battleContainer">

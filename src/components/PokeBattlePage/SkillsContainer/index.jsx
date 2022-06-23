@@ -12,7 +12,6 @@ function SkillContainer(){
   const [buttonStateDod, setButtonStateDod] = useState(true)
 
   useEffect(()=>{
-    console.log("aplica verificação");
     if (possibleDodge == true) {
       setButtonStateDod(true)
     }else{
