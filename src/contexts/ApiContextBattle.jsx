@@ -401,9 +401,11 @@ export function ApiProviderBattle(props){
         let skillRandom = Math.floor(Math.random() * (2 - 0) + 1)
         console.log("tipo do ataque",skillRandom);
         if (skillRandom == 1) {
+          setCurrentAction("attack")
           attack()
           console.log("bot ataque");
         }else {
+          setCurrentAction("rangedAttack")
           rangedAttack()
           console.log("bot ataque distancia");
         }
@@ -413,9 +415,11 @@ export function ApiProviderBattle(props){
           let skillRandom = Math.floor(Math.random() * (2 - 0) + 1)
           console.log(skillRandom);
           if (skillRandom == 1) {
+            setCurrentAction("defend")
             defend()
             console.log("bot defend");
           }else {
+            setCurrentAction("dodge")
             dodge()
             console.log("bot esquiva");
           }
@@ -479,6 +483,7 @@ export function ApiProviderBattle(props){
           setTimeout(() => {
             setCharTurn(["player", "attack"])
           }, 3200);
+          setCurrentAction("")
         }
       
       if (diceBot >= botCurrent.characteristics.ability) {
@@ -518,7 +523,6 @@ export function ApiProviderBattle(props){
         setIsBotRollingDice(true)
         console.log("bot jogou dado");
       }, 1000);
-
       
         if (diceBot <= botCurrent.characteristics.ability) {
           
@@ -537,13 +541,12 @@ export function ApiProviderBattle(props){
             }, 1000);
           }, 3100);
           
-          
-          
         }else {
           console.log("bot errou", diceBot);
             setTimeout(() => {
               setCharTurn(["player", "attack"])
             }, 3200);
+            setCurrentAction("")
         }
       
       
@@ -615,12 +618,14 @@ export function ApiProviderBattle(props){
         //VERIFICAR SE JÁ ESQUIVOU
         if (miss == "miss") {
           if (diceBot == 6) {
-            const currentProtection = diceBot + (botCurrent.characteristics.armor * 2) 
+            const currentProtection = diceBot + (botCurrent.characteristics.armor * 2)
+            setCurrentAction("")
             console.log("bot defesa critica após esquiva",currentProtection);
             setProtection(currentProtection)
             setDodged(false)
           }else {
-            const currentProtection = diceBot + botCurrent.characteristics.armor 
+            const currentProtection = diceBot + botCurrent.characteristics.armor
+            setCurrentAction("") 
             console.log("bot defesa após esquiva",currentProtection);
             setProtection(currentProtection)
             setDodged(false)
@@ -629,10 +634,12 @@ export function ApiProviderBattle(props){
         }else {
           if (diceBot == 6) {
             const currentProtection = diceBot + (botCurrent.characteristics.armor * 2) + botCurrent.characteristics.ability
+            setCurrentAction("")
             setProtection(currentProtection)
             console.log("bot defesa critica",currentProtection);
           }else {
             const currentProtection = diceBot + botCurrent.characteristics.armor + botCurrent.characteristics.ability
+            setCurrentAction("")
             setProtection(currentProtection)
             console.log("bot defesa",currentProtection);
           }
@@ -707,6 +714,7 @@ export function ApiProviderBattle(props){
                     turn: ["player","attack"]
                   })
               console.log("bot esquivou", damage);
+              setCurrentAction("")
             } else {
               setDodged(true)
               console.log("bot não esquivou");
@@ -775,6 +783,7 @@ export function ApiProviderBattle(props){
             console.log(charTurn, currentDamage);
             setDamage(currentDamage)
             setCharTurn(["player", "defense"])
+            setCurrentAction("")
             setIsTurnDamage(false)
           }, 3100);
           
@@ -792,6 +801,7 @@ export function ApiProviderBattle(props){
             console.log(charTurn, currentDamage);
             setDamage(currentDamage)
             setCharTurn(["player", "defense"])
+            setCurrentAction("")
             setIsTurnDamage(false)
           }, 3100);
           
@@ -857,6 +867,7 @@ export function ApiProviderBattle(props){
             console.log(charTurn, currentDamage);
             setDamage(currentDamage)
             setCharTurn(["player", "defense"])
+            setCurrentAction("")
             setIsTurnDamage(false)
           }, 3100);
           
@@ -874,6 +885,7 @@ export function ApiProviderBattle(props){
             console.log(charTurn, currentDamage);
             setDamage(currentDamage)
             setCharTurn(["player", "defense"])
+            setCurrentAction("")
             setIsTurnDamage(false)
           }, 3100);
           
@@ -1011,7 +1023,9 @@ export function ApiProviderBattle(props){
         
         logAttackDamage(valueTurn,nameTurn)
         
-      } 
+      }else if(charTurn[0] == "bot" && charTurn[1] == "attack" && damage == 0){
+        logAttackDamage(valueTurn,nameTurn)
+      }
     }
    
   }
