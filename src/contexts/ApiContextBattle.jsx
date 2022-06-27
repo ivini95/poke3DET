@@ -371,7 +371,6 @@ export function ApiProviderBattle(props){
         console.log("player primeiro");
       }else {
         console.log("Empate");
-        
       } 
     }, 2200);
     
@@ -473,10 +472,10 @@ export function ApiProviderBattle(props){
           setTimeout(() => {
           setIsTurnDamage(true)
           const diceBotDamage = Math.floor(Math.random() * (6 - 0) + 1)
-          setTimeout(() => {
-            damageFase(diceBotDamage,'meleeAttack')
-          console.log("bot acertou", diceBot);
-          }, 1000);
+            setTimeout(() => {
+              damageFase(diceBotDamage,'meleeAttack')
+              console.log("bot acertou", diceBot);
+            }, 1000);
           }, 3100);
           
         }else {
@@ -484,17 +483,14 @@ export function ApiProviderBattle(props){
           setTimeout(() => {
             setCharTurn(["player", "attack"])
             //setCurrentActionBot("")
-            console.log("mudou currentAction para vazio");
           }, 3200);
-          
-        }
-      
-      if (diceBot >= botCurrent.characteristics.ability) {
-        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+              const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","attack"]
               })
-      }
+        }
+      
+      
     }
   }
 
@@ -551,16 +547,11 @@ export function ApiProviderBattle(props){
               //setCurrentActionBot("")
               console.log("mudou currentAction para vazio");
             }, 3200);
-            
-        }
-      
-      
-      if (diceBot >= botCurrent.characteristics.ability) {
-        const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
+            const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turn: ["player","attack"]
               })
-      }
+        }
     }
   }
 
@@ -585,7 +576,7 @@ export function ApiProviderBattle(props){
         setCharTurn(["player","attack"])
         setCurrentAction("")
         setProtection(currentProtection)
-        logManager(currentProtection,currentName,false)
+        logManager(currentProtection,currentName)
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
             await updateDoc(battleTurnRef, {
               turn: ["player","attack"]
@@ -598,7 +589,7 @@ export function ApiProviderBattle(props){
         setCharTurn(["player","attack"])
         setCurrentAction("")
         setProtection(currentProtection)
-        logManager(currentProtection,currentName,false)
+        logManager(currentProtection,currentName)
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
             await updateDoc(battleTurnRef, {
               turn: ["player","attack"]
@@ -719,7 +710,7 @@ export function ApiProviderBattle(props){
               
               const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
                   await updateDoc(battleTurnRef, {
-                    turn: ["player","attack"]
+                    turn: ["bot","attack"]
                   })
               console.log("bot esquivou", damage);
               //setCurrentActionBot("")
@@ -743,7 +734,7 @@ export function ApiProviderBattle(props){
       if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         if (randomNumber == 6) {
           const currentDamage = (randomNumber + (currentAtributes.strength * 2) + currentAtributes.ability )
-          logManager(currentDamage,currentName,true)
+          logManager(currentDamage,currentName)
           setTimeout(() => {
             setCharTurn(["bot","defense"])
             setCurrentAction("")
@@ -761,7 +752,7 @@ export function ApiProviderBattle(props){
           
         }else {
           const currentDamage = (randomNumber + currentAtributes.strength + currentAtributes.ability )
-          logManager(currentDamage,currentName,true)
+          logManager(currentDamage,currentName)
           setTimeout(() => {
             setCharTurn(["bot","defense"])
             setCurrentAction("")
@@ -827,7 +818,7 @@ export function ApiProviderBattle(props){
       if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         if (randomNumber == 6) {
           const currentDamage = (randomNumber + (currentAtributes.firePower * 2) + currentAtributes.ability )
-          logManager(currentDamage,currentName,true)
+          logManager(currentDamage,currentName)
           setTimeout(() => {
             setCharTurn(["bot","defense"])
             setCurrentAction("")
@@ -844,7 +835,7 @@ export function ApiProviderBattle(props){
           
         }else {
           const currentDamage = (randomNumber + currentAtributes.firePower + currentAtributes.ability )
-          logManager(currentDamage,currentName,true)
+          logManager(currentDamage,currentName)
           setTimeout(() => {
             setCharTurn(["bot","defense"])
             setCurrentAction("")
@@ -987,6 +978,7 @@ export function ApiProviderBattle(props){
       setLifeChange(false)
     }
   }
+
 
   function logManager(valueTurn,nameTurn) {
 
