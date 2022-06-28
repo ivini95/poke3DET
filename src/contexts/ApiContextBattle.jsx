@@ -357,6 +357,7 @@ export function ApiProviderBattle(props){
     let botDiceInitiative = Math.floor(Math.random() * (6 - 0) + 1)
     setDiceBotValue(botDiceInitiative)
     setTimeout(() => {
+      logManager(botDiceInitiative,botCurrent.name,"initiative")
       setIsBotRollingDice(true)
     }, 1000);
     
@@ -375,7 +376,7 @@ export function ApiProviderBattle(props){
       }else {
         console.log("Empate");
       } 
-    }, 2200);
+    }, 3100);
     
     if (botDiceInitiative > diceValue) {
 
@@ -413,10 +414,11 @@ export function ApiProviderBattle(props){
         }
         
       }else if (charTurn[0] == "bot" && charTurn[1] == "defense" ){
-        const abilityTest = botCurrent.characteristics.ability - currentAtributes.ability 
+        const abilityTest = botCurrent.characteristics.ability - currentAtributes.ability
+        console.log(dodged,abilityTest );
         if (dodged == false) {
-          let skillRandom = Math.floor(Math.random() * (2 - 0) + 1)
-          if(skillRandom == 2 && abilityTest >=1) {
+          let skillRandom = 2 //Math.floor(Math.random() * (2 - 0) + 1)
+          if(skillRandom == 2 && abilityTest > 0) {
             setCurrentActionBot("dodge")
             dodge()
             console.log("bot esquiva");
@@ -573,7 +575,7 @@ export function ApiProviderBattle(props){
         setCharTurn(["player","attack"])
         setCurrentAction("")
         setProtection(currentProtection)
-        logManager(currentProtection,currentName)
+        logManager(currentProtection,currentName,true)
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
             await updateDoc(battleTurnRef, {
               turn: ["player","attack"]
@@ -584,7 +586,7 @@ export function ApiProviderBattle(props){
         setCharTurn(["player","attack"])
         setCurrentAction("")
         setProtection(currentProtection)
-        logManager(currentProtection,currentName)
+        logManager(currentProtection,currentName,true)
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
             await updateDoc(battleTurnRef, {
               turn: ["player","attack"]
@@ -665,7 +667,7 @@ export function ApiProviderBattle(props){
   const [dodged, setDodged] = useState(false)
   const [possibleDodge, setPossibleDodge] = useState(true)
 
-  useEffect(()=>{//verifica se bot pode esquivar
+  useEffect(()=>{//verifica se player pode esquivar
     if (user) {
       if (botCurrent.characteristics) {
         
@@ -696,6 +698,7 @@ export function ApiProviderBattle(props){
               })
           console.log("esquivou", damage);
         } else {
+          setCurrentAction("")
           setDodged(true)
           defend("miss")
           console.log("não esquivou");
@@ -715,6 +718,7 @@ export function ApiProviderBattle(props){
           setDiceBotValue(diceBot)
           setTimeout(() => {
             setIsBotRollingDice(true)
+            logManager(diceBot,botCurrent.name,"dodge")
           }, 1000);
           
           if (diceBot <= abilityTest){
@@ -1020,11 +1024,11 @@ export function ApiProviderBattle(props){
 
   function logManager(valueTurn,nameTurn,action) {
 
-    console.log("FUNÇÃO LOG MANAGER CHAMADA", charTurn, "turno de dano:", isTurnDamage, "ação atual:", action);
+    console.log("FUNÇÃO LOG MANAGER CHAMADA", charTurn, "turno de dano:", isTurnDamage, "ação atual:", currentAction);
 
     if (isTurnDamage == false) {
 
-      if (currentAction == "initiative") {
+      if (currentAction == "initiative" || action == "initiative") {
         logInitiative(valueTurn,nameTurn)
       }else if(charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         if (currentAction == "rangedAttack") {
@@ -1032,12 +1036,14 @@ export function ApiProviderBattle(props){
         }else if(currentAction == "attack"){
           logAttackMelee(valueTurn,nameTurn)
         }
-      } else if(charTurn[0] == "player" && charTurn[1] == "defense"){
+      } else if(charTurn[0] == "player" && charTurn[1] == "defense" && action != true){
         if (currentAction == "dodge") {
           logDodge(valueTurn,nameTurn)
         }else if(currentAction == "defend"){
           logDefend(valueTurn,nameTurn)
         }
+      }else if(charTurn[0] == "player" && charTurn[1] == "defense" && action == true){
+        logDefend(valueTurn,nameTurn)
       }else if(charTurn[0] == "bot" && charTurn[1] == "attack" ) {
 
         if (action == "rangerAttack") {
@@ -1066,7 +1072,7 @@ export function ApiProviderBattle(props){
         logAttackDamage(valueTurn,nameTurn)
       }
     }
-    if (action == true) {
+    if (action == true && charTurn[0] == "bot") {
       logAttackDamage(valueTurn,nameTurn)
     }
    
