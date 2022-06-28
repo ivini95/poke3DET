@@ -59,12 +59,14 @@ export function ApiProviderBattle(props){
       const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
       const pokeStatusRefSnap = await getDoc(pokeStatusRef)
       const poke = pokeStatusRefSnap.data()
-      const pokeStatus = poke.poke
-      setCurrentLife(pokeStatus.life)
-      setCurrentMana(pokeStatus.mana)
-      setCurrentName(pokeStatus.name)
-      setCurrentImg(pokeStatus.img)
-      setCurrentAtribute(pokeStatus.characteristics)
+      
+        const pokeStatus = poke.poke
+        setCurrentLife(pokeStatus.life)
+        setCurrentMana(pokeStatus.mana)
+        setCurrentName(pokeStatus.name)
+        setCurrentImg(pokeStatus.img)
+        setCurrentAtribute(pokeStatus.characteristics)
+      
     }
     
   },[user])
@@ -93,6 +95,9 @@ export function ApiProviderBattle(props){
         if (diceRolling == false) {
           
             rotateDice(diceBotValue)
+            if (currentActionBot != "defend") {
+              logManager(diceBotValue,botCurrent.name)
+            }
             setIsBotRollingDice(false)
             setTimeout(() => {
               historicTempCopy.id ++
@@ -123,7 +128,7 @@ export function ApiProviderBattle(props){
             rotateDice(randomNumber)
             setDiceValue(randomNumber)
             if (currentAction != "defend") {
-              logManager(randomNumber,currentName,false)
+              logManager(randomNumber,currentName)
             }
             setTimeout(() => {
               historicTempCopy.id ++
@@ -565,7 +570,7 @@ export function ApiProviderBattle(props){
         setCharTurn(["player","attack"])
         setCurrentAction("")
         setProtection(currentProtection)
-        logManager(currentProtection,currentName,false)
+        logManager(currentProtection,currentName)
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
             await updateDoc(battleTurnRef, {
               turn: ["player","attack"]
@@ -723,6 +728,8 @@ export function ApiProviderBattle(props){
       }
     }
   }
+
+//--------------------calc actions-----------------------
 
   const [isTurnDamage, setIsTurnDamage] = useState(false)
   const [attackType, setAttackType] = useState('')
@@ -979,6 +986,8 @@ export function ApiProviderBattle(props){
     }
   }
 
+
+  //--------------log controller---------
 
   function logManager(valueTurn,nameTurn) {
 
