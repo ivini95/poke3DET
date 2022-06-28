@@ -28,7 +28,7 @@ export function ApiProviderBattle(props){
   const url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800'
 
   const [pokemons, setPokemons] = useState({})
-  
+
   const [currentImg, setCurrentImg] = useState("")
   const [currentLife, setCurrentLife] = useState(0)
   const [currentMana, setCurrentMana] = useState(0)
@@ -53,23 +53,35 @@ export function ApiProviderBattle(props){
         
   },[])
 
+ 
+  useEffect(async ()=>{//pré carrega dado do pokemon
+    if (user.uid) {
+      const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
+      const pokeStatusRefSnap = await getDoc(pokeStatusRef)
+      const poke = pokeStatusRefSnap.data()
+    }
+  },[user])
   
   useEffect(async ()=> {//busca dados do pokemon do player no banco de dados
+    
     if (user.uid) {
       const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
       const pokeStatusRefSnap = await getDoc(pokeStatusRef)
       const poke = pokeStatusRefSnap.data()
       
-        const pokeStatus = poke.poke
-        setCurrentLife(pokeStatus.life)
-        setCurrentMana(pokeStatus.mana)
-        setCurrentName(pokeStatus.name)
-        setCurrentImg(pokeStatus.img)
-        setCurrentAtribute(pokeStatus.characteristics)
+        setCurrentLife(poke.poke.life)
+        setCurrentMana(poke.poke.mana)
+        setCurrentName(poke.poke.name)
+        setCurrentImg(poke.poke.img)
+        setCurrentAtribute(poke.poke.characteristics)
       
     }
     
   },[user])
+
+  useEffect(()=>{
+
+  })
 
   useEffect(async ()=>{//busca dados do pokemon do bot no banco de dados
     if (user.uid) {
