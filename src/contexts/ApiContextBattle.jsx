@@ -986,7 +986,12 @@ export function ApiProviderBattle(props){
         if (currentAction == "dodge") {
           logDodge(valueTurn,nameTurn)
         }else if(currentAction == "defend"){
-          logDefend(valueTurn,nameTurn)
+          if (valueTurn == 6 + (currentAtributes.armor * 2) + currentAtributes.ability ) {
+            logDefend(valueTurn,nameTurn,true)
+          }else {
+            logDefend(valueTurn,nameTurn)
+          }
+          
         }
       }else if(charTurn[0] == "player" && charTurn[1] == "defense" && action == true){
         logDefend(valueTurn,nameTurn)
@@ -1012,7 +1017,12 @@ export function ApiProviderBattle(props){
         if (action == "dodge") {
           logDodge(valueTurn,nameTurn)
         }else if(action == "defend"){
-          logDefend(valueTurn,nameTurn)
+          if (valueTurn == 6 + (botCurrent.characteristics.armor * 2) + botCurrent.characteristics.ability) {
+            logDefend(valueTurn,nameTurn,true)
+          }else{
+            logDefend(valueTurn,nameTurn,false)
+          }
+          
         }
       }
 
@@ -1079,12 +1089,16 @@ export function ApiProviderBattle(props){
     }, 2010)
 }
 
-function logDefend(valueTurn,nameTurn){
-    
-  historicTempCopy.text = `${nameTurn} Defende - ${valueTurn}\n`
-  historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
-  setHistoricTemp({...historicTemp,...historicTempCopy})
-
+function logDefend(valueTurn,nameTurn,critical){
+  if (critical == true) {
+    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn} - CRÍTICO\n`
+    historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
+    setHistoricTemp({...historicTemp,...historicTempCopy})
+  }else{
+    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn}\n`
+    historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
+    setHistoricTemp({...historicTemp,...historicTempCopy})
+  }
 }
 
 function logDodge(valueTurn,nameTurn){
@@ -1101,7 +1115,7 @@ function logDodge(valueTurn,nameTurn){
 
 function logAttackDamage(valueTurn,nameTurn,critical){
 
-  if (critical) {
+  if (critical == true) {
     setTimeout(() => {
       historicTempCopy.text = `${nameTurn} Joga ${valueTurn} no dado de ataque - CRÍTICO!\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
