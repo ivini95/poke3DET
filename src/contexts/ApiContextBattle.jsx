@@ -3,6 +3,7 @@ import { useState, createContext, useEffect } from "react";
 import { db } from "../dataBase/firerebase";
 import { UserAuth } from "./AuthContext";
 import { useNavigate } from 'react-router-dom'
+import { useContext } from "react";
 
 export const ApiContextBattle = createContext()
 
@@ -10,8 +11,6 @@ export function ApiProviderBattle(props){
 
   const navigate = useNavigate()
   const {user} = UserAuth()
-
-  
 
   useEffect(async()=>{
     
@@ -315,6 +314,25 @@ export function ApiProviderBattle(props){
     }
   },[finalDamage])
 
+  //--------------persistencia de dados local storage-----------
+
+  useEffect(()=>{//salva log atual no localStorage
+    if (historicTemp.id > 0) {
+      localStorage.setItem("historicTempData",JSON.stringify(historicTemp))
+    }
+    
+  },[historicTemp])
+
+  useEffect(()=>{//recupera dados do local storage
+
+    const logStorage = JSON.parse(localStorage.getItem("historicTempData"))
+      if (logStorage != null) {
+        setHistoricTemp(logStorage)
+      }
+    
+  },[user])
+  
+
   //--------------Battle actions--------------------------
 
   
@@ -327,21 +345,34 @@ export function ApiProviderBattle(props){
     
       switch (currentAction) {
         case "initiative":
-          initiative()
-          break;
+          if (currentAction == "initiative") {
+            initiative()
+            break;
+          }
+          
         case "attack":
-          attack()
-          break;
+          if (charTurn[0] == "player" && charTurn[1] == "attack") {
+            attack()
+            break;
+          }
+          
         case "rangedAttack":
-          rangedAttack()
-          break;
+          if (charTurn[0] == "player" && charTurn[1] == "attack") {
+            rangedAttack()
+            break;
+          }
         case "defend":
-          defend()
-          break;
+          if (charTurn[0] == "player" && charTurn[1] == "defense") {
+            defend()
+            break;
+          }
+          
         case "dodge":
-          dodge()
-          break;
-
+          if (possibleDodge == false) {
+            dodge()
+            break;
+          }
+        
         default:
           break;
       }
@@ -878,7 +909,6 @@ export function ApiProviderBattle(props){
     
   }
 
-
   useEffect(async ()=>{
 
     if (protection != 0 && charTurn[0] == "bot" && charTurn[1] == "defense") {//função chamada após bot defender
@@ -896,7 +926,6 @@ export function ApiProviderBattle(props){
 
   const [lifeChange, setLifeChange] = useState(false)
   
-
   async function calcDamage(pers) {
 
     const currentFinalDamage = damage - protection
@@ -932,28 +961,33 @@ export function ApiProviderBattle(props){
     }
   },[lifeChange])
 
+
+  const [isEndBattle, setIsEndBattle] = useState({})
+ 
   async function endBattle() {
     if (botCurrent.life <= 0) {
       console.log("fim, player vence");
-      //acesso bot no banco de dados e apago o bot
+      
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
-      //redireciono para tela profile
-      navigate('/profile')
+      localStorage.removeItem("historicTempData")
+      setIsEndBattle(true)
+      //navigate('/profile')
     }else if (currentLife <= 0){
+      setIsEndBattle(true)
       console.log("fim, bot vence");
-      //acesso bot no banco de dados e apago o bot
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
-      //redireciono para tela profile
-      navigate('/profile')
+      localStorage.removeItem("historicTempData")
+      //navigate('/profile')
     }else{
       setLifeChange(false)
     }
   }
 
+  //-------------------Log Manager-------------------
 
   function logManager(valueTurn,nameTurn,action) {
 
@@ -1141,7 +1175,7 @@ function logDamageResult(valueTurn,nameTurn){
 
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle]}>
     {props.children}
   </ApiContextBattle.Provider>
  )

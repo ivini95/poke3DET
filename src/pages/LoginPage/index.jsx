@@ -8,7 +8,7 @@ import { db } from "../../dataBase/firerebase"
 
 function LoginPage() {
 
-  const {user } = UserAuth()
+  const {user} = UserAuth()
   const navigate = useNavigate()
 
   useEffect( async () => {
