@@ -3,7 +3,6 @@ import { useState, createContext, useEffect } from "react";
 import { db } from "../dataBase/firerebase";
 import { UserAuth } from "./AuthContext";
 import { useNavigate } from 'react-router-dom'
-import { useContext } from "react";
 
 export const ApiContextBattle = createContext()
 
@@ -54,14 +53,6 @@ export function ApiProviderBattle(props){
         
   },[])
 
- 
-  useEffect(async ()=>{//pré carrega dado do pokemon
-    if (user.uid) {
-      const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
-      const pokeStatusRefSnap = await getDoc(pokeStatusRef)
-      const poke = pokeStatusRefSnap.data()
-    }
-  },[user])
   
   useEffect(async ()=> {//busca dados do pokemon do player no banco de dados
     
@@ -69,12 +60,11 @@ export function ApiProviderBattle(props){
       const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
       const pokeStatusRefSnap = await getDoc(pokeStatusRef)
       const poke = pokeStatusRefSnap.data()
-      
-        setCurrentLife(poke.poke.life)
-        setCurrentMana(poke.poke.mana)
-        setCurrentName(poke.poke.name)
-        setCurrentImg(poke.poke.img)
-        setCurrentAtribute(poke.poke.characteristics)
+        setCurrentLife(poke.life)
+        setCurrentMana(poke.mana)
+        setCurrentName(poke.name)
+        setCurrentImg(poke.imgPoke)
+        setCurrentAtribute(poke.characteristics)
       
     }
     
@@ -305,7 +295,7 @@ export function ApiProviderBattle(props){
             
             const PokeRefPlayer = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
             await updateDoc(PokeRefPlayer, {
-              "poke.life": currentLife - finalDamage
+              "life": currentLife - finalDamage
             })
             setCurrentLife(currentLife - finalDamage)
             setLifeChange(true)
@@ -315,9 +305,12 @@ export function ApiProviderBattle(props){
   },[finalDamage])
 
   //--------------persistencia de dados local storage-----------
+  
 
   useEffect(()=>{//salva log atual no localStorage
-    if (historicTemp.id > 0) {
+    console.log(isEndBattle);
+    if (historicTemp.id > 0 && isEndBattle == false) {
+      console.log("novo log");
       localStorage.setItem("historicTempData",JSON.stringify(historicTemp))
     }
     
@@ -330,7 +323,7 @@ export function ApiProviderBattle(props){
         setHistoricTemp(logStorage)
       }
     
-  },[user])
+  },[user]) 
   
 
   //--------------Battle actions--------------------------
@@ -389,8 +382,13 @@ export function ApiProviderBattle(props){
     setDiceBotValue(botDiceInitiative)
     setTimeout(() => {
       logManager(botDiceInitiative,botCurrent.name,"initiative")
+      if (botDiceInitiative == diceValue) {
+        logManager(botDiceInitiative,botCurrent.name,"draw")
+      } 
+
       setIsBotRollingDice(true)
     }, 1000);
+
     
     setTimeout(() => {
       if (botDiceInitiative > diceValue) {
@@ -406,9 +404,7 @@ export function ApiProviderBattle(props){
         setCurrentActionBot("")
         setCharTurn(["player","attack"])
 
-      }else {
-        setIsDraw(true)
-      } 
+      }
     }, 3100);
     
     if (botDiceInitiative > diceValue) {
@@ -465,7 +461,7 @@ export function ApiProviderBattle(props){
   async function attack() {
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
       
-      if (diceValue <= currentAtributes.ability ) {
+      if (diceValue <= currentAtributes.ability && diceValue != 6) {
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turnDamage: true,
@@ -492,7 +488,7 @@ export function ApiProviderBattle(props){
       }, 1000);
 
       
-        if (diceBot <= botCurrent.characteristics.ability) {
+        if (diceBot <= botCurrent.characteristics.ability && diceBot != 6) {
 
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
@@ -522,7 +518,7 @@ export function ApiProviderBattle(props){
 
   async function rangedAttack() {
     if (charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
-      if (diceValue <= currentAtributes.ability ) {
+      if (diceValue <= currentAtributes.ability && diceValue != 6) {
         const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
                 turnDamage: true,
@@ -547,7 +543,7 @@ export function ApiProviderBattle(props){
         setIsBotRollingDice(true)
       }, 1000);
       
-        if (diceBot <= botCurrent.characteristics.ability) {
+        if (diceBot <= botCurrent.characteristics.ability && diceBot != 6) {
           
           const battleTurnRef = doc(db, "users", user.uid, "tempData", "tempBattleData")
               await updateDoc(battleTurnRef, {
@@ -956,31 +952,35 @@ export function ApiProviderBattle(props){
   }
 
   useEffect(()=> {//sempre que tomar dano
-    if (lifeChange == true) {
+    if (lifeChange == true) {   
         endBattle()
     }
   },[lifeChange])
 
 
-  const [isEndBattle, setIsEndBattle] = useState({})
+  const [isEndBattle, setIsEndBattle] = useState(false)
  
   async function endBattle() {
     if (botCurrent.life <= 0) {
-      console.log("fim, player vence");
       
+      console.log("fim, player vence");
+      localStorage.removeItem("historicTempData")
+      setIsEndBattle(true)
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
-      localStorage.removeItem("historicTempData")
-      setIsEndBattle(true)
+      
+      
       //navigate('/profile')
     }else if (currentLife <= 0){
+      
       setIsEndBattle(true)
       console.log("fim, bot vence");
+      localStorage.removeItem("historicTempData")
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
-      localStorage.removeItem("historicTempData")
+      
       //navigate('/profile')
     }else{
       setLifeChange(false)
@@ -995,8 +995,9 @@ export function ApiProviderBattle(props){
     let attempt = ["Acertou", "Errou"]
 
     if (isTurnDamage == false) {
-
-      if (currentAction == "initiative" || action == "initiative") {
+      if(action == "draw"){
+        logDraw()
+      }else if (currentAction == "initiative" ||  action == "initiative") {
         logInitiative(valueTurn,nameTurn)
       }else if(charTurn[0] == "player" && charTurn[1] == "attack" && damage == 0) {
         
@@ -1091,11 +1092,15 @@ export function ApiProviderBattle(props){
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
-    if (isDraw == true) {
+
+  }
+
+  function logDraw(){
+    setTimeout(() => {
       historicTempCopy.text = `EMPATE!\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
-    }
+    }, 2020);
   }
   
 

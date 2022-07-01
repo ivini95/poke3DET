@@ -44,13 +44,13 @@ export function ApiProviderProfile(props) {
   },[user])
 
   
+  
   const [imgPoke, setImgPoke] = useState('')
   const [namePoke, setNamePoke] = useState('')
   const [lifePoke, setLifePoke] = useState(0)
   const [manaPoke, setManaPoke] = useState(0)
   const [atributesPoke, setAtributesPoke] = useState({})
   const [nickName, setNickName] = useState('')
-  
   
 
   useEffect(async ()=> {
@@ -79,6 +79,7 @@ export function ApiProviderProfile(props) {
 
 
   async function saveCurrentBot() {
+
     saveCurrentPlayer()
     bot.generateAtribute()
     const botNumber = bot.pokeNumber()
@@ -100,17 +101,17 @@ export function ApiProviderProfile(props) {
         imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${botNumber}.png`
     })
 
-     
   }
 
   async function saveCurrentPlayer(){
-    const pokeRef = doc(db, "users", user.uid, "pokemon", "01")
-    const pokeRefSnap = await getDoc(pokeRef)
-    const poke = pokeRefSnap.data()
 
     const temDataRef = collection(db, "users", user.uid, "tempData")
     await setDoc(doc(temDataRef, "pokePlayerTemp"), {
-      poke
+        name: namePoke,
+        characteristics: atributesPoke,
+        life: lifePoke,
+        mana: manaPoke,
+        imgPoke: imgPoke
     })
   
   }
