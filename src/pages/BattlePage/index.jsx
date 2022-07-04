@@ -10,12 +10,12 @@ import './style.css'
 
 function BattlePage() {
 
-  return (
-    <ApiProviderBattle>
-
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle] = useContext(ApiContextBattle)
+  
+  return (               
+      
       <div className="battleContainer">
-        <EndBattle></EndBattle>
-        <div className='topContainer'>
+        {isEndBattle == true ? (<EndBattle></EndBattle>) : (<><div className='topContainer'>
           <BattleLog></BattleLog>
           <CharDetails></CharDetails>
         </div>
@@ -24,9 +24,11 @@ function BattlePage() {
         <div className='footerContainer'>
           <SkillContainer></SkillContainer>
           <DiceBattle></DiceBattle>
-        </div>
+        </div></>)}
+        
+        
       </div>
-    </ApiProviderBattle>
+   
   )
 }
 

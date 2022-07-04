@@ -8,6 +8,7 @@ import { ApiProviderAuthGoogle } from './contexts/AuthContext'
 import CreateNamePage from './pages/CreateNamePage'
 import ProfilePage from './pages/ProfilePage'
 import Protected from './components/AllComponentes/ProtectRoute/Protected'
+import { ApiProviderBattle } from './contexts/ApiContextBattle'
 
 
 
@@ -35,7 +36,9 @@ function App() {
             }></Route>
             <Route path="battle" element={
               <Protected>
-                <BattlePage/>
+                <ApiProviderBattle>
+                  <BattlePage/>
+                </ApiProviderBattle>
               </Protected>}></Route>
           </Routes>
         </BrowserRouter>
