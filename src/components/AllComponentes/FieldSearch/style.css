@@ -1,36 +1,35 @@
 .fieldSearch {
-  height: 46px;
-  width: 302px;
+  height: 40px;
+  width: 312px;
   border: none;
   background-color: transparent;
-  color: var(--mediumRed);
-  font-weight: 700;
+  color: var(--mainGreen);;
   text-align: center;
-  border-radius: 50px;
   position: absolute;
   top: 0;
   left: 0;
-  
+  outline-style: initial;
+  font-family: 'Play', sans-serif;
 }
 
 .fieldSearch::placeholder {
-  color: var(--mediumRed);
+  color: var(--mainGreen);;
   font-weight: 700;
 }
 
 .fieldSearchContainer{
   display: flex;
-  background-color: var(--white);
-  height: 46px;
-  width: 306px;
+  border: 1px solid var(--mainGreen);
+  height: 40px;
+  width: 312px;
   align-items: center;
-  border-radius: 50px;
+  border-radius: 10px;
   justify-content: end;
   position: relative;
-  margin-bottom: 10px;
 }
 
 .buttonSearch {
+  border: none;
   position: absolute;
   background-color: transparent;
   margin-top: 10px;
@@ -39,6 +38,4 @@
   z-index: 2;
 }
 
-.buttonSearch:hover {
-  border: none;
-}
+

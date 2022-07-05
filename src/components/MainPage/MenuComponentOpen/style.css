@@ -1,6 +1,6 @@
 .ContainerMenuOpen{
   box-sizing: border-box;
-  padding-top: 52px;
+  padding-top: 76px;
   display: flex;
   width: 100%;
   height: 100%;
@@ -11,9 +11,9 @@
   left: 0;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
   animation: open 0.5s ease;
   z-index: 1;
+  gap: 24px;
 }
 
 @keyframes open {
@@ -23,15 +23,17 @@
 }
 
 .links {
-  width: 19.375rem;
-  height: 27.5125rem;
-  background-color: var(--mediumRed);
-  border-radius: 15px;
+  width: 310px;
+  height: 404px;
+  left: 25px;
+  top: 202px;
+
+  background: linear-gradient(180deg, rgba(56, 176, 0, 0.6) 0%, rgba(0, 128, 0, 0.6) 100%);
+  border-radius: 25px;
 }
 
 .buttonContainer {
   display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 16px;
 }
 

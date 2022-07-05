@@ -18,7 +18,7 @@ function LoginButton() {
 
 
   return (
-    <button onClick={handleGoogleSignIn} className="button navigateButton loginButton" >Acessar com Google <img className='imgGoogleLogin' src={googleIcon} alt="google icon"/></button>
+    <button onClick={handleGoogleSignIn} className="button navigateButton loginButton" >Acessar com Google</button>
   ) 
 }
 

@@ -1,4 +1,4 @@
-import exitIcon from '../../../assets/images/exitIconWhite.svg'
+import exitIcon from '../../../assets/images/exitIcon.svg'
 import './style.css'
 
 function BackButton(props){

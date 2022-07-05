@@ -1,4 +1,4 @@
-import searchRed from '../../../assets/images/searchRed.svg'
+import search from '../../../assets/images/search.svg'
 import './style.css'
 
 function FieldSearch(){
@@ -8,8 +8,8 @@ function FieldSearch(){
       <label>
         <form action="">
           <input className='fieldSearch' type="text" placeholder="Buscar"></input>
-          <button className='button buttonSearch' >
-            <img src={searchRed} alt="" /></button>
+          <button className='buttonSearch' >
+            <img src={search} alt="" /></button>
         </form>
       </label>
     </div>

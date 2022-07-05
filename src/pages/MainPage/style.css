@@ -3,6 +3,10 @@ header {
   flex-direction: column;
 }
 
+footer {
+  width: 100vw;
+}
+
 .headerFirst {
   display: flex;
   align-items: center;
@@ -14,28 +18,28 @@ header {
 }
 
 .mainpageContainer {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
-  width: 360px;
-  height: 640px;
-  background-color: var(--lightBlack);
-  padding: 10px;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--blackTheme);
+  padding: 24px;
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
-}
-
-.containerImg {
-  width: 19.375rem;
-  height: 15rem;
-  background-color: var(--mediumRed);
-  border-radius: 15px;
 }
 
 .mainContainer {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top:22px;
   align-items: center;
+  justify-content: space-around;
+  
 }
+
+.imgExemplo {
+  width: 136px;
+  border-radius: 10px;
+  border: 1px solid var(--mainGreen);
+}
+
 

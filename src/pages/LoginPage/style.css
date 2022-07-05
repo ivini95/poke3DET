@@ -1,9 +1,21 @@
 .loginContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: var(--lightBlack);
-  
+    background-color: var(--blackTheme);
+}
+.topContainerLogin{
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    width: 100vw;
+    justify-content: center;
+    margin-bottom: 204px;
+}
+
+.themeIconLogin{
+    position: absolute;
+    right: 24px;
 }

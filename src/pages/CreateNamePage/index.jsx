@@ -8,6 +8,8 @@ import { ApiProviderUser } from '../../contexts/ApiContextUser'
 import { UserAuth } from '../../contexts/AuthContext'
 import { db } from '../../dataBase/firerebase'
 import './style.css'
+import TitleMain from "../../components/MainPage/TitleMain"
+import ThemeIcon from "../../components/AllComponentes/ThemeIcon"
 
 function CreateNamePage() {
 
@@ -31,12 +33,19 @@ function CreateNamePage() {
   return (
     <ApiProviderUser>
       <div className="createNameContainer">
-        <InputNickName/>
-        <div className='buttonContainer'>
-          <LogoutButton/>
-          <ButtonCreate />
+      <div className='topContainerCreateNick'>
+          <TitleMain/>
+        <div className='theIconCreateNick'>
+          <ThemeIcon/>
         </div>
       </div>
+        <div className='mainContainerCreateNick'>
+          <InputNickName/>
+          <ButtonCreate />
+          <LogoutButton/>
+        </div>
+      </div>
+        
     </ApiProviderUser>
   )
 }

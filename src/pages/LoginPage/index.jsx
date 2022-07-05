@@ -5,6 +5,8 @@ import {  useEffect} from 'react'
 import {UserAuth} from '../../contexts/AuthContext'
 import { collection, doc, getDoc, getDocs, setDoc} from "firebase/firestore"
 import { db } from "../../dataBase/firerebase"
+import TitleMain from "../../components/MainPage/TitleMain"
+import ThemeIcon from "../../components/AllComponentes/ThemeIcon"
 
 function LoginPage() {
 
@@ -49,6 +51,12 @@ function LoginPage() {
   return (
     
     <div className="loginContainer">
+      <div className="topContainerLogin">
+        <TitleMain/>
+        <div className="themeIconLogin">
+        <ThemeIcon/>
+        </div>
+      </div>
       <LoginButton/>
     </div>
   )

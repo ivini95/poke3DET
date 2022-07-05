@@ -70,9 +70,7 @@ export function ApiProviderBattle(props){
     
   },[user])
 
-  useEffect(()=>{
 
-  })
 
   useEffect(async ()=>{//busca dados do pokemon do bot no banco de dados
     if (user.uid) {
@@ -272,7 +270,7 @@ export function ApiProviderBattle(props){
     
     if (finalDamage != undefined) {
      
-      if (charTurn[0] == "bot" && charTurn[1] == "attack") {//atualiza vida do bot no bando de dados quando toma dano
+      if (charTurn[0] == "bot" && charTurn[1] == "attack" || charTurn[0] == "player" && charTurn[1] == "winner") {//atualiza vida do bot no bando de dados quando toma dano
         
         if (finalDamage > 0) {
          
@@ -290,7 +288,7 @@ export function ApiProviderBattle(props){
           }
           
         }
-      } else {//atualiza vida do player no bando de dados quando toma dano
+      } else if(charTurn[0] == "player" && charTurn[1] == "attack" || charTurn[0] == "bot" && charTurn[1] == "winner"){//atualiza vida do player no bando de dados quando toma dano
         
           if (finalDamage > 0) {
             
@@ -978,13 +976,20 @@ export function ApiProviderBattle(props){
 
 
  
+  useEffect(()=>{
+    console.log("vida bot",botCurrent.life);
+    console.log("vida player", currentLife);
+  },[charTurn])
+
+
   async function endBattle() {
+    
     if (botCurrent.life <= 0) {
       setCharTurn([charTurn[0],"winner"])
       console.log("fim, player vence");
       localStorage.removeItem("historicTempData")
       setIsEndBattle(true)
-      
+      logManager("winner",currentName)
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
@@ -996,7 +1001,7 @@ export function ApiProviderBattle(props){
       console.log("fim, bot vence");
       localStorage.removeItem("historicTempData")
       setIsEndBattle(true)
-      
+      logManager("winner", botCurrent.name)
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokeBot"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
@@ -1008,6 +1013,7 @@ export function ApiProviderBattle(props){
   }
 
   //-------------------Log Manager-------------------
+
 
 
   function logManager(valueTurn,nameTurn,action) {
@@ -1040,7 +1046,7 @@ export function ApiProviderBattle(props){
         }
       } else if(charTurn[0] == "player" && charTurn[1] == "defense" && action != true){
         if (currentAction == "dodge") {
-          if(valueTurn <  currentAtributes.ability - botCurrent.characteristics.ability){
+          if(valueTurn <=  currentAtributes.ability - botCurrent.characteristics.ability){
             logDodge(valueTurn,nameTurn,attempt[0])
           }else {
             logDodge(valueTurn,nameTurn,attempt[1])
@@ -1075,7 +1081,7 @@ export function ApiProviderBattle(props){
       } else if(charTurn[0] == "bot" && charTurn[1] == "defense"){
 
         if (action == "dodge") {
-          if(valueTurn < botCurrent.characteristics.ability - currentAtributes.ability ){
+          if(valueTurn <= botCurrent.characteristics.ability - currentAtributes.ability ){
             logDodge(valueTurn,nameTurn,attempt[0])
           }else {
             logDodge(valueTurn,nameTurn,attempt[1])
@@ -1109,6 +1115,10 @@ export function ApiProviderBattle(props){
       }else{
         logAttackDamage(valueTurn,nameTurn,false)
       }
+    }
+
+    if(valueTurn == "winner"){
+      logEndBattle(nameTurn)
     }
    
   }
@@ -1208,6 +1218,11 @@ function logDamageResult(valueTurn,nameTurn){
     
 }
 
+function logEndBattle(nameTurn){
+  historicTempCopy.text = `${nameTurn} Venceu !!!\n`
+  historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
+  setHistoricTemp({...historicTemp,...historicTempCopy})
+}
 
  return (
   <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle]}>

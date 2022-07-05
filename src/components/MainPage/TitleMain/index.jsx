@@ -1,11 +1,9 @@
-import IconPoke from '../../AllComponentes/IconPoke'
 import './style.css'
 
 function TitleMain(){
   return (
     <div className='titleContainer'>
-    <h1 className="title">Poke3DET</h1>
-    <IconPoke></IconPoke>
+    <h1 className="title">Poke3D&amp;T</h1>
     </div>
   )
 }

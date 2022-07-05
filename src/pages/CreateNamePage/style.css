@@ -1,19 +1,35 @@
 .createNameContainer {
-  box-sizing: border-box;
-  background-color:var(--lightBlack);
-  border-radius: 5px;
-  width: 22.5rem;
-  height:40rem;
-  color: var(--mediumRed);
-  font-size: 1rem;
 
+  box-sizing: border-box;
+  background-color:var(--blackTheme);
+  width: 100vw;
+  height:100vh;
+  color: var(--mainGreen);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
-.createNameContainer > .buttonContainer {
-  
+.topContainerCreateNick{
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-top: 28px;
+}
+
+.theIconCreateNick{
+  position: absolute;
+  right: 24px;
+  top: 24px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.mainContainerCreateNick{
+  display: flex;
+  flex-direction: column;
   gap: 16px;
+  margin-top: 224px;
 }

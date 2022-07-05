@@ -98,7 +98,7 @@ export function ApiProviderProfile(props) {
         },
         life: botChars[2] * 5,
         mana: botChars[2] * 5,
-        imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${botNumber}.png`
+        imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${botNumber}.png`
     })
 
   }

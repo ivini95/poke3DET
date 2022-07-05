@@ -1,14 +1,18 @@
 .inputNickName {
   box-sizing: border-box;
-  width: 15.4rem;
-  height: 2.5rem;
-  text-align: center;
+  width: 148px;
+  height: 40px;
+  outline-style: initial;
+  border: 1px solid var(--mainGreen);
+  filter: drop-shadow(-3px -3px 3px rgba(56, 176, 0, 0.15)) drop-shadow(3px 3px 3px rgba(56, 176, 0, 0.15));
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--mainGreen);
+  font-family: 'Play', sans-serif;
   margin: 0;
-  background-color: var(--darkWhite);
-  font-size: 1rem;
-  line-height: 38px;
-  color: var(--mediumRed);
-  margin-top: 16rem;
-  margin-bottom: 16rem;
-  border-radius: 5px;
+}
+
+.inputNickName::placeholder {
+  color: var(--mainGreen);
+  
 }
