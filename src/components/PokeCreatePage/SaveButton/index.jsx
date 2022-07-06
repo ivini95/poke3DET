@@ -41,7 +41,7 @@ function SaveButton(){
 
   return (
     <div className="save">
-      <button className="button navigateButton buttonSave" type="submit" onClick={savePokeData} disabled={disabledButton}>Salvar</button>
+      <button className="navigateButton buttonSave" type="submit" onClick={savePokeData} disabled={disabledButton}>Salvar</button>
     </div>
   )
 }

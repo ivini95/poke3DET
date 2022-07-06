@@ -9,7 +9,7 @@ function LifePoints() {
   return (
     <div className="life">
       <h2>Vida</h2>
-      <div className="number lifeNumber">{manaLife}</div>
+      <div className="numberLife">{manaLife}</div>
     </div>
   )
 }

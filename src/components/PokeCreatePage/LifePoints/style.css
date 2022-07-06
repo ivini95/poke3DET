@@ -1,29 +1,21 @@
-.life {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
+.life > h2 {
+  font-size: 14px;
+  color: var(--whiteFont);
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
-.life  h2 {
-  margin: 0;
-  margin-left: 1.5rem;
-  background-color: var(--darkWhite);
-  border-radius: 5px;
-  padding: 4px;
-  border-radius: 5px 5px 0px 0px;
-  width: 65px;
+
+.life{
+  width: 56px;
+  height: 56px;
+  background: var(--blackTheme);
+  border-radius: 15px;
   text-align: center;
 }
 
-.life  div {
-  margin-bottom: 0.5rem;
-  margin-left: 1.5rem;
-  border-radius: 0px 0px 5px 5px ;
-  width: 73px;
-}
-
-.lifeNumber {
-  border-radius: 5px;
-  width: 50px;
+.numberLife{
+  margin: 0;
+  font-size: 14px;
+  color: var(--whiteFont);
 }

@@ -10,8 +10,8 @@ function TotalPoints(){
   return(
     
     <div className="totalPoints">
-      <h1 >Total</h1>
-      <div className="number totalNumber">{total}</div>
+      <h1 >Pontos Totais</h1>
+      <div className="totalNumber">{total}</div>
     </div>
     
   )

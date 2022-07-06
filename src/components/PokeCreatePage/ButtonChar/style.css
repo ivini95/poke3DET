@@ -1,39 +1,39 @@
 .pokeStatus{
-  width: 9.1rem;
-  text-align: center;
-  font-size: 0.7rem;
-  margin-top: 10px;
-}
-
-.pokeStatus > h1{
-  margin: 0;
-  background-color: var(--darkWhite);
-  border-radius: 5px 5px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 104px;
+  height: 47px;
+  color: var(--whiteFont);
+  font-size: 7.6px;
+  border: 1px solid var(--blackTheme);
+  border-radius:  10px 10px 12px 12px;;
 }
 
 .containerButtonChar {
   display: flex;
-  justify-content: center;
-}
-
-.buttonCharacteristcLess {
-  border-radius: 0px 0px 0px 5px;
-}
-
-.buttonCharacteristcMore {
-  border-radius: 0px 0px 5px 0px;
+  justify-content: space-between;
+  align-items: center;
+  width: 104px;
+  height: 24px;
+  background: var(--blackTheme);
+  border-radius: 15px;
 }
 
 .minusSign{
-  margin-bottom: 3px;
-  width: 14px;
+  width: 20px;
+  margin-left: 1px;
 }
 
 .plusSign {
-  margin-top: 3px;
-  width: 14px;
+  width: 20px;
+  margin-right: 1px;
 }
 
 .numberChar {
-  width: 66px;
+ color: var(--whiteFont);
+}
+
+.typeChar{
+  margin-top: 4px;
 }

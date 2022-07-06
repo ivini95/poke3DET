@@ -1,53 +1,105 @@
 .nameContent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
-  width: 15.4rem;
-  height: 2.5rem;
-  text-align: center;
+  width: 160px;
+  height: 36px;
   margin: 0;
-  background-color: var(--darkWhite);
-  font-size: 1.5rem;
+  background-color: var(--blackTheme);
+  font-size: 14px;
   line-height: 38px;
-  
+  border-radius: 15px;
+  color: var(--whiteFont);
 }
 
 .nameChange {
   grid-area: name;
   display: flex;
   align-items: center;
-  margin-top: 10px;
   flex-direction: column;
 }
 
-.rangeBarContainer {
+.nameBarContainer {
   display: flex;
-  margin-bottom: 10px;
-  height: 10px;
   justify-content: center;
   align-items: center;
-  width: 340px;
-  gap: 30px;
+  gap: 4px;
 }
 
-.rangeBar {
-  margin-left: 86px;
-  width: 158px;
+.nameBar {
+  width: 160px;
 }
 
 .countNumber {
-  width: 50px;
-  border-radius: 5px 5px 0px 0px;
+  display: flex;
+  width: 46px;
+  height: 36px;
+  background-color: var(--blackTheme);
+  font-size: 14px;
+  border-radius: 15px;
+  color: var(--whiteFont);
+  align-items: center;
+  justify-content: center;
 }
 
 .nameChangeFooter {
   display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .previousButton {
-  height: 2.5rem;
-  border-radius: 5px 0px 0px 5px;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background: var(--blackTheme);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 }
 
 .nextButton{
-  height: 2.5rem;
-  border-radius: 0px 0px 5px 0px;
+  border: none;
+  width: 20px;
+  height: 20px;
+  background: var(--blackTheme);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.nextButton:hoveR{
+  border: 1px solid var(--whiteFont);
+}
+
+.previousButton:hoveR{
+  border: 1px solid var(--whiteFont);
+}
+
+.imgArrow{
+  margin-top: 45%;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 160px;
+  height: 6px;
+  background: var(--blackTheme);
+  border-radius: 5px;
+}
+
+/* Input Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--blackTheme);
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 20px;
 }

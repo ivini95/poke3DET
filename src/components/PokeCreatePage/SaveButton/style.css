@@ -1,9 +1,22 @@
 .buttonSave{
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.buttonSave:disabled {
+  width: 148px;
+  height: 40px;
+  font-size: 14px;
+  color: var(--whiteFont);
+  background: linear-gradient(90deg, #343434 0%, #343434 100%);
+  box-shadow: 2px 2px 2px rgba(52, 52, 52, 0.25);
+  border-radius: 10px;
+  font-family: 'Play', sans-serif;
   border: none;
 }
 
+.buttonSave:disabled{
+  background: var(--blackTheme);
+  border: none;
+}
+.buttonSave:disabled:hover {
+  border: none;
+}
+.buttonSave:hover{
+  border: 1px solid var(--whiteFont)
+}

@@ -1,6 +1,7 @@
-import { useContext, useEffect, useState  } from "react"
+import { useContext} from "react"
 import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke"
 import './style.css'
+import baseImg from '../../../assets/images/baseImg.svg'
 
 function ImgCharPoke(){
 
@@ -12,7 +13,7 @@ function ImgCharPoke(){
 
     <div className="imagePokeContainer">
       <img className="imagePoke" src={imgPoke} alt={'pokemon image'} />
-      
+      <img className="baseImg" src={baseImg} alt="efeito de sobra da imagem" />
     </div>
   )
 }

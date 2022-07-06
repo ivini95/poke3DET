@@ -1,18 +1,16 @@
 
 .containerPoke {
   box-sizing: border-box;
-  background-color:var(--lightBlack);
-  border-radius: 5px;
-  width: 22.5rem;
-  height:40rem;
-  color: var(--mediumRed);
-  font-size: 1rem;
+  background: linear-gradient(180deg, #008000 10%, var(--mainGreen) 100%);
+  width: 100vw;
+  height:100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1.5fr 0.5fr 1fr 1fr 1fr 0.5fr;
+  grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 2fr;
   grid-template-areas: 
-    "lifeMana pokeImg pokeImg totalP"
+    "lifeMana pokeImg pokeImg themeIcon "
     "name name name name"
+    "totalP totalP totalP totalP"
     "force force ability ability"
     "resistence resistence armor armor"
     "firePower firePower firePower firePower"
@@ -22,29 +20,44 @@
   align-items: center;
 }
 
-
 .force{
   grid-area: force;
-  
+  justify-self: end;
+  margin-right: 16px;
 }
 .ability{
   grid-area: ability;
+  justify-self: start;
+  margin-left: 16px;
 }
 .resistence{
   grid-area: resistence;
+  justify-self: end;
+  margin-right: 16px;
 } 
 .armor {
   grid-area: armor;
+  justify-self: start;
+  margin-left: 16px;
 }
 .firePower{
   grid-area: firePower;
-  margin-bottom: 16px;
+  justify-self: start;
+  margin-left: 58px;
 }
 .reset{
   grid-area: reset;
+  justify-self: start;
+  margin-left: 16px;
+  align-self: flex-end;
+  margin-bottom: 16px;
 } 
 .save{
   grid-area: save;
+  justify-self: end;
+  margin-right: 16px;
+  align-self: flex-end;
+  margin-bottom: 16px;
 }
 
 

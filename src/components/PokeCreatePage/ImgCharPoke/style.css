@@ -1,11 +1,21 @@
 .imagePokeContainer {
-  margin-bottom: 0.5rem;
   grid-area: pokeImg;
+  position: relative;
+  width: 160px;
+  height: 160px;
+  justify-self: center;
+  align-self: flex-start;
 }
 
 .imagePoke {
-  width: 150px;
-  background-color: var(--darkWhite);
-  border-radius: 5px;
-  margin-top: 0.7rem;
+  position: absolute;
+  width: 160px;
+  z-index: 1;
+  left: 0;
+  top: 0;
 }
+
+.baseImg{
+  margin-top: 114px
+}
+

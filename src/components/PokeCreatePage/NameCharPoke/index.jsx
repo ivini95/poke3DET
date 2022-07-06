@@ -28,14 +28,14 @@ function NameCharPoke(){
 
   return(
     <div className="nameChange">
-      <div className="rangeBarContainer">
-      <input className="rangeBar" type="range" name="" id="valueNameId" min={0} max={pokemons.length - 1} onChange={()=> setCount(parseInt(valueNameId.value))}/>
-      <h2 className="number countNumber">{count + 1}</h2>
+      <div className="nameBarContainer">
+      <h1 className="nameContent">{pokeName}</h1> 
+      <h2 className="countNumber">{count + 1}</h2>
       </div>
       <div className="nameChangeFooter">
-      <button className="button previousButton" onClick={previousPokeName}><img src={leftArrow} alt="" /></button>
-      <h1 className="nameContent">{pokeName}</h1> 
-      <button className="button nextButton" onClick={nextPokeName}><img src={rightArrow} alt="" /></button>
+      <button className="previousButton" onClick={previousPokeName}><img className="imgArrow" src={leftArrow} alt="" /></button>
+      <input className="nameBar" type="range" name="" id="valueNameId" min={0} max={pokemons.length - 1} onChange={()=> setCount(parseInt(valueNameId.value))}/>
+      <button className="nextButton" onClick={nextPokeName}><img className="imgArrow" src={rightArrow} alt="" /></button>
       </div>
     </div>
   )

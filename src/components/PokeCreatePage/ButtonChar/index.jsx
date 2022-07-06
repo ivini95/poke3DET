@@ -98,11 +98,11 @@ function ButtonChar(props){
   }
     return(
       <div className={className}>
-        <h1>{typeChar}</h1>
+        <h1 className="typeChar">{typeChar}</h1>
         <div className="containerButtonChar">
-          <button className="button buttonCharacteristcLess" onClick={lessChar}><img className="minusSign" src={minusSign} alt="" /></button>
-          <div className="number numberChar">{char}</div>
-          <button className="button buttonCharacteristcMore" onClick={moreChar}><img className="plusSign" src={plusSign} alt="" /></button>
+          <img onClick={lessChar} className="minusSign" src={minusSign} alt="" />
+          <div className="numberChar">{char}</div>
+          <img onClick={moreChar} className="plusSign" src={plusSign} alt="" />
         </div>
       </div>
     )

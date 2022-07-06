@@ -7,6 +7,7 @@ import ResetButton from '../../components/PokeCreatePage/ResetButton'
 import SaveButton from '../../components/PokeCreatePage/SaveButton'
 import TotalPoints from '../../components/PokeCreatePage/TotalPoints'
 import './style.css'
+import ThemeIcon from '../../components/AllComponentes/ThemeIcon'
 
 
 function ContainerPoke() {
@@ -17,6 +18,7 @@ function ContainerPoke() {
               <ImgCharPoke></ImgCharPoke>
               <NameCharPoke></NameCharPoke>
               <LifeMana></LifeMana>
+              <ThemeIcon></ThemeIcon>
               <TotalPoints></TotalPoints>
               <ButtonChar className={"force pokeStatus"} typeChar={'Força'} value={0}></ButtonChar>
               <ButtonChar className={"ability pokeStatus"} typeChar={'Habilidade'} value={0}></ButtonChar>
