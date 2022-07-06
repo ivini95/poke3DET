@@ -2,36 +2,37 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 104px;
-  height: 47px;
+  width: 148px;
+  height: 72px;
   color: var(--whiteFont);
-  font-size: 7.6px;
+  font-size: 8.6px;
   border: 1px solid var(--blackTheme);
-  border-radius:  10px 10px 12px 12px;;
+  border-radius:  15px 15px 24px 24px;;
 }
 
 .containerButtonChar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 104px;
-  height: 24px;
+  width: 148px;
+  height: 36px;
   background: var(--blackTheme);
   border-radius: 15px;
 }
 
 .minusSign{
-  width: 20px;
+  width: 36px;
   margin-left: 1px;
 }
 
 .plusSign {
-  width: 20px;
+  width: 36px;
   margin-right: 1px;
 }
 
 .numberChar {
  color: var(--whiteFont);
+ font-size: 14px;
 }
 
 .typeChar{

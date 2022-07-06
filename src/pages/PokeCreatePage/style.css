@@ -6,7 +6,7 @@
   height:100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 2fr;
+  grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: 
     "lifeMana pokeImg pokeImg themeIcon "
     "name name name name"
@@ -43,7 +43,7 @@
 .firePower{
   grid-area: firePower;
   justify-self: start;
-  margin-left: 58px;
+  margin-left: 16px;
 }
 .reset{
   grid-area: reset;

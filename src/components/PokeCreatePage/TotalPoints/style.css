@@ -5,13 +5,13 @@
   justify-content: center;
   gap: 4px;
   grid-area: totalP;
-  width: 104px;
-  height: 47px;
+  width: 148px;
+  height: 72px;
   background: #343434;
   border-radius: 15px;
   justify-self: center;
   align-self: flex-start;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .totalPoints  h1 {
