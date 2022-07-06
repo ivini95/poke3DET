@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ApiContextProfile } from '../../../contexts/ApiContextProfile'
+import { ApiContextProfile } from '../../../../contexts/ApiContextProfile'
 import './style.css'
 
 function NickNameProfile() {

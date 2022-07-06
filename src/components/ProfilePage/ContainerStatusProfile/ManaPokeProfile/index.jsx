@@ -1,6 +1,7 @@
 import { useContext } from 'react'
-import { ApiContextProfile } from '../../../contexts/ApiContextProfile'
+import { ApiContextProfile } from '../../../../contexts/ApiContextProfile'
 import './style.css'
+import manaIcon from '../../../../assets/images/manaIcon.svg'
 
 function ManaPokeProfile() {
 
@@ -8,7 +9,8 @@ function ManaPokeProfile() {
 
   return (
     <div className='manaContainer'>
-      <p>{manaPoke}</p>
+      <img src={manaIcon} alt="imagem de coração" />
+      <p>- {manaPoke}/{manaPoke}</p>
     </div>
   )
 }

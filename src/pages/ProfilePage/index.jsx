@@ -1,23 +1,19 @@
 import './style.css'
 import { ApiProviderProfile } from '../../contexts/ApiContextProfile'
-import ImgPokeProfile from '../../components/ProfilePage/ImgPokeProfile'
-import LifePokeProfile from '../../components/ProfilePage/LifePokeProfile'
-import ManaPokeProfile from '../../components/ProfilePage/ManaPokeProfile'
-import NickNameProfile from '../../components/ProfilePage/NickNameProfile'
+import ContainerStatusProfile from '../../components/ProfilePage/ContainerStatusProfile'
 import NavigateProfile from '../../components/ProfilePage/NavigateProfile'
+import TitleMain from "../../components/MainPage/TitleMain"
+import ThemeIcon from "../../components/AllComponentes/ThemeIcon"
 
 function ProfilePage() {
 
   return (
     <div className='profileContainer'>
       <ApiProviderProfile>
-        <ImgPokeProfile/>
-        <LifePokeProfile/>
-        <ManaPokeProfile/>
-        <div>
-        <NickNameProfile/>
+        <TitleMain/>
+        <ThemeIcon/>
+        <ContainerStatusProfile/>
         <NavigateProfile/>
-        </div>
       </ApiProviderProfile>
     </div>
   )

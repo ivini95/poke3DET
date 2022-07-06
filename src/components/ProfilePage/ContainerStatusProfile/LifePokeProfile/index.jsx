@@ -1,6 +1,7 @@
 import { useContext } from 'react'
-import { ApiContextProfile } from '../../../contexts/ApiContextProfile'
+import { ApiContextProfile } from '../../../../contexts/ApiContextProfile'
 import './style.css'
+import lifeIcon from '../../../../assets/images/lifeIcon.svg'
 
 function LifePokeProfile() {
 
@@ -8,7 +9,8 @@ function LifePokeProfile() {
 
   return (
     <div className='lifeContainer'>
-      <p>{lifePoke}</p>
+      <img src={lifeIcon} alt="imagem de coração" />
+      <p>- {lifePoke}/{lifePoke}</p>
     </div>
   )
 }

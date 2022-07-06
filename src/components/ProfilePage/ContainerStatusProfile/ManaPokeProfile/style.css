@@ -1,13 +1,15 @@
 .manaContainer {
   display: flex;
-  width: 24px;
-  height: 140px;
-  background-color: var(--lightBlue);
   border-radius: 5px;
   align-items: center;
   justify-content: center;
+  width: 108px;
+  height: 32px;
+  background-color:var(--blackTheme);
+  border-radius: 25px;
+  
 }
 
 .manaContainer > p {
-  color: var(--white);
+  color: var(--whiteFont);
 }

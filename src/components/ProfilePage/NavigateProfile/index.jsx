@@ -1,14 +1,16 @@
-import LogoutButton from '../../AllComponentes/LogoutButton'
-import BattleButon from '../BattleButon'
+import LogoutButtonProfile from './LogoutButtonProfile'
+import BattleButon from './BattleButon'
 import './style.css'
+import delPoke from '../../../assets/images/delPokeIcon.svg'
+import profileIcon from '../../../assets/images/profileIcon.svg'
 
 function NavigateProfile(){ 
   return(
     <div className='navigateContainer'>
-      <button>Status</button>
+      <img src={profileIcon} alt="simbolo de pessoa" />
       <BattleButon/>
-      <button>Refazer Pokemon</button>
-      <LogoutButton/>
+      <img src={delPoke} alt="simbolo de pessoa com x ao lado" />
+      <LogoutButtonProfile/>
     </div>
   )
 }
