@@ -2,7 +2,6 @@ import './style.css'
 import { ApiProviderProfile } from '../../contexts/ApiContextProfile'
 import ContainerStatusProfile from '../../components/ProfilePage/ContainerStatusProfile'
 import NavigateProfile from '../../components/ProfilePage/NavigateProfile'
-import TitleMain from "../../components/MainPage/TitleMain"
 import ThemeIcon from "../../components/AllComponentes/ThemeIcon"
 
 function ProfilePage() {
@@ -10,7 +9,7 @@ function ProfilePage() {
   return (
     <div className='profileContainer'>
       <ApiProviderProfile>
-        <TitleMain/>
+        <h1 className="titleProfile">Poke3D&amp;T</h1>
         <ThemeIcon/>
         <ContainerStatusProfile/>
         <NavigateProfile/>

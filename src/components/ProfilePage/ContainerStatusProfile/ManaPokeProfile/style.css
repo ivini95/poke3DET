@@ -2,14 +2,18 @@
   display: flex;
   border-radius: 5px;
   align-items: center;
-  justify-content: center;
   width: 108px;
   height: 32px;
   background-color:var(--blackTheme);
   border-radius: 25px;
-  
+  gap: 8px;
+  justify-content: start;
+  margin-top: 8px;
 }
 
+.manaContainer > img{
+  margin-left: 12px;
+}
 .manaContainer > p {
   color: var(--whiteFont);
 }

@@ -4,10 +4,12 @@
   height: 24px;
   align-items: center;
   justify-content: center;
+  grid-area: nick;
+  justify-self: center;
 }
 
 .nickNameContainer > p {
-  color: var(--blackTheme);
+  color: var(--whiteFont);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
 }

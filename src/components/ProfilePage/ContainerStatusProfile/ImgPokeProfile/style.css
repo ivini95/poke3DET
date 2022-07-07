@@ -1,4 +1,21 @@
-.imgProfile {
+.containerImgProfile{
+  display: flex;
+  position: relative;
   width: 160px;
   height: 160px;
+  grid-area: img;
+  justify-self: center;
+  margin-top: -60px;
+}
+
+.imgProfile {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  
+}
+
+.shadowImg {
+  width: 160px;
+  margin-top: 110px;
 }

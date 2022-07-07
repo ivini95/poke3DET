@@ -41,6 +41,8 @@ export function ApiProviderProfile(props) {
     setNamePoke(pokeStatus.name)
     setImgPoke(pokeStatus.img)
     setAtributesPoke(pokeStatus.characteristics)
+    setTotalPoints(pokeStatus.totalPoints)
+    
   },[user])
 
   
@@ -51,7 +53,7 @@ export function ApiProviderProfile(props) {
   const [manaPoke, setManaPoke] = useState(0)
   const [atributesPoke, setAtributesPoke] = useState({})
   const [nickName, setNickName] = useState('')
-  
+  const [totalPoints, setTotalPoints] = useState(0)
 
   useEffect(async ()=> {
     if (user.uid) {
@@ -124,7 +126,7 @@ export function ApiProviderProfile(props) {
   }
 
   return (
-    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData]}>
+    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData,totalPoints, setTotalPoints]}>
       {props.children}
     </ApiContextProfile.Provider>
   )

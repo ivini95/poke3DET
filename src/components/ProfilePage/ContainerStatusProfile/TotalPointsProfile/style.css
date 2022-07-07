@@ -1,4 +1,4 @@
-.lifeContainer {
+.totalContainer {
   display: flex;
   border-radius: 5px;
   align-items: center;
@@ -8,13 +8,15 @@
   border-radius: 25px;
   gap: 8px;
   justify-content: start;
-  margin-top: 8px;
 }
 
-.lifeContainer > img{
+.totalContainer > img{
   margin-left: 12px;
+  width: 20px;
+  height: 20px;
 }
 
-.lifeContainer > p {
+.totalContainer > p {
   color: var(--whiteFont);
 }
+

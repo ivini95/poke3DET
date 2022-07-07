@@ -32,7 +32,7 @@ function SaveButton(){
       characteristics: charObj,
       life: manaLife,
       mana: manaLife,
-      totalPoints: total,
+      totalPoints: 12,
       img: imgPoke
     });  
     navigate('/profile')
