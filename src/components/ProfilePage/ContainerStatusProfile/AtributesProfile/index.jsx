@@ -16,25 +16,29 @@ function AtributesProfile() {
     <div className='atributesContainer'>
       <div className='atributeBackGround'>
         <img src={strengthIcon} alt="" />
-        <p>- {totalPoints}</p>
+        <p>-</p>
+        <p>{atributesPoke.strength}</p>
       </div>
       <div className='atributeBackGround'>
         <img src={abilityIcon} alt="" />
-        <p>- {totalPoints}</p>
+        <p>-</p>
+        <p>{atributesPoke.ability}</p>
       </div>
       <div className='atributeBackGround'>
         <img src={armorIcon} alt="" />
-        <p>- {totalPoints}</p>
-      </div >
+        <p>-</p>
+        <p>{atributesPoke.armor}</p>
+      </div>
       <div className='atributeBackGround'>
         <img src={resistenceIcon} alt="" />
-        <p>- {totalPoints}</p>
+        <p>-</p>
+        <p>{atributesPoke.resistence}</p>
       </div>
       <div className='atributeBackGround'>
         <img src={firepowerIcon} alt="" />
-        <p>- {totalPoints}</p>
+        <p>-</p>
+        <p>{atributesPoke.firePower}</p>
       </div>
-      
     </div>
   )
 }

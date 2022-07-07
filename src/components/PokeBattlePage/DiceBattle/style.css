@@ -60,19 +60,20 @@ h1 {
 }
 
 #cube div {
-  background: hsla(0, 35%, 50%, 0.8);
+  background: var(--mainGreen);
   display: block;
   position: absolute;
   width: 75px;
   height: 37.50px;
-  border: 2px solid #ab1a1a;
-  
   margin: 0 auto;  
-  
   font-family: 'Play', sans-serif;
   font-size: 500%;
   text-align: center;
   padding: 18.75px 0;
+}
+
+#cube div:hover > .dot{
+  outline: 1px solid var(--hoverGreen);
 }
 
 .dot {
@@ -80,7 +81,7 @@ h1 {
   position: absolute;
   width: 15px;
   height: 15px;
-  background: #fff;
+  background: var(--blackTheme);
   border-radius: 15px;  
 }
 

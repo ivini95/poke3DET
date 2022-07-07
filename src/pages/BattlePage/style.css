@@ -1,46 +1,60 @@
 .battleContainer {
   box-sizing: border-box;
-  background-color:var(--lightBlack);
-  width: 22.5rem;
-  height:40rem;
+  background-color:var(--blackTheme);
+  width: 100vw;
+  height:100vh;
   color: var(--darkWhite);
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
   position: relative;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .topContainer{
-  margin: 8px 8px 0px 8px;
-  height: 105px;
+  height: 88px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-top: 8px;
 }
 
 .imgContainer {
-  height: 154px;
+  height: 120px;
+  width: 154px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.imgContainerTop {
-  margin: 25px 6px 0px 6px;
-}
-
-.imgContainerBot {
-  margin: 0px 6px 25px 6px;
+  gap: 1px;
 }
 
 .footerContainer{
-  margin: 0px 8px 8px 8px;
   display: flex;
-  height: 160px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 .battleLogEndBattle{
   
+}
+
+.manaBar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 120px;
+  background: #0077B6;
+  border-radius: 0px 15px 15px 0px;
+  font-size: 12px;
+}
+
+.lifeBar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 120px;
+  background: #E01E37;
+  border-radius: 15px 0px 0px 15px;
+  font-size: 12px;
 }

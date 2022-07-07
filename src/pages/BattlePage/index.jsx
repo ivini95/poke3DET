@@ -25,11 +25,20 @@ function BattlePage() {
           <BattleLog></BattleLog>
           <CharDetails></CharDetails>
         </div>
-        <div className='imgContainer imgContainerTop'><ImgCharBattle value="enemy"></ImgCharBattle></div>
-        <div className='imgContainer imgContainerBot'><ImgCharBattle value="player"></ImgCharBattle></div>
+        <div className='imgContainer imgContainerTop'>
+          <div className='lifeBar'>{botCurrent.life}</div>
+          <ImgCharBattle value="enemy"></ImgCharBattle>
+          <div className='manaBar'>{botCurrent.mana}</div>
+          </div>
+          <DiceBattle></DiceBattle> 
+        <div className='imgContainer imgContainerBot'>
+          <div className='lifeBar'>{currentLife}</div>
+          <ImgCharBattle value="player"></ImgCharBattle>
+          <div className='manaBar'>{currentMana}</div>
+          </div>
         <div className='footerContainer'>
           <SkillContainer></SkillContainer>      
-          <DiceBattle></DiceBattle> 
+          
         </div></>)}
         
         

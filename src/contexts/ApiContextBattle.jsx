@@ -768,7 +768,7 @@ export function ApiProviderBattle(props){
         setTimeout(() => {
           setDiceBotValue(randomNumber)
           setIsBotRollingDice(true)
-        }, 1000);
+        }, 1);
 
 
       if (randomNumber == 6) {
@@ -857,7 +857,7 @@ export function ApiProviderBattle(props){
         setTimeout(() => {
           setDiceBotValue(randomNumber)
           setIsBotRollingDice(true)
-        }, 1000);
+        }, 1);
 
 
       if (randomNumber == 6) {
@@ -975,18 +975,10 @@ export function ApiProviderBattle(props){
   const [isEndBattle, setIsEndBattle] = useState(false)
 
 
- 
-  useEffect(()=>{
-    console.log("vida bot",botCurrent.life);
-    console.log("vida player", currentLife);
-  },[charTurn])
-
-
   async function endBattle() {
     
     if (botCurrent.life <= 0) {
       setCharTurn([charTurn[0],"winner"])
-      console.log("fim, player vence");
       localStorage.removeItem("historicTempData")
       setIsEndBattle(true)
       logManager("winner",currentName)
@@ -998,7 +990,6 @@ export function ApiProviderBattle(props){
       //navigate('/profile')
     }else if (currentLife <= 0){
       setCharTurn([charTurn[0],"winner"])
-      console.log("fim, bot vence");
       localStorage.removeItem("historicTempData")
       setIsEndBattle(true)
       logManager("winner", botCurrent.name)

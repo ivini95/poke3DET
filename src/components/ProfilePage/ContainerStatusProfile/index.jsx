@@ -4,7 +4,7 @@ import ManaPokeProfile from './ManaPokeProfile'
 import NickNameProfile from './NickNameProfile'
 import TotalPointsProfile from './TotalPointsProfile'
 import './style.css'
-import AtributesProfile from './atributesProfile'
+import AtributesProfile from './AtributesProfile'
 
 function containerStatusProfile(){
 

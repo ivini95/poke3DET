@@ -1,5 +1,9 @@
 .skillContainer {
-  width:242px;
-  height:160px;
-  background-color: var(--color5);
+  display: flex;
+  justify-content: space-around;
+  width: 344px;
+  height: 88px;
+  border: 1px solid #38B000;
+  border-radius: 5px;
+  align-items: center;
 }

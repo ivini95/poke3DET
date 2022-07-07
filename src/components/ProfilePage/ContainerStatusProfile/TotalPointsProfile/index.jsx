@@ -11,7 +11,8 @@ function TotalPointsProfile() {
   return (
     <div className='totalContainer'>
       <img src={totalPointsIcon} alt="imagem de letras T e P" />
-      <p>- {totalPoints}</p>
+      <p>-</p>
+      <p>{totalPoints}</p>
     </div>
   )
 }

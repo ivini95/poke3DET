@@ -10,7 +10,8 @@ function ManaPokeProfile() {
   return (
     <div className='manaContainer'>
       <img src={manaIcon} alt="imagem de coração" />
-      <p>- {manaPoke}/{manaPoke}</p>
+      <p>-</p>
+      <p>{manaPoke}/{manaPoke}</p>
     </div>
   )
 }

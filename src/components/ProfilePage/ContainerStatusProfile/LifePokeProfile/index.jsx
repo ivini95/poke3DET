@@ -10,7 +10,8 @@ function LifePokeProfile() {
   return (
     <div className='lifeContainer'>
       <img src={lifeIcon} alt="imagem de coração" />
-      <p>- {lifePoke}/{lifePoke}</p>
+      <p>-</p>
+      <p>{lifePoke}/{lifePoke}</p>
     </div>
   )
 }

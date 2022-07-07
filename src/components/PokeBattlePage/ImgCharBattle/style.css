@@ -1,9 +1,7 @@
 .imgCharBattle {
-  width: 140px;
-  height: 120px;
-  background: var(--darkWhite);
+  box-sizing: border-box;
+  width: 120px;
+  height: 119px;
+  outline: 1px solid #38B000;
 }
 
-p {
-  color: red;
-}

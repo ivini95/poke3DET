@@ -1,3 +1,30 @@
 .skill{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(133.59deg, #38B000 2.68%, #008000 93.36%);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  border: none;
+}
+
+.skill:hover {
+  outline: 1px solid var(--hoverGreen);
+}
+
+.skill:hover:disabled{
+  outline: 0px solid var(--hoverGreen);
+  cursor: unset;
+}
+
+.skill > img {
+  margin-left: 4px;
+  margin-top: 4px;
+}
+
+.skill:disabled {
+  background: linear-gradient(133.59deg, #343434 20.68%, #343434 3.36%);
 }
