@@ -6,7 +6,7 @@ import DiceBattle from '../../components/PokeBattlePage/DiceBattle'
 import FaseBatleDisplay from '../../components/PokeBattlePage/FaseBatleDisplay'
 import ImgCharBattle from '../../components/PokeBattlePage/ImgCharBattle'
 import SkillContainer from '../../components/PokeBattlePage/SkillsContainer'
-import TurnDisplay from '../../components/PokeBattlePage/turnDisplay'
+import TurnDisplay from '../../components/PokeBattlePage/TurnDisplay'
 import { ApiContextBattle, ApiProviderBattle} from '../../contexts/ApiContextBattle'
 import './style.css'
 
