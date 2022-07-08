@@ -15,7 +15,8 @@
   height: 88px;
   display: flex;
   margin-top: 8px;
-  gap: 8px;
+  gap: 16px;
+  width: 344px;
 }
 
 .imgContainer {
@@ -47,14 +48,34 @@
 }
 
 .lifeBar{
+  position: relative;
+  flex-direction: column;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
   width: 16px;
   height: 120px;
-  background: #E01E37;
+  background-color: transparent;
   border-radius: 15px 0px 0px 15px;
   font-size: 12px;
+  outline: 1px solid var(--mainGreen);
+  overflow: hidden;
+  --progress:100;
+}
+#lifeBarBot{
+  position: absolute;
+  content: "";
+  height: calc(var(--progress) * 1%);
+  width: 16px;
+  background-color: red;
+}
+
+#lifeBarPlayer{
+  position: absolute;
+  content: "";
+  height: calc(var(--progress) * 1%);
+  width: 16px;
+  background-color: red;
 }
 
 .middleContainer{

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BattleLog from '../../components/PokeBattlePage/BattleLog'
@@ -19,6 +20,21 @@ function BattlePage() {
   function backPerfil(){
     navigate('/profile')
   }
+
+  useEffect(()=>{
+    const lifeBarBot = document.getElementById('lifeBarBot')
+    lifeBarBot.style.setProperty('--progress', botCurrent.life * 100)
+
+  },[botCurrent.life])
+
+  useEffect(()=>{
+    const lifeBarPlayer = document.getElementById('lifeBarPlayer')
+    lifeBarPlayer.style.setProperty('--progress', currentLife * 100)
+
+  },[currentLife])
+
+
+  
   
   return (               
       
@@ -30,7 +46,9 @@ function BattlePage() {
           <CharDetails></CharDetails>
         </div>
         <div className='imgContainer imgContainerTop'>
-          <div className='lifeBar'>{botCurrent.life}</div>
+          <div  className='lifeBar'>{botCurrent.life}
+          <div id='lifeBarBot'></div>
+          </div>
           <ImgCharBattle value="enemy"></ImgCharBattle>
           <div className='manaBar'>{botCurrent.mana}</div>
           </div>
@@ -40,7 +58,9 @@ function BattlePage() {
           <FaseBatleDisplay/>
         </div>  
         <div className='imgContainer imgContainerBot'>
-          <div className='lifeBar'>{currentLife}</div>
+          <div className='lifeBar'>{currentLife}
+          <div id='lifeBarPlayer'></div>
+          </div>
           <ImgCharBattle value="player"></ImgCharBattle>
           <div className='manaBar'>{currentMana}</div>
           </div>

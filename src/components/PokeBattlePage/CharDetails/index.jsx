@@ -9,19 +9,31 @@ function CharDetails() {
   if (pokeStatusSelected == "" || pokeStatusSelected == "player") {
     return (
       <div className="charDetails">
-        <p>Nome : {currentName}</p>
-        <p>Vida : {currentLife}</p>
-        <p>Mana : {currentMana}</p>
-        <p>Atributos<br /> F{currentAtributes.strength} - H{currentAtributes.ability} - A{currentAtributes.armor} - R{currentAtributes.resistence} - PDF{currentAtributes.firePower}</p>
+        <p>{currentName}</p>
+        <p>Vida {currentLife}</p>
+        <p>Mana {currentMana}</p>
+        <div>
+        <p>F {currentAtributes.strength}</p>
+        <p>H {currentAtributes.ability}</p>   
+        <p>A {currentAtributes.armor}</p>
+        <p>R {currentAtributes.resistence}</p>
+        <p>PDF {currentAtributes.firePower}</p>
+        </div>
       </div>
     )
   }else if(pokeStatusSelected == "enemy") {
     return (
       <div className="charDetails">
-        <p>Nome : {botCurrent.name}</p>
-        <p>Vida : {botCurrent.life}</p>
-        <p>Mana : {botCurrent.mana}</p>
-        <p>Atributos<br /> F{botCurrent.characteristics.strength} - H{botCurrent.characteristics.ability} - A{botCurrent.characteristics.armor} - R{botCurrent.characteristics.resistence} - PDF{botCurrent.characteristics.firePower}</p>
+        <p>{botCurrent.name}</p>
+        <p>Vida {botCurrent.life}</p>
+        <p>Mana {botCurrent.mana}</p>
+        <div>
+        <p>F {botCurrent.characteristics.strength}</p>
+        <p>H {botCurrent.characteristics.ability}</p>
+        <p>A {botCurrent.characteristics.armor}</p>
+        <p>R {botCurrent.characteristics.resistence}</p>
+        <p>PDF {botCurrent.characteristics.firePower}</p>
+        </div>
       </div>
     )
   }
