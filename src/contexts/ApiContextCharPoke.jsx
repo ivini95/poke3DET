@@ -61,7 +61,7 @@ export function ApiProviderChar(props){
     
   }, [user])
 
-  
+
 
   return(
     <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj, imgPoke, setImgPoke ]}>

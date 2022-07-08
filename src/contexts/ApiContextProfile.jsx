@@ -125,6 +125,18 @@ export function ApiProviderProfile(props) {
       })
   }
 
+  useEffect(async()=>{
+    
+    if (user.uid) {
+      
+      const botPokeRef = collection(db,"users", user.uid,"tempData")
+      const botPokeSnap = await getDocs(botPokeRef)
+      if (botPokeSnap.size > 1) {
+        navigate('/battle')
+      }
+    }
+  },[user])
+
   return (
     <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData,totalPoints, setTotalPoints]}>
       {props.children}

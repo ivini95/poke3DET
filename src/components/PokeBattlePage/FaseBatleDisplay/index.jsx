@@ -18,13 +18,10 @@ function FaseBatleDisplay(){
 },[currentAction])
 
   useEffect(()=>{
-    const timeDisplay = document.getElementById('timeDisplay')
     const attackDisplay = document.getElementById('attackDisplay')
     const defenseDisplay = document.getElementById('defenseDisplay')
-    const damageDisplay = document.getElementById('damageDisplay')
 
     if (charTurn && charTurn != undefined) {
-      console.log(charTurn);
       if(charTurn[1] == 'attack' && isTurnDamage == false){
         attackDisplay.style.border = "2px solid #9EF01A"
         defenseDisplay.style.border = ""
@@ -47,7 +44,7 @@ function FaseBatleDisplay(){
         attackDisplay.style.border = ""
         defenseDisplay.style.border = ""
         initiativeDisplay.style.border = ""
-        }, 2000);
+        }, 3000);
       }else{
         damageDisplay.style.border = "2px solid #9EF01A"
         attackDisplay.style.border = ""
