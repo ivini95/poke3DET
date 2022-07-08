@@ -7,6 +7,24 @@ export function DiceBattle(){
 
   const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue] = useContext(ApiContextBattle)
 
+  useEffect(()=>{
+    if (charTurn && charTurn != undefined) {
+      if (charTurn[0] == "bot") {
+        const diceBot = document.getElementById('cube')
+        const diceFaces = diceBot.children
+        for (let face of diceFaces) {
+          face.style.backgroundColor = 'red'
+        }
+      }else{
+        const diceBot = document.getElementById('cube')
+        const diceFaces = diceBot.children
+        for (let face of diceFaces) {
+          face.style.backgroundColor = 'green'
+        }
+      }
+    }
+  },[charTurn])
+
   return (
     
     <section className="container">
