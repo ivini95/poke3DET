@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import BattleLog from '../../components/PokeBattlePage/BattleLog'
 import CharDetails from '../../components/PokeBattlePage/CharDetails'
 import DiceBattle from '../../components/PokeBattlePage/DiceBattle'
+import FaseBatleDisplay from '../../components/PokeBattlePage/FaseBatleDisplay'
 import ImgCharBattle from '../../components/PokeBattlePage/ImgCharBattle'
 import SkillContainer from '../../components/PokeBattlePage/SkillsContainer'
+import TurnDisplay from '../../components/PokeBattlePage/turnDisplay'
 import { ApiContextBattle, ApiProviderBattle} from '../../contexts/ApiContextBattle'
 import './style.css'
 
@@ -21,8 +23,10 @@ function BattlePage() {
   return (               
       
       <div className="battleContainer">
-        {isEndBattle == true ? (<><BattleLog className="battleLogEndBattle"></BattleLog> <button onClick={backPerfil}>Perfil</button></>) : (<><div className='topContainer'>
-          <BattleLog></BattleLog>
+        {isEndBattle == true ? (<><div className='containerEndBattleLog'><BattleLog/></div> <button className='profileButton' onClick={backPerfil}>Perfil</button></>) : (<><div className='topContainer'>
+        <div className='containerBattleLog'>
+          <BattleLog/>
+        </div>
           <CharDetails></CharDetails>
         </div>
         <div className='imgContainer imgContainerTop'>
@@ -30,7 +34,11 @@ function BattlePage() {
           <ImgCharBattle value="enemy"></ImgCharBattle>
           <div className='manaBar'>{botCurrent.mana}</div>
           </div>
-          <DiceBattle></DiceBattle> 
+        <div className='middleContainer'>
+          <TurnDisplay/>
+          <DiceBattle/>
+          <FaseBatleDisplay/>
+        </div>  
         <div className='imgContainer imgContainerBot'>
           <div className='lifeBar'>{currentLife}</div>
           <ImgCharBattle value="player"></ImgCharBattle>

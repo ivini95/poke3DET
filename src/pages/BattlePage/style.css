@@ -15,6 +15,7 @@
   height: 88px;
   display: flex;
   margin-top: 8px;
+  gap: 8px;
 }
 
 .imgContainer {
@@ -33,9 +34,6 @@
   margin-bottom: 8px;
 }
 
-.battleLogEndBattle{
-  
-}
 
 .manaBar{
   display: flex;
@@ -57,4 +55,42 @@
   background: #E01E37;
   border-radius: 15px 0px 0px 15px;
   font-size: 12px;
+}
+
+.middleContainer{
+  display: flex;
+    height: 174px;
+    width: 96%;
+    border: 1px solid red;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profileButton{
+  width: 148px;
+  height: 40px;
+  background: linear-gradient(90deg, #38B000 0%, #008000 100%);
+  box-shadow: -3px -3px 3px rgba(56, 176, 0, 0.15), 3px 3px 3px rgba(56, 176, 0, 0.15);
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 16px;
+  color: var(--whiteFont);
+}
+
+.profileButton:hover{
+  border: 1px solid var(--hoverGreen);
+}
+
+.containerBattleLog{
+  width: 254px;
+  height: 82px;
+}
+
+.containerEndBattleLog{
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 92vw;
+  height: 87.5vh;
 }

@@ -18,9 +18,9 @@ function BattleLog(){
   },[historicTemp])
 
   return (
-    <div>
+    
     <textarea id='log' className="battleLog" value={historicTemp.textLog} readOnly></textarea>
-    </div>
+    
   )
 }
 
