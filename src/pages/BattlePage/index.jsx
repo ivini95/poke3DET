@@ -21,7 +21,7 @@ function BattlePage() {
     navigate('/profile')
   }
 
-  useEffect(()=>{
+  /* useEffect(()=>{
     const lifeBarBot = document.getElementById('lifeBarBot')
     lifeBarBot.style.setProperty('--progress', botCurrent.life * 100)
 
@@ -32,7 +32,7 @@ function BattlePage() {
     lifeBarPlayer.style.setProperty('--progress', currentLife * 100)
 
   },[currentLife])
-
+ */
 
   
   
@@ -47,7 +47,7 @@ function BattlePage() {
         </div>
         <div className='imgContainer imgContainerTop'>
           <div  className='lifeBar'>{botCurrent.life}
-          <div id='lifeBarBot'></div>
+          {/* <div id='lifeBarBot'></div> */}
           </div>
           <ImgCharBattle value="enemy"></ImgCharBattle>
           <div className='manaBar'>{botCurrent.mana}</div>
@@ -59,14 +59,13 @@ function BattlePage() {
         </div>  
         <div className='imgContainer imgContainerBot'>
           <div className='lifeBar'>{currentLife}
-          <div id='lifeBarPlayer'></div>
+          {/* <div id='lifeBarPlayer'></div> */}
           </div>
           <ImgCharBattle value="player"></ImgCharBattle>
           <div className='manaBar'>{currentMana}</div>
           </div>
         <div className='footerContainer'>
           <SkillContainer></SkillContainer>      
-          
         </div></>)}
         
         

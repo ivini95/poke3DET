@@ -52,7 +52,7 @@
   flex-direction: column;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   width: 16px;
   height: 120px;
   background-color: transparent;
@@ -61,6 +61,7 @@
   outline: 1px solid var(--mainGreen);
   overflow: hidden;
   --progress:100;
+  background-color: red;
 }
 #lifeBarBot{
   position: absolute;
