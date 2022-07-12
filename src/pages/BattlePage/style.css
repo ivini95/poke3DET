@@ -92,7 +92,7 @@
   width: 148px;
   height: 40px;
   background: var(--sizzling-red);
-  box-shadow: -3px -3px 3px rgba(56, 176, 0, 0.15), 3px 3px 3px rgba(56, 176, 0, 0.15);
+  box-shadow: -3px -3px 3px var(--sizzling-red),;
   border-radius: 10px;
   border: none;
   margin-bottom: 16px;
