@@ -1,9 +1,9 @@
 .battleContainer {
   box-sizing: border-box;
-  background-color:var(--blackTheme);
+  background-color:var(--dark-purple);
   width: 100vw;
   height:100vh;
-  color: var(--darkWhite);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -21,7 +21,7 @@
 
 .imgContainer {
   height: 120px;
-  width: 154px;
+  width: 152px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,17 +37,19 @@
 
 
 .manaBar{
+
   display: flex;
   align-items: center;
   justify-content: center;
   width: 16px;
   height: 120px;
-  background: #0077B6;
+  background: var(--pewter-blue);
   border-radius: 0px 15px 15px 0px;
   font-size: 12px;
 }
 
 .lifeBar{
+  margin-right: -1px;
   position: relative;
   flex-direction: column;
   display: flex;
@@ -58,17 +60,16 @@
   background-color: transparent;
   border-radius: 15px 0px 0px 15px;
   font-size: 12px;
-  outline: 1px solid var(--mainGreen);
   overflow: hidden;
   --progress:100;
-  background-color: red;
+  background-color: var(--sizzling-red);
 }
 #lifeBarBot{
   position: absolute;
   content: "";
   height: calc(var(--progress) * 1%);
   width: 16px;
-  background-color: red;
+  background-color: var(--sizzling-red);
 }
 
 #lifeBarPlayer{
@@ -76,7 +77,7 @@
   content: "";
   height: calc(var(--progress) * 1%);
   width: 16px;
-  background-color: red;
+  background-color: var(--sizzling-red);
 }
 
 .middleContainer{
@@ -90,21 +91,21 @@
 .profileButton{
   width: 148px;
   height: 40px;
-  background: linear-gradient(90deg, #38B000 0%, #008000 100%);
+  background: var(--sizzling-red);
   box-shadow: -3px -3px 3px rgba(56, 176, 0, 0.15), 3px 3px 3px rgba(56, 176, 0, 0.15);
   border-radius: 10px;
   border: none;
   margin-bottom: 16px;
-  color: var(--whiteFont);
+  color: var(--white);
 }
 
 .profileButton:hover{
-  border: 1px solid var(--hoverGreen);
+  border: 1px solid var(--white);
 }
 
 .containerBattleLog{
   width: 254px;
-  height: 82px;
+  height: 84px;
 }
 
 .containerEndBattleLog{

@@ -1,10 +1,10 @@
 .createNameContainer {
 
   box-sizing: border-box;
-  background-color:var(--blackTheme);
+  background-color:var( --dark-purple);
   width: 100vw;
   height:100vh;
-  color: var(--mainGreen);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;

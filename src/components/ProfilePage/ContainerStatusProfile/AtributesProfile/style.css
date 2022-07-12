@@ -12,7 +12,7 @@
   align-items: center;
   width: 108px;
   height: 32px;
-  background-color:var(--blackTheme);
+  background-color:var(--dark-purple);
   border-radius: 25px;
   gap: 8px;
   justify-content: start;
@@ -25,6 +25,6 @@
 }
 
 .atributeBackGround > p {
-  color: var(--whiteFont);
+  color: var(--white);
 }
 

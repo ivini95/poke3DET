@@ -23,7 +23,7 @@ footer {
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  background-color: var(--blackTheme);
+  background-color: var(--dark-purple);
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -39,7 +39,11 @@ footer {
 .imgExemplo {
   width: 136px;
   border-radius: 10px;
-  border: 1px solid var(--mainGreen);
+  border: 1px solid var(--sizzling-red);
 }
 
 
+.mainThemeIcon{
+  box-sizing: border-box;
+  padding-top: 4px;
+}

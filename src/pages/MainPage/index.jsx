@@ -25,15 +25,18 @@ function MainPage() {
         <div className="headerFirst">
         <MenuIcon onViewSideBar={()=>setSideBar(!sideBar)}/>
         <TitleMain/>
+        <div className="mainThemeIcon">
         <ThemeIcon/>
+        </div>
+        
         </div>
         <div className="headerSecond">
           <PlayButton/>
         </div>
       </header>
       <main className="mainContainer">
-        <img className="imgExemplo" src={profileImg} alt="imagem exemplo da pagina do perfil" />
-        <img className="imgExemplo" src={battleImg} alt="imagem exemplo da pagina de batalha" />
+        {/* <img className="imgExemplo" src={profileImg} alt="imagem exemplo da pagina do perfil" />
+        <img className="imgExemplo" src={battleImg} alt="imagem exemplo da pagina de batalha" /> */}
       </main>
       </div>
     </div>

@@ -9,8 +9,10 @@ function ProfilePage() {
   return (
     <div className='profileContainer'>
       <ApiProviderProfile>
+        <div className='topContainerProfile'>
         <h1 className="titleProfile">Poke3D&amp;T</h1>
-        <ThemeIcon/>
+        <div className='profileThemeIcon'><ThemeIcon/></div>
+        </div>
         <ContainerStatusProfile/>
         <NavigateProfile/>
       </ApiProviderProfile>

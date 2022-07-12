@@ -18,7 +18,10 @@ function ContainerPoke() {
               <ImgCharPoke></ImgCharPoke>
               <NameCharPoke></NameCharPoke>
               <LifeMana></LifeMana>
+              <div className='createPokeThemeIcon'>
               <ThemeIcon></ThemeIcon>
+              </div>
+              
               <TotalPoints></TotalPoints>
               <ButtonChar className={"force pokeStatus"} typeChar={'Força'} value={0}></ButtonChar>
               <ButtonChar className={"ability pokeStatus"} typeChar={'Habilidade'} value={0}></ButtonChar>

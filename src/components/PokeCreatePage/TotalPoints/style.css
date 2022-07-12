@@ -5,9 +5,9 @@
   justify-content: center;
   gap: 4px;
   grid-area: totalP;
-  width: 148px;
-  height: 72px;
-  background: #343434;
+  width: 116px;
+  height: 64px;
+  background: var(--sizzling-red);
   border-radius: 15px;
   justify-self: center;
   align-self: flex-start;
@@ -17,11 +17,11 @@
 .totalPoints  h1 {
  margin: 0;
  font-size: 14px;
- color: var(--whiteFont);
+ color: var(--white);
 }
 
 .totalNumber{
   margin: 0;
   font-size: 14px;
-  color: var(--whiteFont);
+  color: var(--white);
 }

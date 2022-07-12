@@ -11,7 +11,7 @@ function FaseBatleDisplay(){
     const initiativeDisplay = document.getElementById('initiativeDisplay')
     if (currentAction && currentAction != undefined) {
       if (currentAction == 'initiative') {
-        initiativeDisplay.style.border = "2px solid #9EF01A"
+        initiativeDisplay.style.border = "1px solid #FFFFFF"
       }
     }
 
@@ -23,12 +23,12 @@ function FaseBatleDisplay(){
 
     if (charTurn && charTurn != undefined) {
       if(charTurn[1] == 'attack' && isTurnDamage == false){
-        attackDisplay.style.border = "2px solid #9EF01A"
+        attackDisplay.style.border = "1px solid #FFFFFF"
         defenseDisplay.style.border = ""
         initiativeDisplay.style.border = ""
       }else if(charTurn[1] == 'defense'){
         attackDisplay.style.border = ""
-        defenseDisplay.style.border = "2px solid #9EF01A"
+        defenseDisplay.style.border = "1px solid #FFFFFF"
         initiativeDisplay.style.border = ""
       }
     }
@@ -40,13 +40,13 @@ function FaseBatleDisplay(){
     if(isTurnDamage == true){
       if (charTurn[0] == "bot") {
         setTimeout(() => {
-          damageDisplay.style.border = "2px solid #9EF01A"
+          damageDisplay.style.border = "1px solid #FFFFFF"
         attackDisplay.style.border = ""
         defenseDisplay.style.border = ""
         initiativeDisplay.style.border = ""
         }, 3000);
       }else{
-        damageDisplay.style.border = "2px solid #9EF01A"
+        damageDisplay.style.border = "1px solid #FFFFFF"
         attackDisplay.style.border = ""
         defenseDisplay.style.border = ""
         initiativeDisplay.style.border = ""

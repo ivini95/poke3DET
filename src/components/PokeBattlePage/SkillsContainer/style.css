@@ -3,7 +3,27 @@
   justify-content: space-around;
   width: 344px;
   height: 88px;
-  border: 1px solid #38B000;
+  border: 1px solid var(--blue-sapphire);
   border-radius: 5px;
   align-items: center;
+}
+
+.leftMiniArrow{
+  box-sizing: border-box;
+  padding-left: 4px;
+  padding-top: 4px;
+  width: 16px;
+  height: 16px;
+  background: var(--sizzling-red);
+  border-radius: 5px;
+} 
+
+.rightMiniArrow {
+  box-sizing: border-box;
+  padding-left: 6px;
+  padding-top: 4px;
+  width: 16px;
+  height: 16px;
+  background: var(--sizzling-red);
+  border-radius: 5px;
 }

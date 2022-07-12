@@ -4,6 +4,5 @@
 }
 
 .playButton:hover {
-  border: 1px solid var(--hoverGreen);
   cursor: pointer;
 }

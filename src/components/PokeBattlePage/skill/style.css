@@ -5,18 +5,18 @@
   cursor: pointer;
   width: 56px;
   height: 56px;
-  background: linear-gradient(133.59deg, #38B000 2.68%, #008000 93.36%);
+  background: var(--sizzling-red);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   border: none;
 }
 
 .skill:hover {
-  outline: 1px solid var(--hoverGreen);
+  outline: 1px solid var(--white);
 }
 
 .skill:hover:disabled{
-  outline: 0px solid var(--hoverGreen);
+  outline: 0px solid var(--white);
   cursor: unset;
 }
 
@@ -26,5 +26,5 @@
 }
 
 .skill:disabled {
-  background: linear-gradient(133.59deg, #343434 20.68%, #343434 3.36%);
+  background: var(--dark-purple);
 }

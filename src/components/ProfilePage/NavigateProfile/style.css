@@ -1,7 +1,7 @@
 .navigateContainer {
   display: flex;
   width: 100vw;
-  background-color: var(--mainGreen);
+  background-color: var(--sizzling-red);
   height: 56px;
   justify-content: space-evenly;
   align-items: center;

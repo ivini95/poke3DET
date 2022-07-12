@@ -60,7 +60,7 @@ h1 {
 }
 
 #cube div {
-  background: var(--mainGreen);
+  background: var(--pewter-blue);
   display: block;
   position: absolute;
   width: 75px;
@@ -73,7 +73,7 @@ h1 {
 }
 
 #cube div:hover > .dot{
-  outline: 1px solid var(--hoverGreen);
+  outline: 1px solid var(--blue-sapphire);
 }
 
 .dot {
@@ -81,7 +81,7 @@ h1 {
   position: absolute;
   width: 15px;
   height: 15px;
-  background: var(--blackTheme);
+  background: var(--white);
   border-radius: 15px;  
 }
 

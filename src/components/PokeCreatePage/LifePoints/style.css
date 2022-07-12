@@ -1,6 +1,6 @@
 .life > h2 {
   font-size: 14px;
-  color: var(--whiteFont);
+  color: var(--white);
   margin-top: 8px;
   margin-bottom: 8px;
 }
@@ -9,7 +9,7 @@
 .life{
   width: 56px;
   height: 56px;
-  background: var(--blackTheme);
+  background: var(--sizzling-red);
   border-radius: 15px;
   text-align: center;
 }
@@ -17,5 +17,5 @@
 .numberLife{
   margin: 0;
   font-size: 14px;
-  color: var(--whiteFont);
+  color: var(--white);
 }

@@ -3,16 +3,15 @@
   width: 148px;
   height: 40px;
   outline-style: initial;
-  border: 1px solid var(--mainGreen);
-  filter: drop-shadow(-3px -3px 3px rgba(56, 176, 0, 0.15)) drop-shadow(3px 3px 3px rgba(56, 176, 0, 0.15));
+  border: 1px solid var(--sizzling-red);
   border-radius: 10px;
   background-color: transparent;
-  color: var(--mainGreen);
+  color: var(--white);
   font-family: 'Play', sans-serif;
   margin: 0;
 }
 
 .inputNickName::placeholder {
-  color: var(--mainGreen);
-  
+  color: var(--white);
+  font-size: 14px;
 }

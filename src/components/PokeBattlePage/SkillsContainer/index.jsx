@@ -1,7 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { ApiContextBattle } from '../../../contexts/ApiContextBattle'
+import QuitButton from '../QuitButton'
 import Skill from '../skill/Skill'
 import './style.css'
+import leftArrow from '../../../assets/images/leftMiniArrow.svg'
+import rightMiniArrow from '../../../assets/images/rightMiniArrow.svg'
+
 
 function SkillContainer(){
 
@@ -79,10 +83,13 @@ function SkillContainer(){
   
   return (
     <div className='skillContainer'>
+      {/* <img className='leftMiniArrow' src={leftArrow} alt="" /> */}
       <Skill nameAction={"attack"} disabled={buttonStateAt}/>
       <Skill nameAction={"rangedAttack"} disabled={buttonStateAt}/>
       <Skill nameAction={"defend"} disabled={buttonStateDef}/>
       <Skill nameAction={"dodge"} disabled={buttonStateDod}/>
+      <QuitButton/>
+      {/* <img className='rightMiniArrow' src={rightMiniArrow} alt="" /> */}
     </div>
   )
 }

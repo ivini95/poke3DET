@@ -13,13 +13,13 @@ export function DiceBattle(){
         const diceBot = document.getElementById('cube')
         const diceFaces = diceBot.children
         for (let face of diceFaces) {
-          face.style.backgroundColor = 'red'
+          face.style.backgroundColor = '#F6455Cff'
         }
       }else{
         const diceBot = document.getElementById('cube')
         const diceFaces = diceBot.children
         for (let face of diceFaces) {
-          face.style.backgroundColor = 'green'
+          face.style.backgroundColor = '#7DA8B6ff'
         }
       }
     }

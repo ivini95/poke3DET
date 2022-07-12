@@ -2,14 +2,15 @@
   width: 148px;
   height: 40px;
   font-size: 14px;
-  color: var(--whiteFont);
-  background: linear-gradient(90deg, #343434 0%, #343434 100%);
+  color: var(--white);
+  background: var(--sizzling-red);
   box-shadow: 2px 2px 2px rgba(52, 52, 52, 0.25);
   border-radius: 10px;
   font-family: 'Play', sans-serif;
   border: none;
+  font-weight: 600;
 }
 
 .buttonReset:hover{
-  border: 1px solid var(--whiteFont)
+  border: 1px solid var(--white)
 }

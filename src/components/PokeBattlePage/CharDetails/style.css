@@ -6,18 +6,16 @@
   gap: 2px;
   width: 75px;
   height: 88px;
-  background: linear-gradient(180deg, rgba(56, 176, 0, 0.6) 0%, rgba(0, 128, 0, 0.6) 100%);
+  background: var(--sizzling-red);
   border-radius: 5px;
-  padding-top: 4px;
 }
 
 
 .charDetails p{
   margin: 0;
   font-size: 11px;
-  color: var(--whiteFont);
+  color: var(--dark-purple);
   margin-left: 4px;
-
   padding: 1px;
 }
 

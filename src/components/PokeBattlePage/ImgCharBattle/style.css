@@ -2,6 +2,6 @@
   box-sizing: border-box;
   width: 120px;
   height: 120px;
-  outline: 1px solid #38B000;
+  border:1px solid var(--blue-sapphire) ;
 }
 

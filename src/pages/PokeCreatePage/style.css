@@ -1,7 +1,7 @@
 
 .containerPoke {
   box-sizing: border-box;
-  background: linear-gradient(180deg, #008000 10%, var(--mainGreen) 100%);
+  background: var(--dark-purple) 100%;
   width: 100vw;
   height:100vh;
   display: grid;
@@ -60,4 +60,9 @@
   margin-bottom: 16px;
 }
 
-
+.createPokeThemeIcon{
+  align-self: flex-start;
+  justify-self: end;
+  margin-top: 24px;
+  margin-right: 24px;
+}

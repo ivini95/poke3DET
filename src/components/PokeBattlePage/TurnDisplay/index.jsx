@@ -13,10 +13,10 @@ function TurnDisplay(){
     if (charTurn && charTurn != undefined) {
       if (charTurn[0] == "bot") {
         playerDisplay.style.border = ""
-        botDisplay.style.border = "2px solid #9EF01A"
+        botDisplay.style.border = "1px solid #FFFFFF"
       }else if (charTurn[0] == "player"){
         botDisplay.style.border = ""
-        playerDisplay.style.border = "2px solid #9EF01A"
+        playerDisplay.style.border = "1px solid #FFFFFF"
       }
     }
     

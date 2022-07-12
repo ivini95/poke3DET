@@ -67,8 +67,6 @@ function BattlePage() {
         <div className='footerContainer'>
           <SkillContainer></SkillContainer>      
         </div></>)}
-        
-        
       </div>
    
   )

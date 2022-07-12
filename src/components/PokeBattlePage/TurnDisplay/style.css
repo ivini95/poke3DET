@@ -1,7 +1,7 @@
 .turnDisplay{
   width: 112px;
   height: 174px;
-  border: 1px solid var(--mainGreen);
+  border: 1px solid var(--blue-sapphire);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -14,12 +14,12 @@
 .turnDisplay > p {
   width: 79px;
   height: 24px;
-  background: linear-gradient(98.09deg, #38B000 8.3%, #008000 97.67%);
+  background: var(--sizzling-red);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   text-align: center;
   line-height: 24px;
-  color: var(--blackTheme);
+  color: var(--dark-purple);
   font-size: 12px;
   font-weight: 700;
 }
