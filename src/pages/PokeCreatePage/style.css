@@ -5,7 +5,7 @@
   width: 100vw;
   height:100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 95px 95px 1fr;
   grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: 
     "lifeMana pokeImg pokeImg themeIcon "
@@ -42,27 +42,27 @@
 }
 .firePower{
   grid-area: firePower;
-  justify-self: start;
-  margin-left: 16px;
+  justify-self: center;
 }
 .reset{
   grid-area: reset;
-  justify-self: start;
-  margin-left: 16px;
+  justify-self: end;
+  margin-right: 16px;
   align-self: flex-end;
   margin-bottom: 16px;
 } 
 .save{
   grid-area: save;
-  justify-self: end;
-  margin-right: 16px;
+  justify-self: start;
+  margin-left: 16px;
+  
   align-self: flex-end;
   margin-bottom: 16px;
 }
 
 .createPokeThemeIcon{
   align-self: flex-start;
-  justify-self: end;
+  justify-self: start;
   margin-top: 24px;
-  margin-right: 24px;
+  margin-left: 48px;
 }

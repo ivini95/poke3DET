@@ -3,6 +3,7 @@
   width: 100vw;
   background-color: var(--sizzling-red);
   height: 56px;
-  justify-content: space-evenly;
+  justify-content:center;
   align-items: center;
+  gap: 56px;
 }

@@ -83,9 +83,10 @@
 .middleContainer{
   display: flex;
     height: 174px;
-    width: 96%;
+    min-width: 96%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 16px;
 }
 
 .profileButton{
