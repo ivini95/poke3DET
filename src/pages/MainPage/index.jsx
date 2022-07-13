@@ -6,9 +6,9 @@ import MenuComponent from "../../components/MainPage/MenuComponentOpen"
 import PlayButton from "../../components/MainPage/PlayButton"
 import TitleMain from "../../components/MainPage/TitleMain"
 import "./style.css"
-import battlePageMobile from '../../assets/images/battlePageMobile.jpg'
-import createPokeMobile from '../../assets/images/createPokeMobile.jpg'
-import profileMobile from '../../assets/images/profileMobile.jpg'
+import battlePageMobile from '../../assets/images/battlePageMobile.png'
+import createPokeMobile from '../../assets/images/createPokeMobile.png'
+import profileMobile from '../../assets/images/profileMobile.png'
 
 
 function MainPage() {
