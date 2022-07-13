@@ -5,6 +5,7 @@ import {collection, getDocs, addDoc, doc, setDoc}  from "firebase/firestore";
 import { useContext, useEffect } from "react";
 import { ApiContextCharPoke } from "../../../contexts/ApiContextCharPoke";
 import {UserAuth} from '../../../contexts/AuthContext'
+import { useState } from 'react';
 
 
 function SaveButton(){
@@ -13,20 +14,35 @@ function SaveButton(){
 
   const [pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj, imgPoke, setImgPoke] = useContext(ApiContextCharPoke)
 
-  let disabledButton = false;
+  const [zeroedStatus, setZeroedStatus] = useState(true)
 
-  if (total > 0) {
+  let disabledButton = true;
+
+  if (total > 0  && zeroedStatus == true) {
     disabledButton = true
-  }else {
+  }else if (total == 0  && zeroedStatus == false) {
     disabledButton = false
-  }
+  } 
 
   let navigate = useNavigate()
-  
+
+  useEffect(()=>{
+    Object.keys(charObj).forEach((char) => {
+      let charPoint = charObj[char]
+      if (charPoint != 0) {
+        setZeroedStatus(false)
+      }else if(charPoint == 0){
+        setZeroedStatus(true)
+      }
+    })
+    
+  },[charObj])
+
   
   async function savePokeData(){
 
-    const pokeRef = collection(db, "users", user.uid, "pokemon")
+    if (total == 0  && zeroedStatus == false) {
+      const pokeRef = collection(db, "users", user.uid, "pokemon")
       await setDoc(doc(pokeRef, "01"), {
       name: pokeName,
       characteristics: charObj,
@@ -36,6 +52,7 @@ function SaveButton(){
       img: imgPoke
     });  
     navigate('/profile')
+    }
     
   } 
 

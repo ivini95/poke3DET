@@ -10,7 +10,7 @@
   background: var(--sizzling-red);
   border-radius: 15px;
   justify-self: center;
-  align-self: flex-start;
+  align-self: center;
   margin-top: 4px;
 }
 

@@ -6,9 +6,10 @@ import MenuComponent from "../../components/MainPage/MenuComponentOpen"
 import PlayButton from "../../components/MainPage/PlayButton"
 import TitleMain from "../../components/MainPage/TitleMain"
 import "./style.css"
-import profileImg from '../../assets/images/ProfilePrint.png'
-import battleImg from '../../assets/images/BattlePrint.png'
-import backGroundMainPage from '../../assets/images/backGroundMainPage.svg'
+import battlePageMobile from '../../assets/images/battlePageMobile.jpg'
+import createPokeMobile from '../../assets/images/createPokeMobile.jpg'
+import profileMobile from '../../assets/images/profileMobile.jpg'
+
 
 function MainPage() {
 
@@ -35,8 +36,18 @@ function MainPage() {
         </div>
       </header>
       <main className="mainContainer">
-        {/* <img className="imgExemplo" src={profileImg} alt="imagem exemplo da pagina do perfil" />
-        <img className="imgExemplo" src={battleImg} alt="imagem exemplo da pagina de batalha" /> */}
+        <ul className="carousel">
+          <li className="imgItem">
+            <img className="imgExemplo" src={battlePageMobile} alt="imagem exemplo da pagina de batalha" />
+          </li>
+          <li className="imgItem">
+            <img className="imgExemplo" src={createPokeMobile} alt="imagem exemplo da pagina de criação do pokemon" />
+          </li>
+          <li className="imgItem">
+            <img className="imgExemplo" src={profileMobile} alt="imagem exemplo da pagina de perfil" />
+          </li>
+        </ul>
+
       </main>
       </div>
     </div>

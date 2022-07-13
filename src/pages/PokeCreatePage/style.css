@@ -1,13 +1,17 @@
 
+
+
 .containerPoke {
+  
   box-sizing: border-box;
   background: var(--dark-purple) 100%;
   width: 100vw;
   height:100vh;
   display: grid;
   grid-template-columns: 1fr 95px 95px 1fr;
-  grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 172px 80px 72px 88px 88px 88px 56px auto;
   grid-template-areas: 
+      ". . . ."
     "lifeMana pokeImg pokeImg themeIcon "
     "name name name name"
     "totalP totalP totalP totalP"
@@ -15,8 +19,8 @@
     "resistence resistence armor armor"
     "firePower firePower firePower firePower"
     "reset reset save save"
+    ". . . ."
   ;
-  justify-items: center;
   align-items: center;
 }
 
@@ -48,7 +52,7 @@
   grid-area: reset;
   justify-self: end;
   margin-right: 16px;
-  align-self: flex-end;
+  align-self: center;
   margin-bottom: 16px;
 } 
 .save{
@@ -56,13 +60,18 @@
   justify-self: start;
   margin-left: 16px;
   
-  align-self: flex-end;
+  align-self: center;
   margin-bottom: 16px;
 }
 
-.createPokeThemeIcon{
+.createPokeThemeIconContainer {
+  grid-area: themeIcon;
   align-self: flex-start;
   justify-self: start;
+}
+
+.createPokeThemeIcon{
+  
   margin-top: 24px;
   margin-left: 48px;
 }

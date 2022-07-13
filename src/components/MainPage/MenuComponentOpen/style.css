@@ -1,10 +1,11 @@
 .ContainerMenuOpen{
   box-sizing: border-box;
-  padding-top: 76px;
+  padding-top: 30%;
+  padding-bottom: 16px;
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: var(--lightBlack);
+  background-color: var(--dark-purple);
   position: absolute;
   opacity: 0.98;
   top: 0;
@@ -28,7 +29,7 @@
   left: 25px;
   top: 202px;
 
-  background: linear-gradient(180deg, rgba(56, 176, 0, 0.6) 0%, rgba(0, 128, 0, 0.6) 100%);
+  background: var(--sizzling-red);
   border-radius: 25px;
 }
 

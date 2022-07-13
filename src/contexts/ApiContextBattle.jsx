@@ -60,12 +60,13 @@ export function ApiProviderBattle(props){
       const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
       const pokeStatusRefSnap = await getDoc(pokeStatusRef)
       const poke = pokeStatusRefSnap.data()
+      if (poke) {
         setCurrentLife(poke.life)
         setCurrentMana(poke.mana)
         setCurrentName(poke.name)
         setCurrentImg(poke.imgPoke)
         setCurrentAtribute(poke.characteristics)
-      
+      }
     }
     
   },[user])

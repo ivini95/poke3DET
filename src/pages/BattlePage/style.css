@@ -8,7 +8,8 @@
   flex-direction: column;
   position: relative;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px
 }
 
 .topContainer{

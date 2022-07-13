@@ -14,7 +14,6 @@ function DeletePokeButton(){
   async function deletePoke(){
     await deleteDoc(doc(db,"users",user.uid,"pokemon","01"));
     navigate('/createPoke')
-    console.log(userRef);
   }
 
   return (

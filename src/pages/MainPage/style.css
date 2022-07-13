@@ -8,9 +8,12 @@ footer {
 }
 
 .headerFirst {
+  box-sizing: border-box;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0px 16px 0px 16px;
 }
 
 .headerSecond {
@@ -20,6 +23,7 @@ footer {
 .mainpageContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
@@ -32,12 +36,14 @@ footer {
 .mainContainer {
   display: flex;
   align-items: center;
+  width: 500px;
   justify-content: space-around;
   
 }
 
 .imgExemplo {
-  width: 136px;
+ 
+  height: 100%;
   border-radius: 10px;
   border: 1px solid var(--sizzling-red);
 }
@@ -46,4 +52,13 @@ footer {
 .mainThemeIcon{
   box-sizing: border-box;
   padding-top: 4px;
+}
+
+.carousel {
+  width: 60vw;
+  padding: 8px;
+  display: flex;
+  gap: 16px;
+	overflow: scroll;
+	height: 60vh;
 }
