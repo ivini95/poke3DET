@@ -1,0 +1,26 @@
+.popUpOpen {
+  box-sizing: border-box;
+  padding: 8px;
+  position: absolute;
+  width: 250px;
+  height: 350px;
+  background-color: var(--pewter-blue);
+  opacity: 0.9;
+  color: var(--white);
+  border-radius: 5px;
+}
+
+.popUpOpen > ul {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.popUpOpen  li {
+  margin-bottom: 4px;
+}
+
+.popUpOpen span {
+  color: var(--sizzling-red);
+  font-weight: 600;
+}

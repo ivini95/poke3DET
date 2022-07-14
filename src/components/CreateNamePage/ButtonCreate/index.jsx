@@ -1,9 +1,12 @@
-import { collection, doc, setDoc } from 'firebase/firestore';
+import { collection, doc, documentId, setDoc } from 'firebase/firestore';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ApiContextUser } from '../../../contexts/ApiContextUser';
 import { UserAuth } from '../../../contexts/AuthContext';
 import { db } from '../../../dataBase/firerebase';
+import PopUpNickName from '../popUpNickName';
 import './style.css'
 
 function ButtonCreate() {
@@ -16,20 +19,33 @@ function ButtonCreate() {
   
   const userRef = collection(db, "users")
 
+  const [popUpNickName, setPopupNickName] = useState(false)
+  
   async function saveNickName(){
     
-    if (nickName != "") {
+    
+
+    if (nickName.length >= 5 && nickName.length <= 8) {
       if (user.uid) {
         await setDoc(doc(userRef, user.uid), {
           nickName: nickName
         }); 
         navigate('/createpoke')
       }
+    }else {
+      setPopupNickName(true)
+      setTimeout(() => {
+        setPopupNickName(false)
+      }, 1500);
     }
   }
 
   return (
-    <button className='button navigateButton createButton' onClick={saveNickName}>Criar</button>
+    <div>
+        {popUpNickName == true ? <PopUpNickName/> : <></>}
+        <button className='button navigateButton createButton' onClick={saveNickName}>Criar</button>
+    </div>
+    
   )
 }
 

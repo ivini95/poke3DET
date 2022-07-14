@@ -61,10 +61,12 @@ export function ApiProviderChar(props){
     
   }, [user])
 
+  const [popupOpen,setPopupOpen] = useState(false)
+
 
 
   return(
-    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj, imgPoke, setImgPoke ]}>
+    <ApiContextCharPoke.Provider value={[ pokemons, setPokemons, count, setCount,urlPoke, setUrlPoke,resetChar, setResetChar, total, setTotal, manaLife, setManaLife, pokeName, setPokeName, charObj, setCharObj, imgPoke, setImgPoke,popupOpen,setPopupOpen ]}>
       {props.children}
     </ApiContextCharPoke.Provider>
   )

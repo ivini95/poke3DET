@@ -10,3 +10,8 @@
   margin-bottom: 16rem;
   border-radius: 5px;
 }
+
+
+.createButton:disabled:hover {
+  border: none;
+}

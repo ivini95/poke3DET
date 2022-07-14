@@ -7,6 +7,10 @@ footer {
   width: 100vw;
 }
 
+ul {
+  list-style: none;
+}
+
 .headerFirst {
   box-sizing: border-box;
   width: 100vw;
@@ -36,7 +40,7 @@ footer {
 .mainContainer {
   display: flex;
   align-items: center;
-  width: 500px;
+  width: 100vw;
   justify-content: space-around;
   
 }
@@ -62,3 +66,55 @@ footer {
 	overflow: scroll;
 	height: 60vh;
 }
+
+@media (max-width: 1020px){
+  .menuHeader{
+    display: none;
+    
+  }
+}
+
+@media (min-width: 1020px){
+
+  .linkHeader{
+    background-color: transparent;
+    border: none;
+    color: var(--sizzling-red);
+    font-size: 14px;
+  }
+  
+  .menuHeader{
+    display: flex;
+    gap: 24px;
+    
+  }
+
+  .headerFirst {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+  .titleHeaderContainer{
+    margin-right: 172px;
+  }
+
+  .mainContainer {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    
+  }
+
+  .carousel {
+    width: 100vw;
+    padding: 8px;
+    display: flex;
+    gap: 16px;
+    overflow: auto;
+    justify-content: center;
+  }
+
+}
+

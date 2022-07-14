@@ -6,8 +6,11 @@ function InputNickName() {
 
   const [nickName, setNickName] = useContext(ApiContextUser)
 
+  const currentNick = document.getElementById('nickName')
+
   function nickNameChange () {
-    setNickName(document.getElementById('nickName').value)
+    
+    setNickName(currentNick.value)
   }
 
   return (

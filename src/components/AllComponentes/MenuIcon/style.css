@@ -16,3 +16,11 @@
   transition: 0.5s ease-out;
   background-color: var(--black);
 }
+
+@media (min-width: 1020px){
+  .menuIconButton{
+    display: none;
+    position: absolute;
+    
+  }
+}

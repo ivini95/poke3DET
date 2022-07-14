@@ -8,7 +8,8 @@ import SaveButton from '../../components/PokeCreatePage/SaveButton'
 import TotalPoints from '../../components/PokeCreatePage/TotalPoints'
 import './style.css'
 import ThemeIcon from '../../components/AllComponentes/ThemeIcon'
-
+import HelpIcon from '../../components/PokeCreatePage/HelpIcon'
+import PopupCreatePoke from '../../components/PokeCreatePage/PopupCreatePoke'
 
 function ContainerPoke() {
 
@@ -22,9 +23,11 @@ function ContainerPoke() {
                   <div className='createPokeThemeIcon'>
                   <ThemeIcon></ThemeIcon>
                   </div>
+                  <div className='helpContainer'>
+                    <HelpIcon/>
+                  </div>
                 </div>
-                
-                
+                <PopupCreatePoke/>
                 <TotalPoints></TotalPoints>
                 <ButtonChar className={"force pokeStatus"} typeChar={'Força'} value={0}></ButtonChar>
                 <ButtonChar className={"ability pokeStatus"} typeChar={'Habilidade'} value={0}></ButtonChar>

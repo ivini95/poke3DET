@@ -10,14 +10,13 @@ import battlePageMobile from '../../assets/images/battlePageMobile.png'
 import createPokeMobile from '../../assets/images/createPokeMobile.png'
 import profileMobile from '../../assets/images/profileMobile.png'
 
-
 function MainPage() {
 
   const [sideBar, setSideBar] = useState(false)
 
   return (
     <div>
-      {sideBar ? (<div>
+      {sideBar ? (<div className="menuContainerMainPage">
         <BackButton onCloseSideBar={()=>setSideBar(!sideBar)}/>
         <MenuComponent/>
       </div>) : (<></>)}
@@ -25,7 +24,13 @@ function MainPage() {
       <header>
         <div className="headerFirst">
         <MenuIcon onViewSideBar={()=>setSideBar(!sideBar)}/>
-        <TitleMain/>
+        <div className="menuHeader">
+          <button className="linkHeader">COMO JOGAR</button>
+          <button className="linkHeader">SOBRE</button>
+        </div>
+        <div className="titleHeaderContainer">
+          <TitleMain/>
+        </div>
         <div className="mainThemeIcon">
         <ThemeIcon/>
         </div>
@@ -38,13 +43,13 @@ function MainPage() {
       <main className="mainContainer">
         <ul className="carousel">
           <li className="imgItem">
-            <img className="imgExemplo" src={battlePageMobile} alt="imagem exemplo da pagina de batalha" />
-          </li>
-          <li className="imgItem">
             <img className="imgExemplo" src={createPokeMobile} alt="imagem exemplo da pagina de criação do pokemon" />
           </li>
           <li className="imgItem">
             <img className="imgExemplo" src={profileMobile} alt="imagem exemplo da pagina de perfil" />
+          </li>
+          <li className="imgItem">
+            <img className="imgExemplo" src={battlePageMobile} alt="imagem exemplo da pagina de batalha" />
           </li>
         </ul>
 
