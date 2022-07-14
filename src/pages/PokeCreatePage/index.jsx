@@ -16,6 +16,7 @@ function ContainerPoke() {
   return (
       <div className="containerPoke">
               <ApiProviderChar>
+                
                 <ImgCharPoke></ImgCharPoke>
                 <NameCharPoke></NameCharPoke>
                 <LifeMana></LifeMana>

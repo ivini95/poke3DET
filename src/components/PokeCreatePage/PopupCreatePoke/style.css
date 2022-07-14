@@ -1,13 +1,15 @@
 .popUpOpen {
+  display: flex;
   box-sizing: border-box;
   padding: 8px;
   position: absolute;
-  width: 250px;
-  height: 350px;
+  width: 336px;
+  height: 300px;
   background-color: var(--pewter-blue);
   opacity: 0.9;
   color: var(--white);
-  border-radius: 5px;
+  border-radius: 10px;
+  justify-self: center;
 }
 
 .popUpOpen > ul {
