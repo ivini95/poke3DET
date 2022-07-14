@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ApiContextUser } from '../../../contexts/ApiContextUser';
 import { UserAuth } from '../../../contexts/AuthContext';
 import { db } from '../../../dataBase/firerebase';
-import PopUpNickName from '../popUpNickName';
+import PopUpNickName from '../PopUpNickName';
 import './style.css'
 
 function ButtonCreate() {
