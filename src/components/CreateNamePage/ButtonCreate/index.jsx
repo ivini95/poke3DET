@@ -22,9 +22,7 @@ function ButtonCreate() {
   
   async function saveNickName(){
     
-    
-
-    if (nickName.length >= 5 && nickName.length <= 8) {
+    if (nickName.length > 4 && nickName.length < 9) {
       if (user.uid) {
         await setDoc(doc(userRef, user.uid), {
           nickName: nickName
