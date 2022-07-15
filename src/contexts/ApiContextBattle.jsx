@@ -570,7 +570,11 @@ export function ApiProviderBattle(props){
 
   async function defend(action) {
 
+    console.log('proteção',protection);
+    console.log(action);
+    console.log(charTurn);
     if (charTurn[0] == "player" && charTurn[1] == "defense" && protection == 0) {
+      console.log("passou teste defesa");  
       if (action == "miss") {
       
         const currentProtection = currentAtributes.armor + currentAtributes.ability
@@ -663,11 +667,15 @@ export function ApiProviderBattle(props){
   },[botCurrent])
 
   async function dodge() {
+    console.log(dodged);
     if (dodged == false) {
       if (charTurn[0] == "player" && charTurn[1] == "defense") {
 
         
         const abilityTest = currentAtributes.ability - botCurrent.characteristics.ability
+
+        console.log('teste ab',abilityTest);
+        console.log('dado',diceValue);
 
         if (diceValue <= abilityTest){
           setCurrentAction("")
@@ -678,10 +686,12 @@ export function ApiProviderBattle(props){
               await updateDoc(battleTurnRef, {
                 turn: ["player","attack"]
               })
-        } else if(diceValue >= abilityTest){
+        } else {
           setCurrentAction("")
           setDodged(true)
+          setProtection(0)
           defend("miss")
+          
         }
       
       } else if(charTurn[0] == "bot" && charTurn[1] == "defense"){
@@ -1007,7 +1017,7 @@ export function ApiProviderBattle(props){
 
 
   async function quitBattle() {
-    setCharTurn([charTurn[0],"winner"])
+      setCharTurn([charTurn[0],"winner"])
       localStorage.removeItem("historicTempData")
       setIsEndBattle(true)
       logManager("winner", botCurrent.name)

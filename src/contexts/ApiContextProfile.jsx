@@ -70,22 +70,30 @@ export function ApiProviderProfile(props) {
   async function verifyTempData(){
     const botPokeRef = collection(db,"users", user.uid,"tempData")
       const botPokeSnap = await getDocs(botPokeRef)
+
       if (botPokeSnap.size < 1) {
-        createTempBattleData()
-        saveCurrentBot()
-        navigate("/battle")
+        
+        saveCurrentPlayer()
+        generateBot()
+        
       }else {
         navigate("/battle")
       }
   }
 
+  function generateBot() {
 
-  async function saveCurrentBot() {
-
-    saveCurrentPlayer()
+ 
     bot.generateAtribute()
     const botNumber = bot.pokeNumber()
     const botChars = bot.atributes
+    saveCurrentBot(botNumber,botChars)
+ 
+  }
+
+
+  async function saveCurrentBot(botNumber,botChars) {
+
 
     const tempBattleRef = collection(db, "users", user.uid, "tempData")
       await setDoc(doc(tempBattleRef, "pokeBot"), {
@@ -102,7 +110,8 @@ export function ApiProviderProfile(props) {
         mana: botChars[2] * 5,
         imgPoke:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${botNumber}.png`
     })
-
+    createTempBattleData()
+    
   }
 
   async function saveCurrentPlayer(){
@@ -123,6 +132,8 @@ export function ApiProviderProfile(props) {
       await setDoc(doc(pokeRef, "tempBattleData"), {
         initiative: true
       })
+
+    navigate("/battle")
   }
 
   useEffect(async()=>{

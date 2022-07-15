@@ -9,7 +9,6 @@ function BattleButon() {
 
   const [imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData] = useContext(ApiContextProfile)
 
-  const navigate = useNavigate()
 
   function toBattle(){
     verifyTempData()

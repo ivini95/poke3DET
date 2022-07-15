@@ -6,6 +6,7 @@ export const bot = {
   },
   atributes: [1,1,1,1,1],
   generateAtribute: ()=> {
+    
     while (bot.total > 0) {
       let count = Math.floor(Math.random() * (5 - 0))
       bot.atributes[count] += 1
