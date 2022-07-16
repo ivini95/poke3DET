@@ -570,11 +570,9 @@ export function ApiProviderBattle(props){
 
   async function defend(action) {
 
-    console.log('proteção',protection);
-    console.log(action);
-    console.log(charTurn);
+
     if (charTurn[0] == "player" && charTurn[1] == "defense" && protection == 0) {
-      console.log("passou teste defesa");  
+      
       if (action == "miss") {
       
         const currentProtection = currentAtributes.armor + currentAtributes.ability
@@ -667,15 +665,12 @@ export function ApiProviderBattle(props){
   },[botCurrent])
 
   async function dodge() {
-    console.log(dodged);
+   
     if (dodged == false) {
       if (charTurn[0] == "player" && charTurn[1] == "defense") {
 
         
         const abilityTest = currentAtributes.ability - botCurrent.characteristics.ability
-
-        console.log('teste ab',abilityTest);
-        console.log('dado',diceValue);
 
         if (diceValue <= abilityTest){
           setCurrentAction("")

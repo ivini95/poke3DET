@@ -10,7 +10,7 @@ function LogoutButton() {
     try {
       await logOut()
     } catch (error) {
-      console.log(error);
+      
     }
   }
 

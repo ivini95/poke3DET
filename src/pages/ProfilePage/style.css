@@ -1,4 +1,5 @@
 .profileContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color:var(--dark-purple);

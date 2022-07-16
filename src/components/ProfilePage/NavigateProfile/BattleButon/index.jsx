@@ -15,7 +15,7 @@ function BattleButon() {
   }
 
   return (
-    <img src={battleIcon} alt="" onClick={toBattle}/>
+    <img className='profileButtonIcon' src={battleIcon} alt="" onClick={toBattle}/>
   )
 }
 

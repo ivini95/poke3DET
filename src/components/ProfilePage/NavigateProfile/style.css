@@ -7,3 +7,16 @@
   align-items: center;
   gap: 56px;
 }
+
+.profileButtonIcon{
+  box-sizing: border-box;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.profileButtonIcon:hover{
+
+  cursor: pointer;
+  outline: 1px solid var(--white);
+  
+}

@@ -1,23 +1,27 @@
 import './style.css'
 import delPoke from '../../../../assets/images/delPokeIcon.svg'
-import { deleteDoc, deleteField, doc, updateDoc } from 'firebase/firestore';
-import { UserAuth } from '../../../../contexts/AuthContext';
-import {useNavigate } from 'react-router-dom'
-import { db } from '../../../../dataBase/firerebase';
+import PopUpDeletePoke from '../PopUpDeletePoke';
+import { useContext } from 'react';
+import { ApiContextProfile } from '../../../../contexts/ApiContextProfile';
 
 function DeletePokeButton(){
 
-  const {user} = UserAuth()
+  
 
-  const navigate = useNavigate()
+  const [imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData,totalPoints, setTotalPoints,logOutConfirm, setLogOutConfirm,deletePokePopUp, setDeletePokePopUp] = useContext(ApiContextProfile)
 
-  async function deletePoke(){
-    await deleteDoc(doc(db,"users",user.uid,"pokemon","01"));
-    navigate('/createPoke')
+  function deletePokeConfirm(){
+    setDeletePokePopUp(!deletePokePopUp)
   }
 
+  
+
   return (
-    <img src={delPoke} onClick={deletePoke} alt="simbolo de pessoa com x ao lado" />
+    <div>
+      {deletePokePopUp == true ? <PopUpDeletePoke/> : <></>}
+      <img className='profileButtonIcon' src={delPoke} onClick={deletePokeConfirm} alt="simbolo de pessoa com x ao lado" />
+    </div>
+    
   )
 }
 

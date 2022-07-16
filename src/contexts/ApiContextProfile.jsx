@@ -33,6 +33,9 @@ export function ApiProviderProfile(props) {
   },[user])
 
   useEffect(async ()=>{
+    if (user.uid) {
+      
+    
     const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
     const pokeStatusRefSnap = await getDoc(pokeStatusRef)
     const pokeStatus = pokeStatusRefSnap.data()
@@ -42,7 +45,7 @@ export function ApiProviderProfile(props) {
     setImgPoke(pokeStatus.img)
     setAtributesPoke(pokeStatus.characteristics)
     setTotalPoints(pokeStatus.totalPoints)
-    
+  }
   },[user])
 
   
@@ -148,8 +151,12 @@ export function ApiProviderProfile(props) {
     }
   },[user])
 
+  const [logOutConfirm, setLogOutConfirm] = useState(false)
+
+  const [deletePokePopUp, setDeletePokePopUp] = useState(false)
+
   return (
-    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData,totalPoints, setTotalPoints]}>
+    <ApiContextProfile.Provider value={[imgPoke,namePoke,lifePoke,manaPoke,atributesPoke,nickName, saveCurrentBot,createTempBattleData, verifyTempData,totalPoints, setTotalPoints,logOutConfirm, setLogOutConfirm,deletePokePopUp, setDeletePokePopUp]}>
       {props.children}
     </ApiContextProfile.Provider>
   )
