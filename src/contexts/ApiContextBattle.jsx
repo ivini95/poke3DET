@@ -372,16 +372,19 @@ export function ApiProviderBattle(props){
   const[diceBotValue, setDiceBotValue] = useState(0)
   const [isBotRollingDice, setIsBotRollingDice] = useState(false)
 
-  async function initiative(){
+  const [diceInitiativeBot, setDiceInitiativeBot] = useState(false)
 
+  async function initiative(){
+    
     let botDiceInitiative = Math.floor(Math.random() * (6 - 0) + 1)
+    
     setDiceBotValue(botDiceInitiative)
     setTimeout(() => {
       logManager(botDiceInitiative,botCurrent.name,"initiative")
       if (botDiceInitiative == diceValue) {
         logManager(botDiceInitiative,botCurrent.name,"draw")
-      } 
-
+      }
+      setDiceInitiativeBot(true)
       setIsBotRollingDice(true)
     }, 1000);
 
@@ -1249,7 +1252,7 @@ function logEndBattle(nameTurn){
 }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle,quitBattle]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle,quitBattle,diceInitiativeBot]}>
     {props.children}
   </ApiContextBattle.Provider>
  )

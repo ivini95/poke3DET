@@ -5,17 +5,18 @@ import './style.css';
 export function DiceBattle(){
   
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle,quitBattle,diceInitiativeBot] = useContext(ApiContextBattle)
 
   useEffect(()=>{
     if (charTurn && charTurn != undefined) {
       if (charTurn[0] == "bot") {
-        const diceBot = document.getElementById('cube')
-        const diceFaces = diceBot.children
-        for (let face of diceFaces) {
-          face.style.backgroundColor = '#F6455Cff'
+          const diceBot = document.getElementById('cube')
+          const diceFaces = diceBot.children
+          for (let face of diceFaces) {
+            face.style.backgroundColor = '#F6455Cff'
+          }
         }
-      }else{
+        else{
         const diceBot = document.getElementById('cube')
         const diceFaces = diceBot.children
         for (let face of diceFaces) {
@@ -23,7 +24,21 @@ export function DiceBattle(){
         }
       }
     }
+
+    
   },[charTurn])
+
+   useEffect(()=>{
+    
+    if (diceInitiativeBot == true) {
+      console.log('teste');
+      const diceBot = document.getElementById('cube')
+      const diceFaces = diceBot.children
+      for (let face of diceFaces) {
+        face.style.backgroundColor = '#F6455Cff'
+      }
+    }
+  },[diceInitiativeBot]) 
 
   return (
     

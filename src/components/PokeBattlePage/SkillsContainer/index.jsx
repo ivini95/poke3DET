@@ -14,6 +14,7 @@ function SkillContainer(){
   const [buttonStateAt, setButtonStateAt] = useState(true)
   const [buttonStateDef, setButtonStateDef] = useState(true)
   const [buttonStateDod, setButtonStateDod] = useState(true)
+  const [buttonQuit, setButtonQuit] = useState(true)
 
   useEffect(()=>{
     if (possibleDodge == true) {
@@ -29,16 +30,18 @@ function SkillContainer(){
       setButtonStateAt(true)
       setButtonStateDef(true)
       setButtonStateDod(true)
+      setButtonQuit(true)
     }
 
     else if (charTurn[0] == "player" && charTurn[1] == "defense" ) {
       setButtonStateAt(true)
       setButtonStateDef(false)
-      
+      setButtonQuit(false)
     }else if (charTurn[0] == "player" && charTurn[1] == "attack"){
       setButtonStateDef(true)
       setButtonStateAt(false)
       setButtonStateDod(true)
+      setButtonQuit(false)
     }
   },[charTurn])
 
@@ -47,14 +50,17 @@ function SkillContainer(){
       setButtonStateAt(true)
       setButtonStateDef(true)
       setButtonStateDod(true)
+      setButtonQuit(true)
     }else if (charTurn[0] == "bot" && charTurn[1] == "defense" ) {
       setButtonStateAt(true)
       setButtonStateDef(true)
       setButtonStateDod(true)
+      setButtonQuit(true)
     }else if (charTurn[0] == "bot" && charTurn[1] == "attack"){
       setButtonStateDef(true)
       setButtonStateAt(true)
       setButtonStateDod(true)
+      setButtonQuit(true)
     }
   },[charTurn])
 
@@ -64,6 +70,7 @@ function SkillContainer(){
       setButtonStateAt(true)
       setButtonStateDef(true)
       setButtonStateDod(true)
+      setButtonQuit(true)
     }
   },[currentAction])
 
@@ -72,6 +79,7 @@ function SkillContainer(){
       setButtonStateAt(true)
       setButtonStateDef(true)
       setButtonStateDod(true)
+      setButtonQuit(true)
     }
   },[isTurnDamage])
 
@@ -88,7 +96,7 @@ function SkillContainer(){
       <Skill nameAction={"rangedAttack"} disabled={buttonStateAt}/>
       <Skill nameAction={"defend"} disabled={buttonStateDef}/>
       <Skill nameAction={"dodge"} disabled={buttonStateDod}/>
-      <QuitButton/>
+      <QuitButton disabled={buttonQuit}/>
       {/* <img className='rightMiniArrow' src={rightMiniArrow} alt="" /> */}
     </div>
   )

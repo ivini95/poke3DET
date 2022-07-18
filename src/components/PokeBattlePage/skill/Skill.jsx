@@ -11,8 +11,6 @@ function Skill(props) {
 
   const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn] = useContext(ApiContextBattle)
 
-  const [buttonState, setButtonState] = useState(true)
-
   function skillSelected(){
     setCurrentAction(props.nameAction)
   }
