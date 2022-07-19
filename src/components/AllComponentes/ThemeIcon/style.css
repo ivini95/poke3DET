@@ -4,3 +4,11 @@
   
 }
 
+.moonIcon{
+  width: 24px;
+  height: 24px;
+}
+
+svg path {
+  fill: blue;
+}

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ThemeIcon from '../../components/AllComponentes/ThemeIcon'
 import BattleLog from '../../components/PokeBattlePage/BattleLog'
 import CharDetails from '../../components/PokeBattlePage/CharDetails'
 import DiceBattle from '../../components/PokeBattlePage/DiceBattle'
@@ -39,6 +40,8 @@ function BattlePage() {
   return (               
       
       <div className="battleContainer">
+        <div className='themeIconBattle'><ThemeIcon/></div>
+        
         {isEndBattle == true ? (<><div className='containerEndBattleLog'><BattleLog/></div> <button className='profileButton' onClick={backPerfil}>Perfil</button></>) : (<><div className='topContainer'>
         <div className='containerBattleLog'>
           <BattleLog/>

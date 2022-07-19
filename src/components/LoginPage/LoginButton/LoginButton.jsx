@@ -1,5 +1,4 @@
 import './style.css'
-import googleIcon from '../../../assets/images/googleIcon.svg'
 import {UserAuth} from '../../../contexts/AuthContext'
 
 

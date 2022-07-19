@@ -1,11 +1,9 @@
 :root {
-
   --sizzling-red: #F6455Cff;
   --pewter-blue: #7DA8B6ff;
   --blue-sapphire: #32546Dff;
   --dark-purple: #2E293Dff;
   --white: #FFFFFFff;
-  
 }
 
 body {
@@ -66,3 +64,6 @@ h1 {
   
 } 
 
+svg path {
+  fill: #fce57e;
+}
