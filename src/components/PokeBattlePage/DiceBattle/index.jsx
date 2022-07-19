@@ -31,7 +31,6 @@ export function DiceBattle(){
    useEffect(()=>{
     
     if (diceInitiativeBot == true) {
-      console.log('teste');
       const diceBot = document.getElementById('cube')
       const diceFaces = diceBot.children
       for (let face of diceFaces) {

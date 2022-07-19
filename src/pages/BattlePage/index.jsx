@@ -18,24 +18,35 @@ function BattlePage() {
 
   const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle] = useContext(ApiContextBattle)
 
+  const lifeBarBot = document.getElementById('lifeBarBot')
+  const lifeBarPlayer = document.getElementById('lifeBarPlayer')
+  const tamanhoBarra = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue('--progress')
+
+
+  useEffect(()=>{
+    if (lifeBarBot) {
+      let lifeBot = botCurrent.life
+      let lifeTotalBot = botCurrent.characteristics.resistence * 5
+      lifeBarBot.style.setProperty('--progress', (lifeBot * tamanhoBarra) / lifeTotalBot)
+    }
+    
+  },[botCurrent.life])
+
+  useEffect(()=>{
+    if (lifeBarPlayer) {
+        let lifePlayer = currentLife
+        let lifeTotalPlayer = currentAtributes.resistence * 5
+        lifeBarPlayer.style.setProperty('--progress', (lifePlayer * tamanhoBarra) / lifeTotalPlayer)
+    }
+    
+  },[currentLife])
+
   function backPerfil(){
     navigate('/profile')
   }
 
-  /* useEffect(()=>{
-    const lifeBarBot = document.getElementById('lifeBarBot')
-    lifeBarBot.style.setProperty('--progress', botCurrent.life * 100)
-
-  },[botCurrent.life])
-
-  useEffect(()=>{
-    const lifeBarPlayer = document.getElementById('lifeBarPlayer')
-    lifeBarPlayer.style.setProperty('--progress', currentLife * 100)
-
-  },[currentLife])
- */
-
-  
   
   return (               
       
@@ -49,8 +60,9 @@ function BattlePage() {
           <CharDetails></CharDetails>
         </div>
         <div className='imgContainer imgContainerTop'>
-          <div  className='lifeBar'>{botCurrent.life}
-          {/* <div id='lifeBarBot'></div> */}
+          <div className='lifeBar'>
+          <div id='lifeBarBot'></div>
+          <div className='lifeNumberBar'>{botCurrent.life}</div>
           </div>
           <ImgCharBattle value="enemy"></ImgCharBattle>
           <div className='manaBar'>{botCurrent.mana}</div>
@@ -61,8 +73,9 @@ function BattlePage() {
           <FaseBatleDisplay/>
         </div>  
         <div className='imgContainer imgContainerBot'>
-          <div className='lifeBar'>{currentLife}
-          {/* <div id='lifeBarPlayer'></div> */}
+          <div  className='lifeBar'>
+          <div id='lifeBarPlayer'></div>
+          <div className='lifeNumberBar'>{currentLife}</div>
           </div>
           <ImgCharBattle value="player"></ImgCharBattle>
           <div className='manaBar'>{currentMana}</div>

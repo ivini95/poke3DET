@@ -34,7 +34,6 @@ function ThemeIcon(){
       if (themeStorage != null) {
         setThemeSelect(themeStorage)
       }
-      console.log(themeStorage);
   },[user]) 
 
   return (

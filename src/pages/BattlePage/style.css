@@ -50,25 +50,26 @@
 }
 
 .lifeBar{
+  box-sizing: border-box;
   margin-right: -1px;
   position: relative;
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 120px;
+  width: 14px;
+  height: 118px;
   background-color: transparent;
   border-radius: 15px 0px 0px 15px;
   font-size: 12px;
   overflow: hidden;
-  --progress:100;
-  background-color: var(--sizzling-red);
+  
+ outline: 1px solid var(--sizzling-red);
 }
 #lifeBarBot{
   position: absolute;
   content: "";
-  height: calc(var(--progress) * 1%);
+  height: calc(var(--progress) * 1px);
   width: 16px;
   background-color: var(--sizzling-red);
 }
@@ -76,9 +77,10 @@
 #lifeBarPlayer{
   position: absolute;
   content: "";
-  height: calc(var(--progress) * 1%);
+  height: calc(var(--progress) * 1px);
   width: 16px;
   background-color: var(--sizzling-red);
+  bottom: 0;
 }
 
 .middleContainer{
@@ -121,4 +123,8 @@
 
 .themeIconBattle{
   display: none;
+}
+
+.lifeNumberBar{
+  position: absolute;
 }
