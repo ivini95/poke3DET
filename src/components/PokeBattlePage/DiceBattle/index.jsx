@@ -36,6 +36,15 @@ export function DiceBattle(){
       for (let face of diceFaces) {
         face.style.backgroundColor = '#F6455Cff'
       }
+    }else if(diceInitiativeBot == false){
+      setTimeout(() => {
+        const diceBot = document.getElementById('cube')
+        const diceFaces = diceBot.children
+        for (let face of diceFaces) {
+          face.style.backgroundColor = '#7DA8B6ff'
+        }
+      }, 2200);
+        
     }
   },[diceInitiativeBot]) 
 

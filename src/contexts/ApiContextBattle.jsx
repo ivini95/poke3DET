@@ -384,6 +384,9 @@ export function ApiProviderBattle(props){
       logManager(botDiceInitiative,botCurrent.name,"initiative")
       if (botDiceInitiative == diceValue) {
         logManager(botDiceInitiative,botCurrent.name,"draw")
+        setTimeout(() => {
+          setDiceInitiativeBot(false)
+        }, 1);
       }
       setDiceInitiativeBot(true)
       setIsBotRollingDice(true)
