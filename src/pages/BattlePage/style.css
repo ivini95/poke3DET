@@ -72,6 +72,7 @@
   height: calc(var(--progress) * 1px);
   width: 16px;
   background-color: var(--sizzling-red);
+  bottom: 0;
 }
 
 #lifeBarPlayer{

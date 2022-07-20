@@ -41,6 +41,7 @@ export function ApiProviderBattle(props){
     'text': '',
     'textLog': ''
   })
+  const [pokemonPlayer, setPokemonPlayer] = useState({})
 
 
   let historicTempCopy = {...historicTemp};
@@ -60,6 +61,7 @@ export function ApiProviderBattle(props){
       const pokeStatusRef = doc(db, "users", user.uid, "tempData", "pokePlayerTemp")
       const pokeStatusRefSnap = await getDoc(pokeStatusRef)
       const poke = pokeStatusRefSnap.data()
+      setPokemonPlayer(poke)
       if (poke) {
         setCurrentLife(poke.life)
         setCurrentMana(poke.mana)
@@ -70,7 +72,6 @@ export function ApiProviderBattle(props){
     }
     
   },[user])
-
 
 
   useEffect(async ()=>{//busca dados do pokemon do bot no banco de dados
@@ -1252,7 +1253,7 @@ function logEndBattle(nameTurn){
 }
 
  return (
-  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle,quitBattle,diceInitiativeBot]}>
+  <ApiContextBattle.Provider value={[diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle,quitBattle,diceInitiativeBot,pokemonPlayer]}>
     {props.children}
   </ApiContextBattle.Provider>
  )

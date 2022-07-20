@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useEffect } from 'react'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +17,7 @@ function BattlePage() {
 
   const navigate = useNavigate()
 
-  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle] = useContext(ApiContextBattle)
+  const [diceValue , setDiceValue, historicTemp, setHistoricTemp, currentLife, setCurrentLife, currentMana, setCurrentMana, currentName, setCurrentName, currentImg, setCurrentImg,currentAtributes, setCurrentAtribute, attack, rangedAttack, defend, dodge, botCurrent, action,currentAction, setCurrentAction,charTurn, pokeStatusSelected, setPokeStatusSelected,rotateDice, diceRolling, setDiceRolling,isTurnDamage, setIsTurnDamage,damageFase,generateValue, dodged,possibleDodge,isEndBattle,quitBattle,diceInitiativeBot,pokemonPlayer] = useContext(ApiContextBattle)
 
   const lifeBarBot = document.getElementById('lifeBarBot')
   const lifeBarPlayer = document.getElementById('lifeBarPlayer')
@@ -24,8 +25,9 @@ function BattlePage() {
     document.documentElement
   ).getPropertyValue('--progress')
 
+ 
 
-  useEffect(()=>{
+   useEffect(()=>{
     if (lifeBarBot) {
       let lifeBot = botCurrent.life
       let lifeTotalBot = botCurrent.characteristics.resistence * 5
@@ -37,16 +39,15 @@ function BattlePage() {
   useEffect(()=>{
     if (lifeBarPlayer) {
         let lifePlayer = currentLife
-        let lifeTotalPlayer = currentAtributes.resistence * 5
+        let lifeTotalPlayer = pokemonPlayer.characteristics.resistence * 5
         lifeBarPlayer.style.setProperty('--progress', (lifePlayer * tamanhoBarra) / lifeTotalPlayer)
     }
     
-  },[currentLife])
+  },[currentLife]) 
 
   function backPerfil(){
     navigate('/profile')
   }
-
   
   return (               
       
