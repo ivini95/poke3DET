@@ -1034,6 +1034,8 @@ export function ApiProviderBattle(props){
 
   function logManager(valueTurn,nameTurn,action,IsDamage) {
 
+    const br = <br />
+
 
     let attempt = ["Acertou", "Errou"]
 
@@ -1159,7 +1161,7 @@ export function ApiProviderBattle(props){
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     setTimeout(() => {
-      historicTempCopy.text = `- ${valueTurn}\n`
+      historicTempCopy.text = `- ${valueTurn}.\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
@@ -1168,7 +1170,7 @@ export function ApiProviderBattle(props){
 
   function logDraw(){
     setTimeout(() => {
-      historicTempCopy.text = `EMPATE!\n`
+      historicTempCopy.text = `EMPATE!.\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2020);
@@ -1181,7 +1183,7 @@ export function ApiProviderBattle(props){
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
       setTimeout(() => {
-        historicTempCopy.text = `- ${valueTurn} - ${attempt}\n`
+        historicTempCopy.text = `- ${valueTurn} - ${attempt}.\n`
         historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
         setHistoricTemp({...historicTemp,...historicTempCopy})
       }, 2010)
@@ -1193,7 +1195,7 @@ export function ApiProviderBattle(props){
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
     setTimeout(() => {
-      historicTempCopy.text = `- ${valueTurn} - ${attempt}\n`
+      historicTempCopy.text = `- ${valueTurn} - ${attempt}.\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
@@ -1201,11 +1203,11 @@ export function ApiProviderBattle(props){
 
 function logDefend(valueTurn,nameTurn,critical){
   if (critical == true) {
-    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn} - CRÍTICO\n`
+    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn} - CRÍTICO.\n`
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
   }else{
-    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn}\n`
+    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn}.\n`
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
   }
@@ -1217,7 +1219,7 @@ function logDodge(valueTurn,nameTurn,attempt){
   historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
   setHistoricTemp({...historicTemp,...historicTempCopy})
   setTimeout(() => {
-    historicTempCopy.text = `- ${valueTurn} - ${attempt}\n`
+    historicTempCopy.text = `- ${valueTurn} - ${attempt}.\n`
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
   }, 2010)
@@ -1227,13 +1229,13 @@ function logAttackDamage(valueTurn,nameTurn,critical){
 
   if (critical == true) {
     setTimeout(() => {
-      historicTempCopy.text = `${nameTurn} Joga ${valueTurn} no dado de ataque - CRÍTICO!\n`
+      historicTempCopy.text = `${nameTurn} Joga ${valueTurn} no dado de ataque - CRÍTICO!.\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
   }else{
     setTimeout(() => {
-      historicTempCopy.text = `${nameTurn} Joga ${valueTurn} no dado de ataque\n`
+      historicTempCopy.text = `${nameTurn} Joga ${valueTurn} no dado de ataque.\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
@@ -1242,7 +1244,7 @@ function logAttackDamage(valueTurn,nameTurn,critical){
 
 function logDamageResult(valueTurn,nameTurn){
 
-      historicTempCopy.text = `${nameTurn} Recebe ${valueTurn} de dano\n`
+      historicTempCopy.text = `${nameTurn} Recebe ${valueTurn} de dano.\n`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
 
@@ -1250,7 +1252,7 @@ function logDamageResult(valueTurn,nameTurn){
 }
 
 function logEndBattle(nameTurn){
-  historicTempCopy.text = `${nameTurn} Venceu !!!\n`
+  historicTempCopy.text = `${nameTurn} Venceu !!!.\n`
   historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
   setHistoricTemp({...historicTemp,...historicTempCopy})
 }

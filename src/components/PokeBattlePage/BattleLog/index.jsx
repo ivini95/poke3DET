@@ -12,14 +12,15 @@ function BattleLog(){
     let textArea = document.getElementById("log")
 
     if(textArea.selectionStart == textArea.selectionEnd) {
-      textArea.scrollTop = textArea.scrollHeight;
+      textArea.scrollTop = textArea.scrollHeight ;
     }
- 
+    
+    textArea.innerText = historicTemp.textLog
   },[historicTemp])
 
   return (
     
-    <textarea id='log' className="battleLog" value={historicTemp.textLog} readOnly></textarea>
+    <div id='log' className="battleLog"></div>
     
   )
 }
