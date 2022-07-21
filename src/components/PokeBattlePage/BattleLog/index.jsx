@@ -15,7 +15,8 @@ function BattleLog(){
       textArea.scrollTop = textArea.scrollHeight ;
     }
     
-    textArea.innerText = historicTemp.textLog
+    textArea.innerHTML = historicTemp.textLog
+    
   },[historicTemp])
 
   return (

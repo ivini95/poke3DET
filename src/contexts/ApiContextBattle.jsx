@@ -1034,9 +1034,6 @@ export function ApiProviderBattle(props){
 
   function logManager(valueTurn,nameTurn,action,IsDamage) {
 
-    const br = <br />
-
-
     let attempt = ["Acertou", "Errou"]
 
     if (isTurnDamage == false) {
@@ -1157,11 +1154,15 @@ export function ApiProviderBattle(props){
   }
 
   function logInitiative(valueTurn,nameTurn) {
-    historicTempCopy.text = `${nameTurn} Joga iniciativa `
+      if (nameTurn == currentName) {
+        historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Joga iniciativa `
+      }else if (nameTurn == botCurrent.name){
+        historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Joga iniciativa `
+      }
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     setTimeout(() => {
-      historicTempCopy.text = `- ${valueTurn}.\n`
+      historicTempCopy.text = `- <span id="valueDice">${valueTurn}</span>.<br>`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
@@ -1170,7 +1171,7 @@ export function ApiProviderBattle(props){
 
   function logDraw(){
     setTimeout(() => {
-      historicTempCopy.text = `EMPATE!.\n`
+      historicTempCopy.text = `EMPATE!.<br>`
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2020);
@@ -1178,24 +1179,40 @@ export function ApiProviderBattle(props){
   
 
   function logAttackMelee(valueTurn,nameTurn,attempt){
-    
-      historicTempCopy.text = `${nameTurn} Realiza Ataque Corpo a Corpo `
+      if (nameTurn == currentName) {
+        historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> usa Ataque Corpo a Corpo `
+      }else if (nameTurn == botCurrent.name){
+        historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> usa Ataque Corpo a Corpo `
+      }
+      
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
       setTimeout(() => {
-        historicTempCopy.text = `- ${valueTurn} - ${attempt}.\n`
+        if (attempt == "Errou") {
+          historicTempCopy.text = `- <span id="valueDice">${valueTurn}</span> - <span id="atemptMistake">${attempt}</span>.<br>`
+        }else if(attempt == "Acertou"){
+          historicTempCopy.text = `- <span id="valueDice">${valueTurn}</span> - <span id="atemptHit">${attempt}</span>.<br>`
+        }
+        
         historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
         setHistoricTemp({...historicTemp,...historicTempCopy})
       }, 2010)
   }
 
   function logAttackRanged(valueTurn,nameTurn,attempt){
-    
-    historicTempCopy.text = `${nameTurn} Realiza Ataque a Distancia `
+    if (nameTurn == currentName) {
+      historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> usa Ataque a Distancia `
+    }else if (nameTurn == botCurrent.name){
+      historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> usa Ataque a Distancia `
+    }
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
     setTimeout(() => {
-      historicTempCopy.text = `- ${valueTurn} - ${attempt}.\n`
+      if (attempt == "Errou") {
+        historicTempCopy.text = `- <span id="valueDice">${valueTurn}</span> - <span id="atemptMistake">${attempt}</span>.<br>`
+      }else if(attempt == "Acertou"){
+        historicTempCopy.text = `- <span id="valueDice">${valueTurn}</span> - <span id="atemptHit">${attempt}</span>.<br>`
+      }
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
@@ -1203,23 +1220,38 @@ export function ApiProviderBattle(props){
 
 function logDefend(valueTurn,nameTurn,critical){
   if (critical == true) {
-    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn} - CRÍTICO.\n`
+    if (nameTurn == currentName) {
+      historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Defende - <span id="valueDice">${valueTurn}</span> - <span id="critical">CRÍTICO!</span>.<br>`
+    }else if (nameTurn == botCurrent.name){
+      historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Defende - <span id="valueDice">${valueTurn}</span> - <span id="critical">CRÍTICO!</span>.<br>`
+    }
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
   }else{
-    historicTempCopy.text = `${nameTurn} Defende - ${valueTurn}.\n`
+    if (nameTurn == currentName) {
+      historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Defende - <span id="valueDice">${valueTurn}</span>.<br>`
+    }else if (nameTurn == botCurrent.name){
+      historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Defende - <span id="valueDice">${valueTurn}</span>.<br>`
+    }
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
   }
 }
 
 function logDodge(valueTurn,nameTurn,attempt){
-    
-  historicTempCopy.text = `${nameTurn} Tenta esquivar `
+  if (nameTurn == currentName) {
+    historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Tenta esquivar `
+  }else if (nameTurn == botCurrent.name){
+    historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Tenta esquivar `
+  }
   historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
   setHistoricTemp({...historicTemp,...historicTempCopy})
   setTimeout(() => {
-    historicTempCopy.text = `- ${valueTurn} - ${attempt}.\n`
+    if (attempt == "Errou") {
+      historicTempCopy.text = `- <span id="valueDice">${valueTurn}</span> - <span id="atemptMistake">${attempt}</span>.<br>`
+    }else if(attempt == "Acertou"){
+      historicTempCopy.text = `- <span id="valueDice">${valueTurn}</span> - <span id="atemptHit">${attempt}</span>.<br>`
+    }
     historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
     setHistoricTemp({...historicTemp,...historicTempCopy})
   }, 2010)
@@ -1229,13 +1261,22 @@ function logAttackDamage(valueTurn,nameTurn,critical){
 
   if (critical == true) {
     setTimeout(() => {
-      historicTempCopy.text = `${nameTurn} Joga ${valueTurn} no dado de ataque - CRÍTICO!.\n`
+      if (nameTurn == currentName) {
+        historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Joga <span id="valueDice">${valueTurn}</span> no dado de ataque - <span id="critical">CRÍTICO!</span>.<br>`
+      }else if (nameTurn == botCurrent.name){
+        historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Joga <span id="valueDice">${valueTurn}</span> no dado de ataque - <span id="critical">CRÍTICO!</span>.<br>`
+      }
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
   }else{
     setTimeout(() => {
-      historicTempCopy.text = `${nameTurn} Joga ${valueTurn} no dado de ataque.\n`
+      if (nameTurn == currentName) {
+        historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Joga <span id="valueDice">${valueTurn}</span> no dado de ataque.<br>`
+      }else if (nameTurn == botCurrent.name){
+        historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Joga <span id="valueDice">${valueTurn}</span> no dado de ataque.<br>`
+      }
+
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
     }, 2010)
@@ -1243,16 +1284,21 @@ function logAttackDamage(valueTurn,nameTurn,critical){
 }
 
 function logDamageResult(valueTurn,nameTurn){
-
-      historicTempCopy.text = `${nameTurn} Recebe ${valueTurn} de dano.\n`
+      if (nameTurn == currentName) {
+        historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Recebe <span id="valueDice">${valueTurn}</span> de dano.<br>`
+      }else if (nameTurn == botCurrent.name){
+        historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Recebe <span id="valueDice">${valueTurn}</span> de dano.<br>`
+      }
       historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
       setHistoricTemp({...historicTemp,...historicTempCopy})
-
-    
 }
 
 function logEndBattle(nameTurn){
-  historicTempCopy.text = `${nameTurn} Venceu !!!.\n`
+  if (nameTurn == currentName) {
+    historicTempCopy.text = `<span id="namePlayerLogBattle">${nameTurn}</span> Vence!!!.<br>`
+  }else if (nameTurn == botCurrent.name){
+    historicTempCopy.text = `<span id="nameBotLogBattle">${nameTurn}</span> Vence!!!.<br>`
+  }
   historicTempCopy.textLog = historicTempCopy.textLog + historicTempCopy.text
   setHistoricTemp({...historicTemp,...historicTempCopy})
 }

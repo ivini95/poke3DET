@@ -129,3 +129,35 @@
 .lifeNumberBar{
   position: absolute;
 }
+
+#namePlayerLogBattle{
+  color: rgb(70, 70, 189);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+#nameBotLogBattle{
+  color: rgb(248, 66, 66);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+#valueDice {
+  color: rgb(66, 212, 248);
+  font-weight: 600;
+}
+
+#critical{
+  color: rgb(243, 202, 18);
+  font-weight: 600;
+}
+
+#atemptMistake{
+  color: rgb(243, 18, 18);
+  font-weight: 600;
+}
+
+#atemptHit{
+  color: rgb(44, 243, 18);
+  font-weight: 600;
+}
