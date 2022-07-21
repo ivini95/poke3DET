@@ -10,13 +10,13 @@ function BattleLog(){
   useEffect(()=>{
     
     let textArea = document.getElementById("log")
-
-    if(textArea.selectionStart == textArea.selectionEnd) {
-      textArea.scrollTop = textArea.scrollHeight ;
-    }
-    
     textArea.innerHTML = historicTemp.textLog
     
+  },[historicTemp])
+
+  useEffect(()=>{
+    let textArea = document.getElementById("log")
+      textArea.scrollTop = textArea.scrollHeight ;
   },[historicTemp])
 
   return (
