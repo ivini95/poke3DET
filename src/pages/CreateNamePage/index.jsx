@@ -24,7 +24,7 @@ function CreateNamePage() {
 
       if (usersSnap.nickName) {
         navigate('/createpoke')
-    }
+      }
     }
     
   }, [user]) 

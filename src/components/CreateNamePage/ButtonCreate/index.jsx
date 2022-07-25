@@ -27,7 +27,21 @@ function ButtonCreate() {
         await setDoc(doc(userRef, user.uid), {
           nickName: nickName
         }); 
-        navigate('/createpoke')
+        if (total == 0  && zeroedStatus == false) {
+          const pokeRef = collection(db, "users", user.uid, "pokemon")
+          await setDoc(doc(pokeRef, "01"), {
+          name: pokeName,
+          characteristics: charObj,
+          life: manaLife,
+          mana: manaLife,
+          totalPoints: 12,
+          img: imgPoke
+        });  
+        navigate('/profile')
+        }else{
+          navigate('/createpoke')
+        }
+        
       }
     }else {
       setPopupNickName(true)

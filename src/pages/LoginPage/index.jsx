@@ -29,7 +29,14 @@ function LoginPage() {
             const docRef = doc(db, "users", user.uid);
             const docSnap = (await getDoc(docRef)).data();
             if (docSnap.nickName) {
+              const pokeRef =  collection(db, "users", user.uid,"pokemon")
+              const snapPokeRef = await getDocs(pokeRef)
+              if (snapPokeRef.size > 0) {
+                navigate('/profile')
+            } else{
               navigate('/createpoke')
+            }
+             
             }else {
               navigate('/createnick')
             }

@@ -1000,8 +1000,6 @@ export function ApiProviderBattle(props){
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
       
-      
-      //navigate('/profile')
     }else if (currentLife <= 0){
       setCharTurn([charTurn[0],"winner"])
       localStorage.removeItem("historicTempData")
@@ -1011,7 +1009,6 @@ export function ApiProviderBattle(props){
       await deleteDoc(doc(db,"users",user.uid,"tempData","tempBattleData"))
       await deleteDoc(doc(db,"users",user.uid,"tempData","pokePlayerTemp"))
       
-      //navigate('/profile')
     }else{
       setLifeChange(false)
     }
