@@ -22,7 +22,7 @@ function ButtonCreate() {
   const [popUpNickName, setPopupNickName] = useState(false)
   
   async function saveNickName(){
-    console.log(nickName);
+    
     if (nickName.length > 4 && nickName.length < 9) {
       console.log(nickName);
       if (user.uid) {

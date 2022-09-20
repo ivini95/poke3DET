@@ -9,10 +9,11 @@ function InputNickName() {
   
 
   function nickNameChange () {
+
     const currentNick = document.getElementById('nickName')
-    if (currentNick.value) {
-      setNickName(currentNick.value)
-    }
+    
+    setNickName(currentNick.value)
+    
   }
 
   return (
