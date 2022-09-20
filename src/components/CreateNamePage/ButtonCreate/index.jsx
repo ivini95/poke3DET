@@ -13,6 +13,7 @@ function ButtonCreate() {
   let navigate = useNavigate()
 
   const [nickName, setNickName] = useContext(ApiContextUser)
+  
 
   const {user} = UserAuth()
   
@@ -21,13 +22,14 @@ function ButtonCreate() {
   const [popUpNickName, setPopupNickName] = useState(false)
   
   async function saveNickName(){
-    
+    console.log(nickName);
     if (nickName.length > 4 && nickName.length < 9) {
+      console.log(nickName);
       if (user.uid) {
         await setDoc(doc(userRef, user.uid), {
           nickName: nickName
         }); 
-        if (total == 0  && zeroedStatus == false) {
+        /* if (total == 0  && zeroedStatus == false) {
           const pokeRef = collection(db, "users", user.uid, "pokemon")
           await setDoc(doc(pokeRef, "01"), {
           name: pokeName,
@@ -38,9 +40,9 @@ function ButtonCreate() {
           img: imgPoke
         });  
         navigate('/profile')
-        }else{
+        }else{ */
           navigate('/createpoke')
-        }
+        /* } */
         
       }
     }else {

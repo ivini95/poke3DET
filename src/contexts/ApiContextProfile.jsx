@@ -33,19 +33,21 @@ export function ApiProviderProfile(props) {
   },[user])
 
   useEffect(async ()=>{
-    if (user.uid) {
-      
+    if (user) {
+      if (user.uid) {
+  
+        const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
+        const pokeStatusRefSnap = await getDoc(pokeStatusRef)
+        const pokeStatus = pokeStatusRefSnap.data()
+        setLifePoke(pokeStatus.life)
+        setManaPoke(pokeStatus.mana)
+        setNamePoke(pokeStatus.name)
+        setImgPoke(pokeStatus.img)
+        setAtributesPoke(pokeStatus.characteristics)
+        setTotalPoints(pokeStatus.totalPoints)
+      }
+    }
     
-    const pokeStatusRef = doc(db, "users", user.uid, "pokemon", "01")
-    const pokeStatusRefSnap = await getDoc(pokeStatusRef)
-    const pokeStatus = pokeStatusRefSnap.data()
-    setLifePoke(pokeStatus.life)
-    setManaPoke(pokeStatus.mana)
-    setNamePoke(pokeStatus.name)
-    setImgPoke(pokeStatus.img)
-    setAtributesPoke(pokeStatus.characteristics)
-    setTotalPoints(pokeStatus.totalPoints)
-  }
   },[user])
 
   
